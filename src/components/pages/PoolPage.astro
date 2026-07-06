@@ -14,7 +14,9 @@ const stats = t<{ value: string; label: string }[]>('pool.stats');
 
 <!-- HERO -->
 <section class="relative flex h-[360px] items-end overflow-hidden md:h-[520px]">
-  <Photo pic={pics.piscineHero} locale={locale} eager sizes="100vw" class="absolute inset-0" />
+  <div class="absolute inset-0">
+    <Photo pic={pics.piscineHero} locale={locale} eager sizes="100vw" class="h-full" />
+  </div>
   <div
     class="absolute inset-0"
     style="background-image:linear-gradient(to top, rgba(38,78,108,.5), rgba(43,40,35,.05) 55%);"

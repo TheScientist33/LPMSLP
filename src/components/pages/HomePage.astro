@@ -27,14 +27,12 @@ const reviews = await getReviews();
 const iconShapes = ['rounded-full', 'rounded-lg', 'rounded-[8px_8px_8px_0]', 'rounded rotate-45'];
 ---
 
-<!-- HERO -->
-<section class="relative flex h-[460px] items-end overflow-hidden md:h-[560px]">
-  <Photo pic={pics.piscineHero} locale={locale} eager sizes="100vw" class="absolute inset-0" />
-  <div
-    class="absolute inset-0"
-    style="background-image:linear-gradient(to top, rgba(43,40,35,.55), rgba(43,40,35,.05) 55%);"
-  >
+<!-- HERO : photo en bandeau entier, texte par-dessus sur voile gris foncé semi-opaque -->
+<section class="relative flex h-[460px] items-center overflow-hidden md:h-[560px]">
+  <div class="absolute inset-0">
+    <Photo pic={pics.piscineHero} locale={locale} eager sizes="100vw" class="h-full" />
   </div>
+  <div class="absolute inset-0 bg-[rgba(43,40,35,0.5)]"></div>
   <div class="relative mx-auto w-full max-w-[1440px] px-5 py-7 md:px-14 md:py-14">
     <div class="max-w-[760px]">
       <h1
