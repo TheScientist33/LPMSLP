@@ -1,35 +1,68 @@
 ---
+import { Image } from 'astro:assets';
+import type { Picture } from '~/data/images';
+import type { Locale } from '~/i18n/ui';
+
 /**
- * Emplacement photo — placeholder sobre en attendant l'intégration des images
- * réelles (workflow §12.4 : téléchargement WordPress → src/assets/images/ →
- * <Image>). À remplacer par <Image> sans changer la mise en page.
+ * Emplacement photo.
+ * - Si `pic` est fourni → image réelle optimisée (WebP/AVIF, responsive).
+ * - Sinon → placeholder sobre (emplacements Tourisme en attente d'images).
  */
 interface Props {
+  pic?: Picture;
+  locale?: Locale;
   caption?: string;
   class?: string;
   rounded?: boolean;
+  eager?: boolean; // hero : chargement prioritaire (LCP)
+  sizes?: string;
 }
-const { caption, class: className = '', rounded = false } = Astro.props;
+const {
+  pic,
+  locale = 'fr',
+  caption,
+  class: className = '',
+  rounded = false,
+  eager = false,
+  sizes = '(min-width: 768px) 50vw, 100vw',
+} = Astro.props;
 ---
 
-<div
-  class:list={[
-    'bg-poollight relative isolate flex items-end overflow-hidden',
-    rounded && 'rounded-lg',
-    className,
-  ]}
-  style="background-image:linear-gradient(135deg,#dce7ea,#e9dfce);"
-  role="img"
-  aria-label={caption}
->
-  {
-    caption && (
-      <span
-        class="bg-cream/85 text-muted m-3 rounded px-2 py-1 font-mono text-[11px]"
-        aria-hidden="true"
-      >
-        {caption}
-      </span>
-    )
-  }
-</div>
+{
+  pic ? (
+    <div
+      class:list={['relative isolate overflow-hidden', rounded && 'rounded-lg', className]}
+      data-zoom
+    >
+      <Image
+        src={pic.src}
+        alt={pic.alt[locale]}
+        widths={[400, 800, 1200, 1600]}
+        sizes={sizes}
+        loading={eager ? 'eager' : 'lazy'}
+        {...(eager ? { fetchpriority: 'high' } : {})}
+        class="h-full w-full cursor-zoom-in object-cover"
+      />
+    </div>
+  ) : (
+    <div
+      class:list={[
+        'bg-poollight relative isolate flex items-end overflow-hidden',
+        rounded && 'rounded-lg',
+        className,
+      ]}
+      style="background-image:linear-gradient(135deg,#dce7ea,#e9dfce);"
+      role="img"
+      aria-label={caption}
+    >
+      {caption && (
+        <span
+          class="bg-cream/85 text-muted m-3 rounded px-2 py-1 font-mono text-[11px]"
+          aria-hidden="true"
+        >
+          {caption}
+        </span>
+      )}
+    </div>
+  )
+}

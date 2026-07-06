@@ -2,6 +2,7 @@
 import { useTranslations } from '~/i18n/t';
 import { localizeUrl, type Locale } from '~/i18n/ui';
 import Photo from '~/components/Photo.astro';
+import { pics } from '~/data/images';
 import { getReviews } from '~/lib/reviews';
 import { site } from '~/data/site';
 
@@ -11,7 +12,15 @@ interface Props {
 const { locale } = Astro.props;
 const t = useTranslations(locale);
 const highlights = t<string[]>('home.highlights');
-const galleryLabels = t<string[]>('home.galleryLabels');
+// Galerie Accueil (ordre = légendes home.galleryLabels : séjour, piscine, cuisine, chambre, jardin, terrasse)
+const homeGallery = [
+  pics.sejour,
+  pics.piscineHero,
+  pics.cuisine,
+  pics.chambreParentale,
+  pics.vuePins,
+  pics.terrasse,
+];
 const reviews = await getReviews();
 
 /* Formes géométriques des points forts (maquette : cercle, carré arrondi, feuille, losange) */
@@ -20,7 +29,7 @@ const iconShapes = ['rounded-full', 'rounded-lg', 'rounded-[8px_8px_8px_0]', 'ro
 
 <!-- HERO -->
 <section class="relative flex h-[460px] items-end overflow-hidden md:h-[560px]">
-  <Photo caption={t('home.photoHero')} class="absolute inset-0 items-start" />
+  <Photo pic={pics.piscineHero} locale={locale} eager sizes="100vw" class="absolute inset-0" />
   <div
     class="absolute inset-0"
     style="background-image:linear-gradient(to top, rgba(43,40,35,.55), rgba(43,40,35,.05) 55%);"
@@ -79,7 +88,7 @@ const iconShapes = ['rounded-full', 'rounded-lg', 'rounded-[8px_8px_8px_0]', 'ro
     </div>
     <div class="grid gap-5 md:grid-cols-2 md:gap-8">
       <article class="bg-sand overflow-hidden rounded-[10px] border border-[#e4d8c4]">
-        <Photo caption={t('home.weekPhoto')} class="h-[160px] md:h-[220px]" />
+        <Photo pic={pics.piscine01} locale={locale} class="h-[160px] md:h-[220px]" />
         <div class="p-6 md:p-8">
           <h3 class="font-display text-pine mb-2.5 text-[21px] font-semibold md:text-2xl">
             {t('home.weekTitle')}
@@ -96,7 +105,7 @@ const iconShapes = ['rounded-full', 'rounded-lg', 'rounded-[8px_8px_8px_0]', 'ro
         </div>
       </article>
       <article class="bg-sand overflow-hidden rounded-[10px] border border-[#e4d8c4]">
-        <Photo caption={t('home.monthPhoto')} class="h-[160px] md:h-[220px]" />
+        <Photo pic={pics.jardinDrone} locale={locale} class="h-[160px] md:h-[220px]" />
         <div class="p-6 md:p-8">
           <h3 class="font-display text-pine mb-2.5 text-[21px] font-semibold md:text-2xl">
             {t('home.monthTitle')}
@@ -132,8 +141,8 @@ const iconShapes = ['rounded-full', 'rounded-lg', 'rounded-[8px_8px_8px_0]', 'ro
     </div>
     <div class="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
       {
-        galleryLabels.map((label) => (
-          <Photo rounded caption={label} class="h-[140px] md:h-[200px]" />
+        homeGallery.map((pic) => (
+          <Photo pic={pic} locale={locale} rounded class="h-[140px] md:h-[200px]" />
         ))
       }
     </div>
@@ -212,8 +221,9 @@ const iconShapes = ['rounded-full', 'rounded-lg', 'rounded-[8px_8px_8px_0]', 'ro
       </a>
     </div>
     <Photo
-      caption={t('home.locationPhoto')}
-      class="order-first min-h-[220px] items-start md:order-none md:min-h-[340px]"
+      pic={pics.jardin2}
+      locale={locale}
+      class="order-first min-h-[220px] md:order-none md:min-h-[340px]"
     />
   </div>
 </section>

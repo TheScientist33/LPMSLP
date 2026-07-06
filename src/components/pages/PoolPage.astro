@@ -2,6 +2,7 @@
 import { useTranslations } from '~/i18n/t';
 import type { Locale } from '~/i18n/ui';
 import Photo from '~/components/Photo.astro';
+import { pics } from '~/data/images';
 
 interface Props {
   locale: Locale;
@@ -13,7 +14,7 @@ const stats = t<{ value: string; label: string }[]>('pool.stats');
 
 <!-- HERO -->
 <section class="relative flex h-[360px] items-end overflow-hidden md:h-[520px]">
-  <Photo caption={t('pool.photoHero')} class="absolute inset-0 items-start" />
+  <Photo pic={pics.piscineHero} locale={locale} eager sizes="100vw" class="absolute inset-0" />
   <div
     class="absolute inset-0"
     style="background-image:linear-gradient(to top, rgba(38,78,108,.5), rgba(43,40,35,.05) 55%);"
@@ -55,7 +56,7 @@ const stats = t<{ value: string; label: string }[]>('pool.stats');
       </dl>
       <p class="text-muted mt-6 text-[13px]">{t('pool.heatingNote')}</p>
     </div>
-    <Photo caption={t('pool.photoPool')} class="min-h-[240px] md:h-full md:min-h-[440px]" />
+    <Photo pic={pics.piscine01} locale={locale} class="min-h-[240px] md:h-full md:min-h-[440px]" />
   </div>
 </section>
 
@@ -63,7 +64,8 @@ const stats = t<{ value: string; label: string }[]>('pool.stats');
 <section class="bg-sand">
   <div class="mx-auto grid max-w-[1440px] items-center md:grid-cols-2">
     <Photo
-      caption={t('pool.photoSpa')}
+      pic={pics.spa01}
+      locale={locale}
       class="order-last min-h-[220px] md:order-first md:h-full md:min-h-[400px]"
     />
     <div class="px-5 py-10 md:px-14 md:py-[72px]">
@@ -95,7 +97,11 @@ const stats = t<{ value: string; label: string }[]>('pool.stats');
       {t('pool.galleryTitle')}
     </h2>
     <div class="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
-      {[0, 1, 2, 3].map(() => <Photo rounded class="h-[130px] md:h-[200px]" />)}
+      {
+        [pics.piscine02, pics.piscineNage, pics.spa02, pics.spaAcces].map((pic) => (
+          <Photo pic={pic} locale={locale} rounded class="h-[130px] md:h-[200px]" />
+        ))
+      }
     </div>
   </div>
 </section>

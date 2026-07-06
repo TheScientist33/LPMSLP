@@ -40,6 +40,66 @@ const t = useTranslations(locale);
     </main>
     <Footer locale={locale} />
 
+    <!-- Lightbox (agrandissement des photos au clic) -->
+    <div
+      id="lightbox"
+      hidden
+      class="bg-ink/85 fixed inset-0 z-50 hidden items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Photo agrandie"
+    >
+      <button
+        type="button"
+        id="lightbox-close"
+        class="bg-cream/90 text-ink absolute top-4 right-4 flex h-11 w-11 items-center justify-center rounded-full text-2xl"
+        aria-label={t('nav.close')}>×</button
+      >
+      <img
+        id="lightbox-img"
+        src=""
+        alt=""
+        class="max-h-[90vh] max-w-[92vw] rounded object-contain"
+      />
+    </div>
+
+    <script>
+      // Lightbox : clic sur une photo de galerie -> agrandissement plein écran.
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightbox-img') as HTMLImageElement | null;
+      const lbClose = document.getElementById('lightbox-close');
+      let lastFocus: HTMLElement | null = null;
+
+      function openLightbox(img: HTMLImageElement) {
+        if (!lb || !lbImg) return;
+        lastFocus = document.activeElement as HTMLElement;
+        lbImg.src = img.currentSrc || img.src;
+        lbImg.alt = img.alt;
+        lb.hidden = false;
+        lb.classList.add('flex');
+        lb.classList.remove('hidden');
+        lbClose?.focus();
+      }
+      function closeLightbox() {
+        if (!lb || !lbImg) return;
+        lb.hidden = true;
+        lb.classList.remove('flex');
+        lb.classList.add('hidden');
+        lbImg.src = '';
+        lastFocus?.focus();
+      }
+
+      document.querySelectorAll<HTMLElement>('[data-zoom] img').forEach((img) => {
+        img.addEventListener('click', () => openLightbox(img as HTMLImageElement));
+      });
+      lb?.addEventListener('click', (e) => {
+        if (e.target === lb || e.target === lbClose) closeLightbox();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lb && !lb.hidden) closeLightbox();
+      });
+    </script>
+
     <script>
       // Apparitions douces au scroll (respecte prefers-reduced-motion via CSS).
       const els = document.querySelectorAll('.fade-up');

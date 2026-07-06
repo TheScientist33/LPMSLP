@@ -3,7 +3,6 @@
 > Texte réel repris du site actuel, nettoyé. À utiliser comme copie de base (FR).
 > Les tarifs iront dans le Google Sheet ; le reste dans le repo.
 
-
 ---
 
 ## Accueil / En-tête
@@ -24,7 +23,6 @@ Fixe :
 Mobile :
 06.62.32.67.18
 ```
-
 
 ---
 
@@ -101,7 +99,6 @@ Départ au plus tard 11h.
 Piscine chauffée de juillet  à fin Octobre .
 ```
 
-
 ---
 
 ## Piscine & Spa
@@ -153,7 +150,6 @@ Fêtes et événements festifs non autorisés
 NB : pas de piscine chauffée en Decembre Janvier Février
 ```
 
-
 ---
 
 ## Tarifs & Disponibilités
@@ -203,7 +199,6 @@ toutes charges comprises
 (eau, électricité, internet)
 ```
 
-
 ---
 
 ## Réservation (conditions)
@@ -229,7 +224,6 @@ Conditions de paiement
 Modes de paiement acceptés : Carte bancaire, Chèques vacances & e-Connect, chèques.
 En cas d'annulation ou de report de dates, un préavis d'au moins 1 mois avant le début du séjour est requis (remboursement possible ou report)
 ```
-
 
 ---
 
@@ -419,7 +413,6 @@ Détails ici
 Itinéraire ~ 30 min
 ```
 
-
 **Liens / références de la page Tourisme :**
 
 - Escapades — https://lapetitemaisonsouslespins.fr/tourisme/#:~:text=Aix%2Den%2DProvence%20et%20ses%20tr%C3%A9sors
@@ -481,7 +474,6 @@ Itinéraire ~ 30 min
 - Détails ici — https://www.glacierlequille.com
 - Itinéraire ~ 30 min — https://www.google.com/maps/dir/La+Petite+Maison+Sous+Les+Pins,+1689+Chem.+du+Marin,+13540+Aix-en-Provence/Glacier+le+Quillé,+Cours+Maréchal+Foch,+La+Roque-d'Anthéron/@43.6580841,5.2853971,25492m/data=!3m3!1e3!4b1!5s0x12c98c9bf16cb9e9:0x4a8524c431e56c0b!4m14!4m13!1m5!1m1!1s0x12c98b449ef3307f:0x96e76ca6f93621d0!2m2!1d5.4091016!2d43.5976717!1m5!1m1!1s0x12ca1c27f367fd33:0xbe27e2d162e57135!2m2!1d5.3097395!2d43.7166105!3e0?authuser=0&entry=ttu&g_ep=EgoyMDI1MDIwMi4wIKXMDSoASAFQAw%3D%3D
 
-
 ---
 
 ## Contact
@@ -494,11 +486,9 @@ Tél (+33):
 Pour toute demande, n’hésitez pas à nous écrire à notre adresse email via le formulaire ci-dessous.
 ```
 
-
 ---
 
 ## Manifeste des images (URLs à récupérer)
-
 
 ### Le gîte (Descriptif) (29 images)
 

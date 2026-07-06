@@ -13,10 +13,12 @@ Légende : 🟢 je le fais sans rien attendre · 🟡 je le fais dès que tu me 
 
 **État.** Toutes les zones photo sont des placeholders (composant `Photo.astro`).
 16 emplacements « éditoriaux » (Accueil 5, Le gîte 6, Piscine 4, Tourisme 1 par carte)
-+ les galeries. Le manifeste liste **72 URLs** : Le gîte 29, Piscine & Spa 15, Abritel 1,
-Tourisme 27.
+
+- les galeries. Le manifeste liste **72 URLs** : Le gîte 29, Piscine & Spa 15, Abritel 1,
+  Tourisme 27.
 
 **Ce que je fais (🟢).**
+
 1. Télécharger les **45 photos du gîte** (gîte + piscine + Abritel — ce sont **nos** photos, aucun souci de droits) depuis WordPress dans `src/assets/images/`, nommées clairement (`sejour-01.jpg`, `piscine-interieure-01.jpg`, …).
 2. Créer `src/data/images.ts` : mapping id → import d'asset + `alt` bilingue (accessibilité).
 3. Remplacer les `Photo.astro` par `<Image>` (`astro:assets`, sharp intégré) → WebP/AVIF, `srcset` responsive, `loading="lazy"` partout **sauf le hero** (chargé en priorité pour le LCP).
@@ -24,6 +26,7 @@ Tourisme 27.
 5. Générer une **image Open Graph** par défaut (le hero) pour le partage réseaux sociaux + `apple-touch-icon`.
 
 **Ce dont j'ai besoin de toi (🔴).**
+
 - **Tourisme (27 images)** : ce sont des photos **tierces** (Wikimedia, Flickr, sites d'offices de tourisme, TripAdvisor…). Droits variables. Deux options :
   - **Recommandé** : tu me fournis une short-list de photos libres de droits (ou tes propres photos des lieux), OU je n'utilise que les images clairement réutilisables (Wikimedia Commons avec attribution) et je laisse un dégradé sobre pour les autres.
   - À défaut, on garde les cartes Tourisme avec un visuel neutre (pas de hotlink vers des CDN tiers, interdit par le cahier des charges et fragile).
@@ -45,9 +48,10 @@ propre (pas de faux avis) et le bouton renvoie vers une recherche Google Maps.
 - **Niveau 2 — note + avis affichés (🟡).** Pour afficher la **note globale + jusqu'à 6 avis** directement sur le site, il faut :
   - `PLACE_ID` (identifiant de ta fiche),
   - `GOOGLE_PLACES_API_KEY` (clé API Google Cloud, API « Places » activée, ~gratuit à ce volume).
-  Je les mets en variables d'env Vercel ; les avis sont figés au build (rafraîchis à chaque déploiement). Bonus : la note alimente aussi le `aggregateRating` du schema.org SEO.
+    Je les mets en variables d'env Vercel ; les avis sont figés au build (rafraîchis à chaque déploiement). Bonus : la note alimente aussi le `aggregateRating` du schema.org SEO.
 
 **Ce dont j'ai besoin de toi (🔴).**
+
 - L'**URL de la fiche Google** du gîte (pour le Place ID).
 - Si niveau 2 : que tu crées la clé API dans Google Cloud (je te fournis la procédure pas-à-pas) — ou tu me délègues l'accès.
 
@@ -62,12 +66,14 @@ maquette), avec un lien de secours. Le code est prêt : il suffit de renseigner 
 de l'iframe (`src/data/booking.ts`, `iframeUrl`).
 
 **Ce dont j'ai besoin de toi (🔴).**
+
 - L'**identifiant/URL exact de l'iframe** chambresdhotes.org. On le récupère :
   - soit dans le **code source de la page actuelle** `/disponibilites-reservation/` (chercher un motif `cal.cgi?make_iframe=1;list=1;who=…`),
   - soit dans ton **espace propriétaire chambresdhotes.org** (section « intégrer le calendrier / widget »).
 - Si tu m'envoies le lien de la page actuelle ou une copie du code d'intégration, je l'extrais moi-même.
 
 **Ce que je fais dès réception (🟡).**
+
 - Renseigner `booking.iframeUrl`, régler le ratio/hauteur, lazy-load, tester l'affichage FR (et vérifier la langue du module).
 - Le cadre pointillé est automatiquement remplacé par le vrai calendrier.
 
@@ -81,6 +87,7 @@ de l'iframe (`src/data/booking.ts`, `iframeUrl`).
 honeypot, états succès/erreur). Il manque les 2 services externes pour l'envoi réel.
 
 **Ce dont j'ai besoin de toi (🔴).**
+
 1. **Resend** (envoi des emails, gratuit jusqu'à 3 000/mois) :
    - Création d'un compte Resend + `RESEND_API_KEY`.
    - **Vérification du domaine** `lapetitemaisonsouslespins.fr` chez Resend (ajout d'enregistrements DNS SPF/DKIM) pour que les emails partent de `site@lapetitemaisonsouslespins.fr` sans finir en spam. → dépend du Chantier 5 (DNS).
@@ -89,6 +96,7 @@ honeypot, états succès/erreur). Il manque les 2 services externes pour l'envoi
    - `PUBLIC_TURNSTILE_SITE_KEY` + `TURNSTILE_SECRET_KEY` (création d'un widget Turnstile).
 
 **Ce que je fais (🟡).**
+
 - Mettre les clés en env Vercel, tester un envoi de bout en bout (contact + demande au mois), vérifier la réception et la non-fuite de secrets.
 - Sans les clés : les formulaires valident côté client mais l'envoi renvoie une erreur propre (déjà géré). Turnstile est **optionnel** au lancement (le honeypot protège déjà) mais recommandé.
 
@@ -102,6 +110,7 @@ honeypot, états succès/erreur). Il manque les 2 services externes pour l'envoi
 Rien n'est encore déployé.
 
 **Étapes.**
+
 1. 🔴 **Connecter le dépôt GitHub à Vercel** (compte Vercel gratuit) — je te guide, ou tu m'ajoutes.
 2. 🟡 **Renseigner les variables d'environnement** Vercel (toutes celles de `.env.example` : Resend, Turnstile, Google Places, `PUBLIC_SITE_URL`).
 3. 🟢 Premier **déploiement de preview** (URL `*.vercel.app`) pour recette avant bascule.
@@ -134,6 +143,7 @@ Points factuels à trancher (je ne les invente pas — placeholders en attente) 
 ## Chantier 7 — SEO, performance, accessibilité 🟢
 
 **Ce que je fais, une fois les images et avis en place :**
+
 - `og:image` réel par page + `apple-touch-icon` + favicon multi-format.
 - `aggregateRating` (note Google) et `priceRange` dans le JSON-LD `LodgingBusiness`.
 - Vérifier hreflang/canonical sur les 20 pages (10 FR + 10 EN) et le sitemap.
@@ -148,6 +158,7 @@ Points factuels à trancher (je ne les invente pas — placeholders en attente) 
 ## Chantier 8 — Recette finale & go-live 🟢🔴
 
 Checklist avant bascule DNS :
+
 - [ ] Toutes les photos intégrées, galeries + lightbox OK.
 - [ ] Module chambresdhotes.org fonctionnel.
 - [ ] Formulaires : email reçu, anti-spam actif.
@@ -163,17 +174,17 @@ Checklist avant bascule DNS :
 
 ## Ce dont j'ai besoin de toi — récapitulatif
 
-| # | Élément | Pour débloquer |
-|---|---------|----------------|
-| A | URL fiche Google (Place ID) | Lien + affichage des avis (chantier 2) |
-| B | Clé API Google Places | Affichage note + avis (chantier 2, niveau 2) |
-| C | URL/code d'intégration iframe chambresdhotes.org | Calendrier de réservation (chantier 3) |
-| D | Compte Resend + clé API + validation domaine | Envoi des emails (chantier 4) |
-| E | Clés Cloudflare Turnstile | Anti-spam renforcé (chantier 4) |
-| F | Accès Vercel | Déploiement (chantier 5) |
-| G | Accès DNS du domaine | Mise en ligne + emails (chantiers 4, 5) |
-| H | Photos Tourisme libres de droits (ou validation) | Images page Tourisme (chantier 1) |
-| I | Réponses aux 5 points d'arbitrage | Textes définitifs (chantier 6) |
+| #   | Élément                                          | Pour débloquer                               |
+| --- | ------------------------------------------------ | -------------------------------------------- |
+| A   | URL fiche Google (Place ID)                      | Lien + affichage des avis (chantier 2)       |
+| B   | Clé API Google Places                            | Affichage note + avis (chantier 2, niveau 2) |
+| C   | URL/code d'intégration iframe chambresdhotes.org | Calendrier de réservation (chantier 3)       |
+| D   | Compte Resend + clé API + validation domaine     | Envoi des emails (chantier 4)                |
+| E   | Clés Cloudflare Turnstile                        | Anti-spam renforcé (chantier 4)              |
+| F   | Accès Vercel                                     | Déploiement (chantier 5)                     |
+| G   | Accès DNS du domaine                             | Mise en ligne + emails (chantiers 4, 5)      |
+| H   | Photos Tourisme libres de droits (ou validation) | Images page Tourisme (chantier 1)            |
+| I   | Réponses aux 5 points d'arbitrage                | Textes définitifs (chantier 6)               |
 
 **Je peux avancer immédiatement, sans rien attendre**, sur : les **45 photos du gîte**
 (téléchargement, optimisation, galeries, lightbox), l'image OG/favicon, et la passe
