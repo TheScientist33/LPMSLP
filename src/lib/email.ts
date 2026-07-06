@@ -1,9 +1,10 @@
 /** Envoi d'email via Resend (fonction serverless). */
 export async function sendEmail(subject: string, text: string): Promise<boolean> {
   const key = import.meta.env.RESEND_API_KEY;
-  const to = import.meta.env.CONTACT_TO_EMAIL || 'mariedenise@neuf.fr';
-  if (!key) {
-    // Pas de clé : on n'expose pas d'erreur, mais on signale l'échec d'envoi.
+  // Adresse de réception : uniquement via variable d'env (jamais en dur dans le dépôt).
+  const to = import.meta.env.CONTACT_TO_EMAIL;
+  if (!key || !to) {
+    // Clé ou destinataire absents : on signale l'échec d'envoi sans exposer d'erreur.
     return false;
   }
 

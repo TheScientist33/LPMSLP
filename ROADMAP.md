@@ -84,7 +84,7 @@ honeypot, états succès/erreur). Il manque les 2 services externes pour l'envoi
 1. **Resend** (envoi des emails, gratuit jusqu'à 3 000/mois) :
    - Création d'un compte Resend + `RESEND_API_KEY`.
    - **Vérification du domaine** `lapetitemaisonsouslespins.fr` chez Resend (ajout d'enregistrements DNS SPF/DKIM) pour que les emails partent de `site@lapetitemaisonsouslespins.fr` sans finir en spam. → dépend du Chantier 5 (DNS).
-   - Confirmation de l'email de réception (par défaut `mariedenise@neuf.fr`).
+   - Confirmation de l'email de réception (par défaut l’adresse de la propriétaire (variable Vercel)).
 2. **Cloudflare Turnstile** (anti-spam invisible, gratuit) :
    - `PUBLIC_TURNSTILE_SITE_KEY` + `TURNSTILE_SECRET_KEY` (création d'un widget Turnstile).
 
