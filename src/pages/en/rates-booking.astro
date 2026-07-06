@@ -1,0 +1,11 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import RatesPage from '~/components/pages/RatesPage.astro';
+import { useTranslations } from '~/i18n/t';
+const locale = 'en' as const;
+const t = useTranslations(locale);
+---
+
+<BaseLayout locale={locale} routeKey="rates" title={t('rates.seoTitle')} description={t('rates.seoDescription')}>
+  <RatesPage locale={locale} />
+</BaseLayout>

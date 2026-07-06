@@ -1,0 +1,41 @@
+---
+import { useTranslations } from '~/i18n/t';
+import { localizeUrl, type Locale } from '~/i18n/ui';
+import Section from '~/components/Section.astro';
+import Button from '~/components/Button.astro';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<Section>
+  <h1 class="max-w-3xl text-3xl md:text-4xl">{t('pool.title')}</h1>
+  <p class="mt-6 max-w-3xl text-lg text-muted">{t('pool.lead')}</p>
+</Section>
+
+<Section tone="sand">
+  <div class="grid gap-10 md:grid-cols-2">
+    <div class="fade-up">
+      <h2 class="text-2xl">{t('pool.poolTitle')}</h2>
+      <p class="mt-3 text-muted">{t('pool.poolText')}</p>
+    </div>
+    <div class="fade-up">
+      <h2 class="text-2xl">{t('pool.spaTitle')}</h2>
+      <p class="mt-3 text-muted">{t('pool.spaText')}</p>
+      <p class="mt-4 font-medium text-pine">{t('pool.spaPrice')}</p>
+    </div>
+  </div>
+</Section>
+
+<Section>
+  <div class="rounded border border-beige bg-beige/40 p-6">
+    <p class="font-medium text-pine">🚫 {t('pool.noParties')}</p>
+    <p class="mt-2 text-sm text-muted">{t('pool.heatingNote')}</p>
+  </div>
+  <div class="mt-8">
+    <Button href={localizeUrl(locale, 'rates')}>{t('common.bookNow')}</Button>
+  </div>
+</Section>

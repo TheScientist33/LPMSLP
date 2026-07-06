@@ -1,0 +1,55 @@
+---
+import { localizeUrl, type Locale } from '~/i18n/ui';
+import { useTranslations } from '~/i18n/t';
+import { site } from '~/data/site';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const year = 2026;
+---
+
+<footer class="mt-20 border-t border-beige bg-sand/50">
+  <div class="mx-auto grid max-w-6xl gap-8 px-4 py-12 md:grid-cols-3 md:px-6">
+    <div>
+      <p class="font-display text-lg text-pine">La petite maison sous les pins</p>
+      <p class="mt-2 text-sm text-muted">{t('footer.madeWith')}</p>
+      <p class="mt-2 text-sm text-muted">{t('footer.address')}</p>
+    </div>
+
+    <div class="text-sm">
+      <p>
+        <a href={`tel:${site.phoneFixed}`} class="text-marine no-underline hover:underline"
+          >{t('common.phoneFixed')}</a
+        >
+        ·
+        <a href={`tel:${site.phoneMobile}`} class="text-marine no-underline hover:underline"
+          >{t('common.phoneMobile')}</a
+        >
+      </p>
+      <p class="mt-1">
+        <a href={`mailto:${site.email}`} class="text-marine no-underline hover:underline"
+          >{site.email}</a
+        >
+      </p>
+    </div>
+
+    <nav aria-label="Légal" class="flex flex-col gap-2 text-sm">
+      <a href={localizeUrl(locale, 'legal')} class="text-ink no-underline hover:text-marine"
+        >{t('footer.legal')}</a
+      >
+      <a href={localizeUrl(locale, 'privacy')} class="text-ink no-underline hover:text-marine"
+        >{t('footer.privacy')}</a
+      >
+      <a href={localizeUrl(locale, 'terms')} class="text-ink no-underline hover:text-marine"
+        >{t('footer.terms')}</a
+      >
+    </nav>
+  </div>
+
+  <div class="border-t border-beige/70 px-4 py-4 text-center text-xs text-muted">
+    © {year} {site.name}. {t('footer.rights')} · SIRET {site.siret}
+  </div>
+</footer>

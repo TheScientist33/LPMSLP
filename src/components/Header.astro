@@ -1,0 +1,102 @@
+---
+import { localizeUrl, type Locale, type RouteKey } from '~/i18n/ui';
+import { useTranslations } from '~/i18n/t';
+import { site } from '~/data/site';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const navItems: { key: RouteKey; label: string }[] = [
+  { key: 'house', label: t('nav.house') },
+  { key: 'pool', label: t('nav.pool') },
+  { key: 'rates', label: t('nav.rates') },
+  { key: 'discover', label: t('nav.discover') },
+  { key: 'reviews', label: t('nav.reviews') },
+  { key: 'contact', label: t('nav.contact') },
+];
+
+const current = Astro.url.pathname.replace(/\/$/, '');
+---
+
+<header class="sticky top-0 z-40 border-b border-beige/70 bg-cream/90 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 md:px-6">
+    <a href={localizeUrl(locale, 'home')} class="font-display text-lg leading-tight text-pine no-underline md:text-xl">
+      La petite maison<span class="text-muted"> sous les pins</span>
+    </a>
+
+    <nav aria-label={t('nav.menu')} class="hidden items-center gap-6 lg:flex">
+      {
+        navItems.map((item) => {
+          const href = localizeUrl(locale, item.key);
+          const active = current === href.replace(/\/$/, '');
+          return (
+            <a
+              href={href}
+              aria-current={active ? 'page' : undefined}
+              class:list={[
+                'text-sm no-underline transition-colors',
+                active ? 'text-pine' : 'text-ink hover:text-marine',
+              ]}
+            >
+              {item.label}
+            </a>
+          );
+        })
+      }
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a
+        href={`tel:${site.phoneMobile}`}
+        class="hidden text-sm text-marine no-underline hover:underline sm:inline"
+      >
+        {t('common.phoneMobile')}
+      </a>
+      <LanguageSwitcher locale={locale} />
+      <button
+        type="button"
+        id="menu-toggle"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        class="inline-flex h-10 w-10 items-center justify-center rounded border border-beige text-pine lg:hidden"
+      >
+        <span class="sr-only">{t('nav.menu')}</span>
+        <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M3 5h14M3 10h14M3 15h14" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" hidden class="border-t border-beige/70 lg:hidden">
+    <nav aria-label={t('nav.menu')} class="mx-auto flex max-w-6xl flex-col px-4 py-2">
+      {
+        navItems.map((item) => (
+          <a
+            href={localizeUrl(locale, item.key)}
+            class="border-b border-beige/50 py-3 text-ink no-underline last:border-0"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <a href={`tel:${site.phoneMobile}`} class="py-3 text-marine no-underline">
+        {t('nav.call')} — {site.phoneMobile.replace('+33', '0')}
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    if (menu) menu.hidden = open;
+  });
+</script>

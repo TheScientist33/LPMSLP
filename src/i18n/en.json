@@ -1,0 +1,204 @@
+{
+  "site": {
+    "name": "La Petite Maison Sous Les Pins",
+    "tagline": "Holiday home with heated indoor pool & spa — Puyricard, Aix-en-Provence"
+  },
+  "nav": {
+    "home": "Home",
+    "house": "The house",
+    "pool": "Pool & Spa",
+    "rates": "Rates & Booking",
+    "discover": "Discover",
+    "reviews": "Reviews",
+    "contact": "Contact",
+    "skip": "Skip to content",
+    "menu": "Menu",
+    "close": "Close",
+    "call": "Call"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "legal": "Legal notice",
+    "privacy": "Privacy policy",
+    "terms": "Rental terms",
+    "address": "1689 chemin du Marin, 13540 Aix-en-Provence — Puyricard",
+    "madeWith": "A family holiday home in Provence"
+  },
+  "common": {
+    "phoneFixed": "+33 4 42 28 15 69",
+    "phoneMobile": "+33 6 62 32 67 18",
+    "email": "mariedenise@neuf.fr",
+    "bookNow": "Book now",
+    "seeRates": "See rates",
+    "discoverHouse": "Discover the house",
+    "contactUs": "Contact us",
+    "from": "from",
+    "perWeek": "/week",
+    "perMonth": "/month"
+  },
+  "home": {
+    "seoTitle": "Holiday home with heated indoor pool in Aix-en-Provence — La Petite Maison Sous Les Pins",
+    "seoDescription": "Family holiday home for 4 with a heated indoor pool and spa in Puyricard, Aix-en-Provence. Weekly rental in summer, monthly rental of the house from October to June.",
+    "heroKicker": "Puyricard · Aix-en-Provence",
+    "heroTitle": "La Petite Maison Sous Les Pins",
+    "heroSubtitle": "A family holiday home with a heated indoor pool & spa, tucked into an enclosed pine garden on the Puyricard plateau.",
+    "highlightsTitle": "Highlights",
+    "highlights": [
+      { "title": "Heated indoor pool", "text": "Private 530 × 330 cm pool, water at 29-30 °C, counter-current swimming, open from July to late October." },
+      { "title": "Optional Hotspring spa", "text": "Covered 4-seat spa, adjustable from 26 to 40 °C, for private use — €200/week." },
+      { "title": "Enclosed pine garden", "text": "Terrace, plancha, table tennis, trampoline, sun loungers and bikes, in a quiet, leafy setting." },
+      { "title": "Sleeps 4", "text": "Comfortable 2-bedroom home, fully equipped kitchen, air conditioning and internet." }
+    ],
+    "waysTitle": "Two ways to stay",
+    "weekTitle": "By the week (summer)",
+    "weekText": "From July to October, Saturday to Saturday, with access to the heated pool for 4 guests. Online booking.",
+    "monthTitle": "By the month (October to June)",
+    "monthText": "The house only, without pool or spa, from 1 October to 30 June. Monthly or seasonal, on request.",
+    "reviewsTeaser": "What our guests say",
+    "galleryTeaser": "A glimpse of the house"
+  },
+  "house": {
+    "seoTitle": "The house — 2-bedroom home for 4 | La Petite Maison Sous Les Pins",
+    "seoDescription": "Holiday home in Aix-en-Provence: 2 bedrooms, equipped kitchen, bright living room, enclosed garden, heated indoor pool and optional spa.",
+    "title": "The house",
+    "intro": "Discover this lovely holiday home for four guests, with an indoor pool, in Aix-en-Provence, Puyricard. Perfect for unwinding, it offers modern comfort in a pleasant setting.",
+    "livingTitle": "Living spaces",
+    "livingText": "The living room has large bay windows opening onto the garden. It features a leather sofa, three armchairs, a coffee table, a flat-screen TV (43-inch Smart TV) and a mini Hi-Fi system.",
+    "kitchenTitle": "Kitchen",
+    "kitchenText": "The kitchen, open to the living room, is fully equipped: dishwasher, washing machine, oven, ceramic hob, fridge-freezer, microwave, toaster and filter coffee maker.",
+    "bedroomsTitle": "Bedrooms and bathroom",
+    "bedrooms": [
+      "Bedroom 1: double bed (160 cm)",
+      "Bedroom 2: 2 single beds",
+      "1 bathroom with walk-in shower (hairdryer)",
+      "1 separate toilet"
+    ],
+    "outdoorTitle": "Outdoors",
+    "outdoorText": "The private garden, shaded by pines, has a terrace with garden furniture perfect for outdoor meals. A gas plancha, a table-tennis table and sun loungers are provided. Children will love the trampoline. Bikes are also available. On-site parking for 3 cars.",
+    "equipmentTitle": "Amenities",
+    "equipment": [
+      "Heated indoor pool (water 29-30 °C)",
+      "Covered Hotspring spa (option)",
+      "Enclosed garden with terrace",
+      "Gas plancha",
+      "Table tennis",
+      "Sun loungers",
+      "Trampoline",
+      "Bikes",
+      "Air conditioning",
+      "Internet access",
+      "43-inch Smart TV",
+      "Fully equipped kitchen"
+    ],
+    "accessTitle": "Getting here",
+    "accessText": "This 2-bedroom holiday home in Aix-en-Provence for 4 guests, with garden and terrace, is easy to reach by car with on-site parking. Around 15 minutes by taxi from Aix-en-Provence station. Marseille-Provence airport is about 30 minutes away by car. Access is via an automatic gate with remote control.",
+    "notesTitle": "Additional information",
+    "notes": [
+      "End-of-stay cleaning (normal use), towels and linen included.",
+      "Pets accepted with prior agreement.",
+      "Spa option: €200 per week on request, all year round.",
+      "Green'up socket for electric vehicles: €30/week, €100/month.",
+      "No smoking indoors.",
+      "Parties and festive events are not permitted.",
+      "Classic and e-Connect holiday vouchers accepted.",
+      "Check-in from 4 pm — check-out by 11 am."
+    ]
+  },
+  "pool": {
+    "seoTitle": "Heated indoor pool & spa | La Petite Maison Sous Les Pins",
+    "seoDescription": "Private heated indoor pool at 29-30 °C with counter-current swimming, plus an optional 4-seat Hotspring spa, in Puyricard, Aix-en-Provence.",
+    "title": "Heated indoor pool & spa",
+    "lead": "Treat yourself to a moment of serenity at La Petite Maison Sous Les Pins, a haven of peace on the Puyricard plateau, north of Aix-en-Provence. A relaxation space just for you, in a privileged natural setting, ideal for recharging after a day of exploring Provence.",
+    "poolTitle": "Heated indoor pool",
+    "poolText": "Enjoy a private pool of 530 × 330 × 140 cm, accessible directly from the living room or the terrace. Its water, kept at 29-30 °C, promises moments of relaxation in complete privacy. Fitted with a counter-current swim system.",
+    "spaTitle": "Optional spa / jacuzzi",
+    "spaText": "For total relaxation, choose the covered 4-seat “Hotspring” spa, accessible from the indoor pool. Temperature adjustable from 26 to 40 °C, massage jets, cosy atmosphere: everything is designed for your wellbeing.",
+    "spaPrice": "Spa package: €200/week for private use.",
+    "noParties": "Parties and festive events are not permitted.",
+    "heatingNote": "Pool heated from July to late October. The pool is not heated in December, January and February."
+  },
+  "rates": {
+    "seoTitle": "Rates & Booking | La Petite Maison Sous Les Pins",
+    "seoDescription": "Indicative weekly rates (July to October) and monthly rental of the house (October to June). Online booking via chambresdhotes.org.",
+    "title": "Rates & Booking",
+    "indicativeNote": "The prices below are indicative (“from…”). Exact, up-to-date rates and availability are shown by the booking module below when you select your dates.",
+    "weekTitle": "Weekly rental (summer)",
+    "weekIntro": "Bookings run Saturday to Saturday. The rate includes access to the heated pool for 4 guests. The spa is not included (option).",
+    "tableSeason": "Period",
+    "tablePrice": "Indicative price / week",
+    "grid": [
+      { "period": "July", "price": "€1000 – 1200" },
+      { "period": "August", "price": "€850" },
+      { "period": "September – October", "price": "€800" },
+      { "period": "Spa option", "price": "+€200" },
+      { "period": "Electric-vehicle socket option", "price": "+€30" },
+      { "period": "Extra bed (on request)", "price": "+€30" }
+    ],
+    "conditionsTitle": "Payment terms",
+    "conditions": [
+      "20% at booking (card or e-Connect holiday vouchers), balance on key handover.",
+      "Accepted: bank card, holiday vouchers & e-Connect, cheques.",
+      "For cancellation or rescheduling, at least 1 month's notice before the start of the stay is required (refund or rescheduling possible)."
+    ],
+    "bookingTitle": "Check availability and book",
+    "monthTitle": "Monthly rental (October to June)",
+    "monthText": "The house only, without pool or spa, available continuously from 1 October to 30 June. Monthly or seasonal depending on dates and availability. Reference rate: from €1400/month, all charges included (water, electricity, internet). Electric-vehicle socket option: +€100/month. Mobility or seasonal lease on supporting documents (lease of 1 to 9 months).",
+    "monthCta": "Make a monthly request",
+    "otaNote": "On intermediary platforms (Airbnb, Booking, Abritel, Leboncoin…), prices are higher due to commissions and taxes (18% on average), except on chambresdhotes.org."
+  },
+  "discover": {
+    "seoTitle": "Things to do around Aix-en-Provence | La Petite Maison Sous Les Pins",
+    "seoDescription": "Getaways, activities and good addresses around Puyricard and Aix-en-Provence: châteaux, the Luberon, the Calanques, Cassis, restaurants and ice-cream makers.",
+    "title": "Discover the area",
+    "intro": "Our favourites around La Petite Maison Sous Les Pins, from the nearest to the furthest.",
+    "escapades": "Getaways",
+    "activites": "Activities",
+    "manger": "Eat & Drink",
+    "driveTime": "By car",
+    "route": "Directions"
+  },
+  "reviews": {
+    "seoTitle": "Guest reviews | La Petite Maison Sous Les Pins",
+    "seoDescription": "Reviews from guests who have stayed at La Petite Maison Sous Les Pins, a holiday home with heated indoor pool in Aix-en-Provence.",
+    "title": "Guest reviews",
+    "intro": "Read the reviews left by our guests on our Google listing.",
+    "placeholder": "Google reviews will appear here once the Google Business Profile is connected (Place ID to be provided).",
+    "seeAll": "See all reviews on Google"
+  },
+  "contact": {
+    "seoTitle": "Contact & directions | La Petite Maison Sous Les Pins",
+    "seoDescription": "Contact La Petite Maison Sous Les Pins in Puyricard, Aix-en-Provence: phone, email, form, map and directions.",
+    "title": "Contact & directions",
+    "intro": "For any request, feel free to write to us using the form below, or to give us a call.",
+    "phoneLabel": "Phone",
+    "emailLabel": "Email",
+    "addressLabel": "Address",
+    "howToComeTitle": "How to get here",
+    "howToCome": "About 15 minutes by taxi from Aix-en-Provence station, and 30 minutes from Marseille-Provence airport. Access is via an automatic gate with remote control. On-site parking for 3 cars.",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone (optional)",
+      "message": "Message",
+      "consent": "I agree that my data may be used to respond to my request.",
+      "submit": "Send",
+      "sending": "Sending…",
+      "success": "Thank you, your message has been sent. We will reply shortly.",
+      "error": "Something went wrong. Please try again or give us a call."
+    }
+  },
+  "monthForm": {
+    "title": "Monthly rental request",
+    "intro": "Tell us about your plans: the period, the length and the number of guests. We review each request individually depending on dates and availability.",
+    "period": "Preferred period (full months, between October and June)",
+    "people": "Number of guests",
+    "reason": "Reason for the stay",
+    "message": "Message",
+    "submit": "Send request"
+  },
+  "legal": {
+    "legalTitle": "Legal notice",
+    "privacyTitle": "Privacy policy",
+    "termsTitle": "Rental terms"
+  }
+}

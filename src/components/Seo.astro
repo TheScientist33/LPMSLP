@@ -1,0 +1,35 @@
+---
+import { localizeUrl, locales, type RouteKey, type Locale } from '~/i18n/ui';
+
+interface Props {
+  title: string;
+  description: string;
+  routeKey: RouteKey;
+  locale: Locale;
+  image?: string;
+}
+
+const { title, description, routeKey, locale, image } = Astro.props;
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const canonical = siteUrl + localizeUrl(locale, routeKey);
+const ogImage = image ? new URL(image, Astro.site).toString() : undefined;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+
+{
+  locales.map((l) => (
+    <link rel="alternate" hreflang={l} href={siteUrl + localizeUrl(l as Locale, routeKey)} />
+  ))
+}
+<link rel="alternate" hreflang="x-default" href={siteUrl + localizeUrl('fr', routeKey)} />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:locale" content={locale === 'fr' ? 'fr_FR' : 'en_GB'} />
+{ogImage && <meta property="og:image" content={ogImage} />}
+<meta name="twitter:card" content="summary_large_image" />

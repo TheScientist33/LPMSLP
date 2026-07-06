@@ -1,0 +1,91 @@
+@import 'tailwindcss';
+
+@import '@fontsource-variable/fraunces';
+@import '@fontsource/work-sans/400.css';
+@import '@fontsource/work-sans/500.css';
+@import '@fontsource/work-sans/600.css';
+
+/*
+ * Direction artistique — tokens provisoires (AGENT.md §5).
+ * Le design final (Claude Design) affinera ces valeurs.
+ */
+@theme {
+  --color-cream: #faf6ef;
+  --color-sand: #efe7d9;
+  --color-beige: #e9dfce;
+  --color-pine: #33503f;
+  --color-sage: #7c9885;
+  --color-marine: #264e6c;
+  --color-pool: #8fbccb;
+  --color-ink: #2b2823;
+  --color-muted: #6b6459;
+
+  --font-display: 'Fraunces Variable', Georgia, serif;
+  --font-sans: 'Work Sans', system-ui, sans-serif;
+
+  --radius: 0.3125rem; /* 5px */
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--color-pine);
+    text-wrap: balance;
+  }
+
+  a {
+    color: var(--color-marine);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-marine);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Apparition douce au scroll — respecte prefers-reduced-motion via la règle ci-dessus */
+@layer utilities {
+  .fade-up {
+    opacity: 0;
+    transform: translateY(1rem);
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s ease;
+  }
+  .fade-up.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}

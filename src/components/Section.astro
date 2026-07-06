@@ -1,0 +1,21 @@
+---
+interface Props {
+  as?: 'section' | 'div';
+  tone?: 'cream' | 'sand' | 'beige';
+  class?: string;
+  id?: string;
+}
+const { as = 'section', tone = 'cream', class: className = '', id } = Astro.props;
+const Tag = as;
+const tones: Record<string, string> = {
+  cream: 'bg-cream',
+  sand: 'bg-sand/60',
+  beige: 'bg-beige/50',
+};
+---
+
+<Tag id={id} class:list={[tones[tone], className]}>
+  <div class="mx-auto max-w-6xl px-4 py-14 md:px-6 md:py-20">
+    <slot />
+  </div>
+</Tag>

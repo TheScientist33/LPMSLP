@@ -1,0 +1,12 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import LegalPage from '~/components/pages/LegalPage.astro';
+import { useTranslations } from '~/i18n/t';
+const locale = 'en' as const;
+const t = useTranslations(locale);
+const title = t('legal.legalTitle') + ' — ' + t('site.name');
+---
+
+<BaseLayout locale={locale} routeKey="legal" title={title} description={t('legal.legalTitle')}>
+  <LegalPage locale={locale} doc="legal" />
+</BaseLayout>

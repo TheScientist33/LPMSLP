@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lapetitemaisonsouslespins.fr/sitemap-index.xml
