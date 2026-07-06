@@ -12,52 +12,212 @@ interface Props {
 const { locale, doc } = Astro.props;
 const t = useTranslations(locale);
 
-const titleKey = { legal: 'legal.legalTitle', privacy: 'legal.privacyTitle', terms: 'legal.termsTitle' }[doc];
+const titleKey = {
+  legal: 'legal.legalTitle',
+  privacy: 'legal.privacyTitle',
+  terms: 'legal.termsTitle',
+}[doc];
 
 // Contenu rédactionnel (FR/EN). TODO(§14.5) : nom d'affichage des propriétaires à confirmer.
 const content: Record<Doc, Record<Locale, { h: string; p: string[] }[]>> = {
   legal: {
     fr: [
-      { h: 'Éditeur', p: [`${site.owners} — ${site.name}`, `${site.address.street}, ${site.address.postalCode} ${site.address.city} (${site.address.district})`, `SIRET : ${site.siret}`, `Téléphone : ${site.phoneFixed} / ${site.phoneMobile}`, `Email : ${site.email}`] },
-      { h: 'Hébergement', p: ['Site hébergé par Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, États-Unis — vercel.com.'] },
-      { h: 'Propriété intellectuelle', p: ["L'ensemble des contenus (textes, photographies) est la propriété de l'éditeur, sauf mention contraire. Toute reproduction sans autorisation est interdite."] },
+      {
+        h: 'Éditeur',
+        p: [
+          `${site.owners} — ${site.name}`,
+          `${site.address.street}, ${site.address.postalCode} ${site.address.city} (${site.address.district})`,
+          `SIRET : ${site.siret}`,
+          `Téléphone : ${site.phoneFixed} / ${site.phoneMobile}`,
+          'Contact : via le formulaire du site.',
+        ],
+      },
+      {
+        h: 'Hébergement',
+        p: [
+          'Site hébergé par Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, États-Unis — vercel.com.',
+        ],
+      },
+      {
+        h: 'Propriété intellectuelle',
+        p: [
+          "L'ensemble des contenus (textes, photographies) est la propriété de l'éditeur, sauf mention contraire. Toute reproduction sans autorisation est interdite.",
+        ],
+      },
     ],
     en: [
-      { h: 'Publisher', p: [`${site.owners} — ${site.name}`, `${site.address.street}, ${site.address.postalCode} ${site.address.city} (${site.address.district})`, `SIRET: ${site.siret}`, `Phone: ${site.phoneFixed} / ${site.phoneMobile}`, `Email: ${site.email}`] },
-      { h: 'Hosting', p: ['Website hosted by Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA — vercel.com.'] },
-      { h: 'Intellectual property', p: ['All content (text, photographs) is the property of the publisher unless otherwise stated. Any reproduction without authorisation is prohibited.'] },
+      {
+        h: 'Publisher',
+        p: [
+          `${site.owners} — ${site.name}`,
+          `${site.address.street}, ${site.address.postalCode} ${site.address.city} (${site.address.district})`,
+          `SIRET: ${site.siret}`,
+          `Phone: ${site.phoneFixed} / ${site.phoneMobile}`,
+          'Contact: via the site’s contact form.',
+        ],
+      },
+      {
+        h: 'Hosting',
+        p: [
+          'Website hosted by Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA — vercel.com.',
+        ],
+      },
+      {
+        h: 'Intellectual property',
+        p: [
+          'All content (text, photographs) is the property of the publisher unless otherwise stated. Any reproduction without authorisation is prohibited.',
+        ],
+      },
     ],
   },
   privacy: {
     fr: [
-      { h: 'Données collectées', p: ['Les formulaires de contact et de demande de location collectent : nom, email, téléphone (optionnel) et le contenu de votre message.'] },
-      { h: 'Finalité', p: [`Ces données servent uniquement à répondre à votre demande. Elles sont transmises par email à ${site.email} et ne sont ni revendues ni utilisées à des fins commerciales.`] },
-      { h: 'Durée de conservation', p: ['Les messages sont conservés le temps nécessaire au traitement de votre demande, puis supprimés.'] },
-      { h: 'Vos droits', p: [`Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Contactez-nous à ${site.email}.`] },
-      { h: 'Cookies', p: ["Le site utilise Vercel Web Analytics (mesure d'audience sans cookie). Les cartes et widgets Google intégrés peuvent déposer des cookies tiers lors de leur affichage."] },
+      {
+        h: 'Données collectées',
+        p: [
+          'Les formulaires de contact et de demande de location collectent : nom, email, téléphone (optionnel) et le contenu de votre message.',
+        ],
+      },
+      {
+        h: 'Finalité',
+        p: [
+          `Ces données servent uniquement à répondre à votre demande. Elles sont transmises par email aux propriétaires et ne sont ni revendues ni utilisées à des fins commerciales.`,
+        ],
+      },
+      {
+        h: 'Durée de conservation',
+        p: [
+          'Les messages sont conservés le temps nécessaire au traitement de votre demande, puis supprimés.',
+        ],
+      },
+      {
+        h: 'Vos droits',
+        p: [
+          `Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Contactez-nous via le formulaire de contact du site.`,
+        ],
+      },
+      {
+        h: 'Cookies',
+        p: [
+          "Le site utilise Vercel Web Analytics (mesure d'audience sans cookie). Les cartes et widgets Google intégrés peuvent déposer des cookies tiers lors de leur affichage.",
+        ],
+      },
     ],
     en: [
-      { h: 'Data collected', p: ['The contact and rental request forms collect: name, email, phone (optional) and the content of your message.'] },
-      { h: 'Purpose', p: [`This data is used solely to respond to your request. It is sent by email to ${site.email} and is never resold or used for commercial purposes.`] },
-      { h: 'Retention', p: ['Messages are kept for as long as necessary to process your request, then deleted.'] },
-      { h: 'Your rights', p: [`Under the GDPR, you have the right to access, rectify and delete your data. Contact us at ${site.email}.`] },
-      { h: 'Cookies', p: ['The site uses Vercel Web Analytics (cookieless audience measurement). Embedded Google maps and widgets may set third-party cookies when displayed.'] },
+      {
+        h: 'Data collected',
+        p: [
+          'The contact and rental request forms collect: name, email, phone (optional) and the content of your message.',
+        ],
+      },
+      {
+        h: 'Purpose',
+        p: [
+          `This data is used solely to respond to your request. It is sent by email to the owners and is never resold or used for commercial purposes.`,
+        ],
+      },
+      {
+        h: 'Retention',
+        p: ['Messages are kept for as long as necessary to process your request, then deleted.'],
+      },
+      {
+        h: 'Your rights',
+        p: [
+          `Under the GDPR, you have the right to access, rectify and delete your data. Contact us via the site’s contact form.`,
+        ],
+      },
+      {
+        h: 'Cookies',
+        p: [
+          'The site uses Vercel Web Analytics (cookieless audience measurement). Embedded Google maps and widgets may set third-party cookies when displayed.',
+        ],
+      },
     ],
   },
   terms: {
     fr: [
-      { h: 'Réservation', p: ['Les réservations à la semaine se font du samedi au samedi, via chambresdhotes.org. Le tarif comprend l’accès à la piscine chauffée pour 4 personnes ; le spa est en option.'] },
-      { h: 'Paiement', p: ['20 % d’acompte à la réservation (carte bancaire ou Chèques-Vacances e-Connect), solde à la remise des clés. Moyens acceptés : carte bancaire, Chèques-Vacances & e-Connect, chèques.'] },
-      { h: 'Annulation', p: ['En cas d’annulation ou de report, un préavis d’au moins 1 mois avant le début du séjour est requis (remboursement ou report possible).'] },
-      { h: 'Règles de la maison', p: ['Fêtes et événements festifs non autorisés. Interdiction de fumer à l’intérieur. Animaux acceptés avec accord préalable. Arrivée à partir de 16h, départ au plus tard 11h.'] },
-      { h: 'Location au mois', p: ['La location au mois (octobre à juin) concerne la maison seule, sans piscine ni spa. Modalités et tarif étudiés au cas par cas selon les dates et disponibilités.'] },
+      {
+        h: 'Réservation',
+        p: [
+          'Les réservations à la semaine se font du samedi au samedi, via chambresdhotes.org. Le tarif comprend l’accès à la piscine chauffée pour 4 personnes ; le spa est en option.',
+        ],
+      },
+      {
+        h: 'Paiement',
+        p: [
+          '20 % à la réservation (CB ou e-ANCV), solde à la remise des clés. Moyens acceptés : carte bancaire, Chèques-Vacances & e-Connect, chèques.',
+        ],
+      },
+      {
+        h: 'Annulation',
+        p: [
+          'En cas d’annulation ou de report, un préavis d’au moins 1 mois avant le début du séjour est requis (remboursement ou report possible).',
+        ],
+      },
+      {
+        h: 'Ce qui est inclus',
+        p: [
+          'Draps et serviettes inclus.',
+          'Ménage de fin de séjour inclus pour un usage normal de la location ; à défaut, un forfait ménage de 50 € sera facturé.',
+        ],
+      },
+      {
+        h: 'Règles de la maison',
+        p: [
+          'Fêtes et événements festifs non autorisés.',
+          'Interdiction de fumer à l’intérieur.',
+          'Animaux acceptés sur demande.',
+          'Arrivée à partir de 16h, départ au plus tard 11h.',
+        ],
+      },
+      {
+        h: 'Location au mois',
+        p: [
+          'La location au mois (octobre à juin) concerne la maison seule, sans piscine ni spa. Modalités et tarif étudiés au cas par cas selon les dates et disponibilités.',
+        ],
+      },
     ],
     en: [
-      { h: 'Booking', p: ['Weekly bookings run Saturday to Saturday, via chambresdhotes.org. The rate includes access to the heated pool for 4 guests; the spa is optional.'] },
-      { h: 'Payment', p: ['20% deposit at booking (bank card or e-Connect holiday vouchers), balance on key handover. Accepted: bank card, holiday vouchers & e-Connect, cheques.'] },
-      { h: 'Cancellation', p: ['For cancellation or rescheduling, at least 1 month’s notice before the start of the stay is required (refund or rescheduling possible).'] },
-      { h: 'House rules', p: ['Parties and festive events are not permitted. No smoking indoors. Pets accepted with prior agreement. Check-in from 4 pm, check-out by 11 am.'] },
-      { h: 'Monthly rental', p: ['Monthly rental (October to June) covers the house only, without pool or spa. Terms and price assessed individually depending on dates and availability.'] },
+      {
+        h: 'Booking',
+        p: [
+          'Weekly bookings run Saturday to Saturday, via chambresdhotes.org. The rate includes access to the heated pool for 4 guests; the spa is optional.',
+        ],
+      },
+      {
+        h: 'Payment',
+        p: [
+          '20% at booking (card or e-ANCV holiday vouchers), balance on key handover. Accepted: bank card, holiday vouchers & e-Connect, cheques.',
+        ],
+      },
+      {
+        h: 'Cancellation',
+        p: [
+          'For cancellation or rescheduling, at least 1 month’s notice before the start of the stay is required (refund or rescheduling possible).',
+        ],
+      },
+      {
+        h: 'What is included',
+        p: [
+          'Bed linen and towels included.',
+          'End-of-stay cleaning included for normal use of the rental; otherwise a €50 cleaning fee applies.',
+        ],
+      },
+      {
+        h: 'House rules',
+        p: [
+          'Parties and festive events are not permitted.',
+          'No smoking indoors.',
+          'Pets accepted on request.',
+          'Check-in from 4 pm, check-out by 11 am.',
+        ],
+      },
+      {
+        h: 'Monthly rental',
+        p: [
+          'Monthly rental (October to June) covers the house only, without pool or spa. Terms and price assessed individually depending on dates and availability.',
+        ],
+      },
     ],
   },
 };
@@ -73,13 +233,15 @@ const sections = content[doc][locale];
         <div>
           <h2 class="text-xl">{s.h}</h2>
           {s.p.map((para) => (
-            <p class="mt-2 text-muted">{para}</p>
+            <p class="text-muted mt-2">{para}</p>
           ))}
         </div>
       ))
     }
   </div>
   <p class="mt-10 text-sm">
-    <a href={localizeUrl(locale, 'contact')} class="text-marine hover:underline">{t('nav.contact')} →</a>
+    <a href={localizeUrl(locale, 'contact')} class="text-marine hover:underline"
+      >{t('nav.contact')} →</a
+    >
   </p>
 </Section>

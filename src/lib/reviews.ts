@@ -4,6 +4,8 @@ export interface Review {
   author: string;
   rating: number;
   text: string;
+  /** Date relative fournie par Google (ex. « il y a un mois »). */
+  when?: string;
 }
 export interface ReviewsData {
   rating: number;
@@ -41,12 +43,20 @@ export async function getReviews(): Promise<ReviewsData | null> {
       rating: result.rating ?? 0,
       total: result.user_ratings_total ?? 0,
       reviews: (result.reviews ?? [])
-        .slice(0, 5)
-        .map((r: { author_name: string; rating: number; text: string }) => ({
-          author: r.author_name,
-          rating: r.rating,
-          text: r.text,
-        })),
+        .slice(0, 6)
+        .map(
+          (r: {
+            author_name: string;
+            rating: number;
+            text: string;
+            relative_time_description?: string;
+          }) => ({
+            author: r.author_name,
+            rating: r.rating,
+            text: r.text,
+            when: r.relative_time_description,
+          }),
+        ),
     };
   } catch {
     return null;

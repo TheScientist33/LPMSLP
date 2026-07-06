@@ -10,7 +10,7 @@ const schema = z.object({
   email: z.string().email().max(200),
   phone: z.string().max(40).optional().default(''),
   period: z.string().min(1).max(200),
-  people: z.coerce.number().int().min(1).max(4),
+  people: z.coerce.number().int().min(1).max(5),
   reason: z.string().max(200).optional().default(''),
   message: z.string().min(1).max(5000),
   consent: z.literal('on'),

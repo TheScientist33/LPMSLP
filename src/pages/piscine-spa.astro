@@ -6,6 +6,11 @@ const locale = 'fr' as const;
 const t = useTranslations(locale);
 ---
 
-<BaseLayout locale={locale} routeKey="pool" title={t('pool.seoTitle')} description={t('pool.seoDescription')}>
+<BaseLayout
+  locale={locale}
+  routeKey="pool"
+  title={t('pool.seoTitle')}
+  description={t('pool.seoDescription')}
+>
   <PoolPage locale={locale} />
 </BaseLayout>

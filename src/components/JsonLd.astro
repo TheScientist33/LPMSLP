@@ -14,7 +14,6 @@ const data = {
   name: site.name,
   url: siteUrl,
   telephone: site.phoneMobile,
-  email: site.email,
   priceRange: '€€',
   address: {
     '@type': 'PostalAddress',
@@ -29,9 +28,21 @@ const data = {
     longitude: site.address.lng,
   },
   amenityFeature: [
-    { '@type': 'LocationFeatureSpecification', name: locale === 'fr' ? 'Piscine intérieure chauffée' : 'Heated indoor pool', value: true },
-    { '@type': 'LocationFeatureSpecification', name: locale === 'fr' ? 'Spa (option)' : 'Spa (option)', value: true },
-    { '@type': 'LocationFeatureSpecification', name: locale === 'fr' ? 'Climatisation' : 'Air conditioning', value: true },
+    {
+      '@type': 'LocationFeatureSpecification',
+      name: locale === 'fr' ? 'Piscine intérieure chauffée' : 'Heated indoor pool',
+      value: true,
+    },
+    {
+      '@type': 'LocationFeatureSpecification',
+      name: locale === 'fr' ? 'Spa (option)' : 'Spa (option)',
+      value: true,
+    },
+    {
+      '@type': 'LocationFeatureSpecification',
+      name: locale === 'fr' ? 'Climatisation' : 'Air conditioning',
+      value: true,
+    },
     { '@type': 'LocationFeatureSpecification', name: 'Internet', value: true },
   ],
 };

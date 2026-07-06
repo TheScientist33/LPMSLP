@@ -1,71 +1,102 @@
 ---
 import { useTranslations } from '~/i18n/t';
 import type { Locale } from '~/i18n/ui';
-import Section from '~/components/Section.astro';
+import Photo from '~/components/Photo.astro';
 
 interface Props {
   locale: Locale;
 }
 const { locale } = Astro.props;
 const t = useTranslations(locale);
-const bedrooms = t<string[]>('house.bedrooms');
-const equipment = t<string[]>('house.equipment');
-const notes = t<string[]>('house.notes');
+const equipment = t<{ title: string; text: string }[]>('house.equipment');
+const goodToKnow = t<string[]>('house.goodToKnow');
 ---
 
-<Section>
-  <h1 class="text-3xl md:text-4xl">{t('house.title')}</h1>
-  <p class="mt-6 max-w-3xl text-lg text-muted">{t('house.intro')}</p>
-</Section>
-
-<Section tone="sand">
-  <div class="grid gap-10 md:grid-cols-2">
-    <div class="fade-up">
-      <h2 class="text-2xl">{t('house.livingTitle')}</h2>
-      <p class="mt-3 text-muted">{t('house.livingText')}</p>
-    </div>
-    <div class="fade-up">
-      <h2 class="text-2xl">{t('house.kitchenTitle')}</h2>
-      <p class="mt-3 text-muted">{t('house.kitchenText')}</p>
-    </div>
-    <div class="fade-up">
-      <h2 class="text-2xl">{t('house.bedroomsTitle')}</h2>
-      <ul class="mt-3 space-y-1 text-muted">
-        {bedrooms.map((b) => <li>· {b}</li>)}
-      </ul>
-    </div>
-    <div class="fade-up">
-      <h2 class="text-2xl">{t('house.outdoorTitle')}</h2>
-      <p class="mt-3 text-muted">{t('house.outdoorText')}</p>
+<!-- EN-TÊTE DE PAGE -->
+<section class="bg-cream">
+  <div class="mx-auto max-w-[1440px] px-5 pt-10 pb-6 md:px-14 md:pt-16 md:pb-10">
+    <div class="max-w-[820px]">
+      <p class="text-sage mb-3 text-[13px] font-semibold tracking-[0.16em] uppercase">
+        {t('house.eyebrow')}
+      </p>
+      <h1
+        class="font-display text-ink mb-5 text-[30px] leading-[1.12] font-semibold md:text-[46px] md:leading-[1.1]"
+      >
+        {t('house.titleLine1')}<br />{t('house.titleLine2')}
+      </h1>
+      <p class="text-muted text-[15px] leading-[1.7] md:text-[17px] md:leading-[1.75]">
+        {t('house.intro')}
+      </p>
     </div>
   </div>
-</Section>
+</section>
 
-<Section>
-  <h2 class="text-2xl md:text-3xl">{t('house.equipmentTitle')}</h2>
-  <ul class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-    {
-      equipment.map((e) => (
-        <li class="flex items-start gap-2 text-muted">
-          <span aria-hidden="true" class="mt-1 text-sage">✓</span>
-          <span>{e}</span>
-        </li>
-      ))
-    }
-  </ul>
-</Section>
-
-<Section tone="beige">
-  <div class="grid gap-10 md:grid-cols-2">
-    <div>
-      <h2 class="text-2xl">{t('house.accessTitle')}</h2>
-      <p class="mt-3 text-muted">{t('house.accessText')}</p>
+<!-- GALERIE PAR ESPACE -->
+<section class="bg-cream">
+  <div class="mx-auto max-w-[1440px] px-5 pt-2 pb-12 md:px-14 md:pt-6 md:pb-16">
+    <div class="grid gap-3 md:grid-cols-[2fr_1fr] md:grid-rows-2 md:gap-4">
+      <Photo
+        rounded
+        caption={t('house.gallery.living')}
+        class="h-[200px] md:row-span-2 md:h-full md:min-h-[420px]"
+      />
+      <Photo rounded caption={t('house.gallery.kitchen')} class="h-[140px] md:h-[202px]" />
+      <Photo rounded caption={t('house.gallery.bedroom1')} class="h-[140px] md:h-[202px]" />
     </div>
-    <div>
-      <h2 class="text-2xl">{t('house.notesTitle')}</h2>
-      <ul class="mt-3 space-y-2 text-sm text-muted">
-        {notes.map((n) => <li>· {n}</li>)}
-      </ul>
+    <div class="mt-3 grid grid-cols-2 gap-3 md:mt-4 md:grid-cols-3 md:gap-4">
+      <Photo rounded caption={t('house.gallery.bedroom2')} class="h-[130px] md:h-[180px]" />
+      <Photo rounded caption={t('house.gallery.bathroom')} class="h-[130px] md:h-[180px]" />
+      <Photo
+        rounded
+        caption={t('house.gallery.outdoor')}
+        class="col-span-2 h-[130px] md:col-span-1 md:h-[180px]"
+      />
     </div>
   </div>
-</Section>
+</section>
+
+<!-- ÉQUIPEMENTS -->
+<section class="bg-sand">
+  <div class="mx-auto max-w-[1440px] px-5 py-10 md:px-14 md:py-16">
+    <h2 class="font-display text-ink mb-6 text-[26px] font-medium md:mb-9 md:text-[34px]">
+      {t('house.equipmentTitle')}
+    </h2>
+    <ul class="grid gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-3">
+      {
+        equipment.map((e) => (
+          <li class="bg-cream rounded-[10px] border border-[#e4d8c4] px-5 py-5 md:px-[26px] md:py-6">
+            <h3 class="font-display text-pine mb-2 text-[17px] font-normal md:text-[19px]">
+              {e.title}
+            </h3>
+            <p class="text-muted text-sm leading-relaxed whitespace-pre-line">{e.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<!-- BON À SAVOIR -->
+<section class="bg-cream">
+  <div class="mx-auto max-w-[1440px] px-5 py-12 md:px-14 md:pt-14 md:pb-[72px]">
+    <div
+      class="border-l-sage flex max-w-[820px] items-start gap-4 rounded-[10px] border border-l-4 border-[#c9d6cc] bg-[#e7eee8] p-6 md:gap-5 md:px-8 md:py-7"
+    >
+      <span
+        aria-hidden="true"
+        class="border-pine font-display text-pine flex h-[34px] w-[34px] flex-shrink-0 items-center justify-center rounded-full border-[1.5px] text-lg"
+        >i</span
+      >
+      <div>
+        <h2 class="font-display text-pine mb-2 text-[16px] font-semibold md:text-[19px]">
+          {t('house.goodToKnowTitle')}
+        </h2>
+        <ul
+          class="list-disc space-y-1 pl-5 text-[14px] leading-relaxed text-[#4a554d] md:text-[15px]"
+        >
+          {goodToKnow.map((g) => <li>{g}</li>)}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

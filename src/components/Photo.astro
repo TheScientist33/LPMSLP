@@ -14,7 +14,7 @@ const { caption, class: className = '', rounded = false } = Astro.props;
 
 <div
   class:list={[
-    'relative isolate flex items-end overflow-hidden bg-poollight',
+    'bg-poollight relative isolate flex items-end overflow-hidden',
     rounded && 'rounded-lg',
     className,
   ]}
@@ -25,7 +25,7 @@ const { caption, class: className = '', rounded = false } = Astro.props;
   {
     caption && (
       <span
-        class="m-3 rounded bg-cream/85 px-2 py-1 font-mono text-[11px] text-muted"
+        class="bg-cream/85 text-muted m-3 rounded px-2 py-1 font-mono text-[11px]"
         aria-hidden="true"
       >
         {caption}

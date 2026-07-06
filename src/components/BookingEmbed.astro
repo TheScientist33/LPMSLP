@@ -8,41 +8,41 @@ interface Props {
 }
 const { locale } = Astro.props;
 const t = useTranslations(locale);
-const fallbackLabel = locale === 'fr' ? 'Réserver sur chambresdhotes.org' : 'Book on chambresdhotes.org';
 ---
 
-<div class="rounded border border-beige bg-white/60 p-2 shadow-sm">
-  {
-    booking.iframeUrl ? (
+{
+  booking.iframeUrl ? (
+    <div class="border-beige overflow-hidden rounded-[10px] border bg-white/60">
       <iframe
         src={booking.iframeUrl}
-        title={t('rates.bookingTitle')}
+        title={t('rates.bookingModuleTitle')}
         width="100%"
         height={booking.minHeight}
         style="border:0"
         loading="lazy"
       />
-    ) : (
-      <div class="flex flex-col items-start gap-3 rounded bg-beige/40 p-6">
-        <p class="text-sm text-muted">
-          {locale === 'fr'
-            ? 'Le module de réservation chambresdhotes.org sera intégré ici. En attendant, réservez directement sur la fiche.'
-            : 'The chambresdhotes.org booking module will be embedded here. In the meantime, book directly on the listing.'}
-        </p>
-        <p class="text-xs text-muted">
-          {/* TODO(§14.1) : renseigner booking.iframeUrl (src/data/booking.ts). */}
-          <code class="rounded bg-cream px-1">TODO</code> — identifiant iframe chambresdhotes.org à
-          fournir.
-        </p>
-      </div>
-    )
-  }
-  <p class="mt-3 px-2 pb-1">
-    <a
-      href={booking.fallbackUrl}
-      target="_blank"
-      rel="noopener"
-      class="text-sm text-marine hover:underline">{fallbackLabel} →</a
-    >
-  </p>
-</div>
+    </div>
+  ) : (
+    <div class="border-sage rounded-[10px] border-2 border-dashed bg-[#f3f6f2] px-6 py-10 text-center">
+      <span
+        aria-hidden="true"
+        class="border-pine text-pine mx-auto mb-3.5 flex h-11 w-11 items-center justify-center rounded-lg border-[1.5px] text-xl"
+      >
+        ▦
+      </span>
+      <p class="font-display text-pine mb-1.5 text-lg">{t('rates.bookingModuleTitle')}</p>
+      {/* TODO(§14.1) : renseigner booking.iframeUrl (src/data/booking.ts). */}
+      <p class="text-muted font-mono text-xs">{t('rates.bookingModuleNote')}</p>
+    </div>
+  )
+}
+<p class="mt-3 text-center">
+  <a
+    href={booking.fallbackUrl}
+    target="_blank"
+    rel="noopener"
+    class="text-marine text-sm no-underline hover:underline"
+  >
+    {t('rates.bookingFallback')} →
+  </a>
+</p>

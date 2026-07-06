@@ -1,7 +1,7 @@
 {
   "site": {
     "name": "La Petite Maison Sous Les Pins",
-    "tagline": "Gîte avec piscine intérieure chauffée & spa — Puyricard, Aix-en-Provence"
+    "tagline": "Gîte familial avec piscine intérieure chauffée & spa — Puyricard, Aix-en-Provence"
   },
   "nav": {
     "home": "Accueil",
@@ -22,196 +22,275 @@
     "privacy": "Politique de confidentialité",
     "terms": "Conditions de location",
     "address": "1689 chemin du Marin, 13540 Aix-en-Provence — Puyricard",
-    "madeWith": "Gîte familial en Provence",
     "siteMap": "Le site",
     "infoLabel": "Informations",
     "familyPool": "Gîte familial · Piscine intérieure chauffée",
-    "noParties": "Fêtes non autorisées"
+    "noParties": "Fêtes non autorisées",
+    "contactForm": "Nous écrire via le formulaire"
   },
   "common": {
     "phoneFixed": "04 42 28 15 69",
     "phoneMobile": "06 62 32 67 18",
-    "email": "mariedenise@neuf.fr",
     "bookNow": "Réserver",
     "availability": "Disponibilités",
-    "seeRates": "Voir les tarifs",
-    "discoverHouse": "Découvrir le gîte",
-    "contactUs": "Nous contacter",
-    "from": "à partir de",
-    "perWeek": "/semaine",
-    "perMonth": "/mois"
+    "seeAvailability": "Voir les disponibilités",
+    "makeRequest": "Faire une demande",
+    "learnMore": "En savoir plus",
+    "from": "à partir de"
   },
   "home": {
     "seoTitle": "Gîte piscine intérieure chauffée à Aix-en-Provence — La Petite Maison Sous Les Pins",
-    "seoDescription": "Gîte T3 familial pour 4 personnes avec piscine intérieure chauffée et spa à Puyricard, Aix-en-Provence. Location à la semaine l'été, à la maison au mois d'octobre à juin.",
-    "heroKicker": "Puyricard · Aix-en-Provence",
+    "seoDescription": "Gîte familial pour 4-5 personnes avec piscine intérieure chauffée et spa à Puyricard, Aix-en-Provence. Location à la semaine l’été, à la maison au mois d’octobre à juin.",
     "heroTitle": "La Petite Maison Sous Les Pins",
-    "heroSubtitle": "Un gîte familial avec piscine intérieure chauffée & spa, niché dans un jardin clos de pins sur le plateau de Puyricard.",
-    "highlightsTitle": "Points forts",
+    "heroSubtitle": "Gîte familial avec piscine intérieure chauffée & spa — Puyricard, Aix-en-Provence.",
+    "photoHero": "[ PHOTO HERO — piscine intérieure chauffée + jardin de pins, lumineuse ]",
     "highlights": [
-      { "title": "Piscine intérieure chauffée", "text": "Bassin privatif 530 × 330 cm, eau à 29-30 °C, nage à contre-courant, accessible toute l'année de juillet à fin octobre." },
-      { "title": "Spa Hotspring en option", "text": "Spa 4 places couvert, réglable de 26 à 40 °C, en accès privatif — 200 €/semaine." },
-      { "title": "Jardin clos de pins", "text": "Terrasse, plancha, ping-pong, trampoline, transats et vélos, dans un cadre calme et arboré." },
-      { "title": "Pour 4 personnes", "text": "T3 confortable, 2 chambres, cuisine équipée, climatisation et internet." }
+      "Piscine intérieure chauffée incluse",
+      "Spa Hotspring en option",
+      "Jardin de pins & terrasse",
+      "Idéal familles"
     ],
-    "waysTitle": "Deux façons de séjourner",
-    "weekTitle": "À la semaine (été)",
-    "weekText": "De juillet à octobre, du samedi au samedi, avec accès à la piscine chauffée pour 4 personnes. Réservation en ligne.",
-    "monthTitle": "Au mois (octobre à juin)",
-    "monthText": "La maison seule, sans piscine ni spa, du 1er octobre au 30 juin. Formule au mois ou saisonnier, sur demande.",
-    "reviewsTeaser": "Ce que disent nos voyageurs",
-    "galleryTeaser": "Un aperçu du gîte"
+    "waysEyebrow": "Deux façons de séjourner",
+    "waysTitle": "Choisissez votre séjour",
+    "weekTitle": "Séjour à la semaine",
+    "weekText": "Juillet à septembre — du samedi au samedi, piscine intérieure chauffée incluse, spa en option.",
+    "weekPhoto": "[ PHOTO — piscine / été en famille ]",
+    "monthTitle": "Location au mois",
+    "monthText": "Octobre à juin — maison seule, en continu ou en saisonnier selon vos dates. Sur demande.",
+    "monthPhoto": "[ PHOTO — maison / saison calme ]",
+    "galleryTitle": "Un aperçu des lieux",
+    "galleryLink": "Voir toute la galerie",
+    "galleryLabels": ["séjour", "piscine", "cuisine", "chambre", "jardin de pins", "terrasse"],
+    "reviewsNote": "Note Google",
+    "reviewsCount": "avis",
+    "reviewsLink": "Lire tous les avis sur Google",
+    "reviewsPending": "Les avis Google seront affichés ici une fois la fiche connectée.",
+    "locationEyebrow": "L’emplacement",
+    "locationTitle": "À 15 min d’Aix-en-Provence",
+    "locationText": "Au cœur de Puyricard, entre pinède et campagne, à quelques minutes des marchés, des cours d’Aix et des plus beaux villages du pays d’Aix.",
+    "locationLink": "Découvrir les environs",
+    "locationPhoto": "[ PHOTO — Aix / village / campagne provençale ]"
   },
   "house": {
-    "seoTitle": "Le gîte — T3 pour 4 personnes | La Petite Maison Sous Les Pins",
-    "seoDescription": "Maison de vacances T3 à Aix-en-Provence : 2 chambres, cuisine équipée, séjour lumineux, jardin clos, piscine intérieure chauffée et spa en option.",
-    "title": "Le gîte",
-    "intro": "Découvrez ce joli gîte pouvant accueillir quatre personnes, avec piscine intérieure, situé à Aix-en-Provence, Puyricard. Idéal pour se détendre, il offre un confort moderne dans un cadre agréable.",
-    "livingTitle": "Pièces à vivre",
-    "livingText": "Le séjour a de grandes baies vitrées qui donnent sur le jardin. Il comprend un canapé en cuir, trois fauteuils, une table basse, une télévision à écran plat (Smart TV 108 cm) et une mini chaîne Hi-Fi.",
-    "kitchenTitle": "Cuisine",
-    "kitchenText": "La cuisine ouverte sur le séjour est entièrement équipée : lave-vaisselle, lave-linge, four, plaque vitrocéramique, réfrigérateur-congélateur, micro-ondes, grille-pain et cafetière à filtre.",
-    "bedroomsTitle": "Chambres et salle de bains",
-    "bedrooms": [
-      "Chambre 1 : lit double en 160 cm",
-      "Chambre 2 : 2 lits simples",
-      "1 salle de bains avec douche à l'italienne (sèche-cheveux)",
-      "1 toilette séparée"
-    ],
-    "outdoorTitle": "Extérieur",
-    "outdoorText": "Le jardin privatif arboré de pins avec sa terrasse dispose d'un salon de jardin parfait pour les repas en plein air. Une plancha à gaz, une table de ping-pong et des transats sont mis à disposition. Les enfants aimeront le trampoline. Des vélos sont également disponibles. Parking 3 places sur site.",
-    "equipmentTitle": "Équipements",
+    "seoTitle": "Le gîte — T3 pour 4-5 personnes | La Petite Maison Sous Les Pins",
+    "seoDescription": "Maison de vacances T3 à Aix-en-Provence : 2 chambres, cuisine équipée, séjour lumineux, jardin clos dans la pinède, piscine intérieure chauffée et spa en option.",
+    "eyebrow": "Le gîte",
+    "titleLine1": "Maison de vacances à Aix-en-Provence",
+    "titleLine2": "T3, 4-5 personnes",
+    "intro": "Une maison meublée avec goût, mélangeant confort moderne et charme de l’ancien. Au calme sous les pins, la maison est pensée pour les familles. Vous y trouverez tout le confort d’un vrai chez-soi provençal : des espaces de vie généreux, une cuisine complète, deux chambres, et un accès direct à la piscine intérieure chauffée.",
+    "gallery": {
+      "living": "[ PHOTO — séjour lumineux, mobilier ancien ]",
+      "kitchen": "cuisine équipée",
+      "bedroom1": "chambre — lit 160",
+      "bedroom2": "chambre enfants",
+      "bathroom": "salle de bain — douche italienne",
+      "outdoor": "extérieur — terrasse & pins"
+    },
+    "equipmentTitle": "Équipements & confort",
     "equipment": [
-      "Piscine intérieure chauffée (eau 29-30 °C)",
-      "Spa jacuzzi couvert Hotspring (option)",
-      "Jardin clos avec terrasse",
-      "Plancha à gaz",
-      "Table de ping-pong",
-      "Transats",
-      "Trampoline",
-      "Vélos",
-      "Climatisation",
-      "Accès Internet",
-      "Smart TV 108 cm",
-      "Cuisine entièrement équipée"
+      {
+        "title": "2 chambres",
+        "text": "Un lit double 160, deux lits simples.\nLit d’appoint en supplément."
+      },
+      {
+        "title": "Salle de bain",
+        "text": "Douche italienne · WC séparé."
+      },
+      {
+        "title": "Cuisine équipée",
+        "text": "Tout le nécessaire + plancha extérieure."
+      },
+      {
+        "title": "Climatisation",
+        "text": "Confort par temps chaud, dans toute la maison."
+      },
+      {
+        "title": "Internet",
+        "text": "Wi-Fi dans toute la maison."
+      },
+      {
+        "title": "Jeux plein air",
+        "text": "Ping-pong, trampoline, transats, vélos."
+      },
+      {
+        "title": "Parking",
+        "text": "3 places privées sur la propriété.\nOption prise pour véhicule électrique."
+      },
+      {
+        "title": "Piscine intérieure",
+        "text": "Chauffée, accès direct depuis le séjour."
+      },
+      {
+        "title": "Jardin privatif",
+        "text": "Jardin clos dans pinède avec terrasse."
+      }
     ],
-    "accessTitle": "Accès",
-    "accessText": "Cette maison de vacances à Aix-en-Provence de 2 chambres pour 4 personnes avec jardin et terrasse est facile d'accès en voiture avec un parking disponible sur place. Comptez environ 15 minutes en taxi depuis la gare d'Aix-en-Provence. L'aéroport de Marseille-Provence est à environ 30 minutes en voiture. L'entrée se fait par un portail automatique avec télécommande.",
-    "notesTitle": "Informations supplémentaires",
-    "notes": [
-      "Ménage fin de séjour (usage normal), serviettes et draps inclus.",
-      "Animaux de compagnie acceptés avec accord préalable.",
-      "Option spa jacuzzi : 200 € par semaine sur demande, toute l'année.",
-      "Option prise Green'up pour véhicule électrique : 30 €/semaine, 100 €/mois.",
-      "Interdiction de fumer à l'intérieur.",
-      "Fêtes et événements festifs non autorisés.",
-      "Chèques-vacances Classic et e-Connect acceptés.",
-      "Arrivée à partir de 16h — départ au plus tard 11h."
+    "goodToKnowTitle": "Bon à savoir",
+    "goodToKnow": [
+      "Lit bébé disponible sur demande, sans supplément.",
+      "Nos amis les animaux sont acceptés sur demande."
     ]
   },
   "pool": {
     "seoTitle": "Piscine intérieure chauffée & Spa | La Petite Maison Sous Les Pins",
-    "seoDescription": "Piscine privative intérieure chauffée à 29-30 °C avec nage à contre-courant, et spa Hotspring 4 places en option, à Puyricard, Aix-en-Provence.",
+    "seoDescription": "Piscine intérieure privative chauffée à 29-30 °C, accès direct depuis le séjour, et spa Hotspring 4 places en option, à Puyricard, Aix-en-Provence.",
     "title": "Piscine intérieure chauffée & Spa",
     "poolEyebrow": "La piscine",
-    "poolTitle": "Une piscine privative, chauffée",
-    "poolText": "Piscine privative 530 × 330 × 140 cm, eau à 29-30 °C, accès direct depuis le séjour ou la terrasse, avec nage à contre-courant.",
+    "poolTitle": "Une piscine privative et chauffée",
+    "poolText": "Piscine intérieure privative 530 × 330 × 140 cm, eau à 29-30 °C, accès direct depuis le séjour ou la terrasse.",
     "stats": [
-      { "value": "29-30 °C", "label": "température de l'eau" },
-      { "value": "5,3 × 3,3 m", "label": "bassin privatif" },
-      { "value": "∞", "label": "nage à contre-courant" }
+      {
+        "value": "29-30 °C",
+        "label": "température de l’eau"
+      },
+      {
+        "value": "5,3 × 3,3 m",
+        "label": "bassin privatif"
+      }
     ],
     "spaBadge": "En option",
     "spaTitle": "Le spa Hotspring, un moment à soi",
     "spaText": "Spa Hotspring 4 places, couvert, réglable de 26 à 40 °C, avec jets de massage. Accès privatif à 200 €/semaine.",
     "spaPrice": "200 €",
     "spaPriceNote": "/ semaine · accès privatif",
-    "photoHero": "[ PHOTO — piscine intérieure chauffée, reflets d'eau, lumière ]",
+    "photoHero": "[ PHOTO — piscine intérieure chauffée, reflets d’eau, lumière ]",
     "photoPool": "[ PHOTO — bassin, accès depuis le séjour ]",
     "photoSpa": "[ PHOTO — spa Hotspring couvert, ambiance ]",
     "galleryTitle": "Ambiance",
     "noParties": "Fêtes et événements festifs non autorisés.",
-    "noPartiesText": "Le gîte est un lieu familial et paisible ; merci d'en préserver la tranquillité.",
+    "noPartiesText": "Le gîte est un lieu familial et paisible ; merci d’en préserver la tranquillité.",
     "heatingNote": "Piscine chauffée de juillet à fin octobre. Pas de chauffage de la piscine en décembre, janvier et février."
   },
   "rates": {
     "seoTitle": "Tarifs & Réservation | La Petite Maison Sous Les Pins",
-    "seoDescription": "Tarifs indicatifs à la semaine (juillet à octobre) et location à la maison au mois (octobre à juin). Réservation en ligne via chambresdhotes.org.",
-    "title": "Tarifs & Réservation",
-    "indicativeNote": "Les prix ci-dessous sont indicatifs (« à partir de… »). Les tarifs exacts et à jour, ainsi que les disponibilités, sont affichés par le module de réservation ci-dessous lorsque vous choisissez vos dates.",
-    "weekTitle": "Location à la semaine (été)",
-    "weekIntro": "Réservations du samedi au samedi. Le tarif comprend l'accès à la piscine chauffée pour 4 personnes. Le spa n'est pas inclus (option).",
-    "tableSeason": "Période",
-    "tablePrice": "Prix indicatif / semaine",
+    "seoDescription": "À la semaine en été avec piscine chauffée, ou au mois d’octobre à juin. Grille indicative et réservation en ligne via chambresdhotes.org.",
+    "eyebrow": "Tarifs & réservation",
+    "title": "Deux façons de réserver",
+    "intro": "À la semaine en été, avec piscine et spa — ou au mois le reste de l’année. Choisissez le parcours qui vous convient.",
+    "weekKicker": "Parcours A",
+    "weekTitle": "À la semaine — été",
+    "weekSubtitle": "Du samedi au samedi · piscine chauffée incluse · spa en option",
+    "gridLabel": "Grille indicative",
     "grid": [
-      { "period": "Juillet", "price": "1000 – 1200 €" },
-      { "period": "Août", "price": "850 €" },
-      { "period": "Septembre – Octobre", "price": "800 €" },
-      { "period": "Option Spa", "price": "+200 €" },
-      { "period": "Option prise véhicule électrique", "price": "+30 €" },
-      { "period": "Lit d'appoint (sur demande)", "price": "+30 €" }
+      {
+        "period": "Juillet - Août",
+        "price": "1 000 – 1 200 €",
+        "option": false,
+        "divider": false
+      },
+      {
+        "period": "Septembre",
+        "price": "850 €",
+        "option": false,
+        "divider": false
+      },
+      {
+        "period": "Octobre",
+        "price": "800 € - 1 000 €",
+        "option": false,
+        "divider": true
+      },
+      {
+        "period": "Jacuzzi",
+        "price": "+ 200 € / sem",
+        "option": true,
+        "divider": false
+      },
+      {
+        "period": "Prise véhicule électrique",
+        "price": "+ 30 € / sem",
+        "option": true,
+        "divider": false
+      },
+      {
+        "period": "Lit d’appoint",
+        "price": "+ 30 € / sem",
+        "option": true,
+        "divider": false
+      }
     ],
-    "conditionsTitle": "Conditions de paiement",
-    "conditions": [
-      "20 % à la réservation (CB ou Chèques-Vacances e-Connect), solde à la remise des clés.",
-      "Moyens acceptés : carte bancaire, Chèques-Vacances & e-Connect, chèques.",
-      "En cas d'annulation ou de report, un préavis d'au moins 1 mois avant le début du séjour est requis (remboursement ou report possible)."
-    ],
-    "bookingTitle": "Vérifier les disponibilités et réserver",
-    "monthTitle": "Location au mois (octobre à juin)",
-    "monthText": "La maison seule, sans piscine ni spa, disponible en continu du 1er octobre au 30 juin. Formule au mois ou en saisonnier possible selon les dates et les disponibilités. Tarif de référence : à partir de 1400 €/mois toutes charges comprises (eau, électricité, internet). Option prise véhicule électrique : +100 €/mois. Bail mobilité ou saisonnier sur justificatifs (bail de 1 à 9 mois).",
-    "monthCta": "Faire une demande au mois",
-    "otaNote": "Sur les plateformes intermédiaires (Airbnb, Booking, Abritel, Leboncoin…), les prix sont plus élevés du fait des commissions et taxes (18 % en moyenne), sauf sur chambresdhotes.org."
+    "conditionsLabel": "Conditions —",
+    "conditionsText": "20 % à la réservation (CB ou e-ANCV), solde à la remise des clés.",
+    "bookingModuleTitle": "Calendrier & réservation en ligne",
+    "bookingModuleNote": "[ module chambresdhotes.org intégré ]",
+    "bookingFallback": "Réserver sur chambresdhotes.org",
+    "monthKicker": "Parcours B",
+    "monthTitle": "Au mois — octobre à juin",
+    "monthSubtitle1": "Maison seule, sans piscine ni spa",
+    "monthSubtitle2": "Idéal pour : bail mobilité · étudiant · logement temporaire",
+    "monthText": "En continu du 1er octobre au 30 juin, sur demande.",
+    "monthPriceLabel": "À partir de",
+    "monthPrice": "1 400 €",
+    "monthPriceUnit": "/ mois",
+    "monthPriceNote": "toutes charges comprises",
+    "monthFormLabel": "Faire une demande"
   },
   "discover": {
-    "seoTitle": "Tourisme autour d'Aix-en-Provence | La Petite Maison Sous Les Pins",
-    "seoDescription": "Escapades, activités et bonnes adresses autour de Puyricard et d'Aix-en-Provence : châteaux, Luberon, Calanques, Cassis, restaurants et glaciers.",
-    "title": "Découvertes autour du gîte",
-    "intro": "Nos coups de cœur autour de La Petite Maison Sous Les Pins, du plus proche au plus lointain.",
+    "seoTitle": "Tourisme autour d’Aix-en-Provence | La Petite Maison Sous Les Pins",
+    "seoDescription": "Escapades, activités et bonnes adresses autour de Puyricard et d’Aix-en-Provence : châteaux, Luberon, Calanques, Cassis, restaurants et glaciers.",
+    "eyebrow": "Tourisme",
+    "title": "Découvertes autour de La Petite Maison Sous Les Pins",
+    "intro": "Le pays d’Aix à portée de main : châteaux, villages perchés, marchés et bonnes tables. Voici nos coups de cœur.",
     "escapades": "Escapades",
     "activites": "Activités",
-    "manger": "Boire & Manger",
-    "driveTime": "En voiture",
-    "route": "Itinéraire"
+    "manger": "Boire & Manger"
   },
   "reviews": {
     "seoTitle": "Avis de nos voyageurs | La Petite Maison Sous Les Pins",
-    "seoDescription": "Les avis des voyageurs ayant séjourné à La Petite Maison Sous Les Pins, gîte avec piscine intérieure chauffée à Aix-en-Provence.",
-    "title": "Avis de nos voyageurs",
-    "intro": "Retrouvez les avis laissés par nos voyageurs sur notre fiche Google.",
-    "placeholder": "Les avis Google seront affichés ici une fois la fiche Google Business Profile connectée (Place ID à fournir).",
+    "seoDescription": "Les avis Google des voyageurs ayant séjourné à La Petite Maison Sous Les Pins, gîte avec piscine intérieure chauffée à Aix-en-Provence.",
+    "eyebrow": "Avis",
+    "title": "Ils ont séjourné chez nous",
+    "verified": "· Avis vérifiés",
+    "summary1": "Note moyenne sur",
+    "summaryReviews": "avis",
+    "summary2": "de familles et couples ayant séjourné à la maison.",
+    "placeholder": "Les avis Google seront affichés ici une fois la fiche Google Business Profile connectée.",
     "seeAll": "Voir tous les avis sur Google"
   },
   "contact": {
     "seoTitle": "Contact & accès | La Petite Maison Sous Les Pins",
     "seoDescription": "Contactez La Petite Maison Sous Les Pins à Puyricard, Aix-en-Provence : téléphone, email, formulaire, carte et itinéraire.",
-    "title": "Contact & accès",
-    "intro": "Pour toute demande, n'hésitez pas à nous écrire via le formulaire ci-dessous, ou à nous appeler.",
+    "eyebrow": "Contact & accès",
+    "title": "Nous contacter & venir",
+    "intro": "Une question sur les dates, le gîte, la piscine ? Écrivez-nous ou appelez — nous répondons avec plaisir.",
+    "coordsTitle": "Coordonnées",
     "phoneLabel": "Téléphone",
     "emailLabel": "Email",
     "addressLabel": "Adresse",
     "howToComeTitle": "Comment venir",
-    "howToCome": "À environ 15 minutes en taxi depuis la gare d'Aix-en-Provence, et 30 minutes de l'aéroport de Marseille-Provence. L'entrée se fait par un portail automatique avec télécommande. Parking 3 places sur site.",
+    "howToCome": [
+      "En voiture, à environ 15 min du centre d’Aix-en-Provence.",
+      "Parking privé de 3 places sur la propriété.",
+      "Accueil par nos soins."
+    ],
+    "writeTitle": "Écrivez-nous",
+    "mapTitle": "Carte Google Maps",
     "form": {
       "name": "Nom",
+      "namePlaceholder": "Votre nom",
       "email": "Email",
-      "phone": "Téléphone (optionnel)",
+      "emailPlaceholder": "vous@email.fr",
+      "phone": "Téléphone",
+      "phoneOptional": "(optionnel)",
+      "phonePlaceholder": "06 …",
       "message": "Message",
-      "consent": "J'accepte que mes données soient utilisées pour répondre à ma demande.",
+      "messagePlaceholder": "Votre message…",
+      "consent": "J’accepte que mes données soient utilisées pour répondre à ma demande (RGPD).",
       "submit": "Envoyer",
       "sending": "Envoi…",
       "success": "Merci, votre message a bien été envoyé. Nous vous répondrons rapidement.",
       "error": "Une erreur est survenue. Merci de réessayer ou de nous appeler."
-    }
+    },
+    "viaForm": "Via le formulaire ci-contre"
   },
   "monthForm": {
-    "title": "Demande de location au mois",
-    "intro": "Précisez votre projet : la période, la durée et le nombre de personnes. Nous étudions chaque demande au cas par cas selon les dates et les disponibilités.",
-    "period": "Période souhaitée (mois complets, entre octobre et juin)",
+    "period": "Période souhaitée",
     "people": "Nombre de personnes",
-    "reason": "Motif du séjour",
-    "message": "Message",
-    "submit": "Envoyer la demande"
+    "reason": "Motif",
+    "consent": "J’accepte que mes données soient utilisées pour traiter ma demande (RGPD).",
+    "submit": "Faire une demande",
+    "success": "Merci, votre demande a bien été envoyée. Nous revenons vers vous rapidement.",
+    "error": "Une erreur est survenue. Merci de réessayer ou de nous appeler."
   },
   "legal": {
     "legalTitle": "Mentions légales",
