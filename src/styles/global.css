@@ -17,8 +17,23 @@
   --color-sage: #7c9885;
   --color-marine: #264e6c;
   --color-pool: #8fbccb;
+  --color-poollight: #dce7ea;
   --color-ink: #2b2823;
+  --color-body: #4a4640;
   --color-muted: #6b6459;
+
+  /* Encadré « fêtes non autorisées » (terre cuite douce) */
+  --color-notice-bg: #f4e7e1;
+  --color-notice-border: #e3c4b7;
+  --color-notice-icon: #b5715a;
+  --color-notice-text: #7a4a3a;
+  --color-notice-strong: #8a3f2a;
+
+  /* Pied de page (vert pin foncé) */
+  --color-footer: #33503f;
+  --color-footer-title: #faf6ef;
+  --color-footer-text: #c9d6cc;
+  --color-footer-label: #9db3a3;
 
   --font-display: 'Fraunces Variable', Georgia, serif;
   --font-sans: 'Work Sans', system-ui, sans-serif;

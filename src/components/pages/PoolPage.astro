@@ -1,41 +1,110 @@
 ---
 import { useTranslations } from '~/i18n/t';
-import { localizeUrl, type Locale } from '~/i18n/ui';
-import Section from '~/components/Section.astro';
-import Button from '~/components/Button.astro';
+import type { Locale } from '~/i18n/ui';
+import Photo from '~/components/Photo.astro';
 
 interface Props {
   locale: Locale;
 }
 const { locale } = Astro.props;
 const t = useTranslations(locale);
+const stats = t<{ value: string; label: string }[]>('pool.stats');
 ---
 
-<Section>
-  <h1 class="max-w-3xl text-3xl md:text-4xl">{t('pool.title')}</h1>
-  <p class="mt-6 max-w-3xl text-lg text-muted">{t('pool.lead')}</p>
-</Section>
+<!-- HERO -->
+<section class="relative flex h-[360px] items-end overflow-hidden md:h-[520px]">
+  <Photo caption={t('pool.photoHero')} class="absolute inset-0 items-start" />
+  <div
+    class="absolute inset-0"
+    style="background-image:linear-gradient(to top, rgba(38,78,108,.5), rgba(43,40,35,.05) 55%);"
+  >
+  </div>
+  <div class="relative mx-auto w-full max-w-[1440px] px-5 py-8 md:px-14 md:py-14">
+    <h1 class="max-w-2xl font-display text-[32px] font-semibold leading-[1.08] text-cream md:text-[52px] md:leading-[1.06]">
+      {t('pool.title')}
+    </h1>
+  </div>
+</section>
 
-<Section tone="sand">
-  <div class="grid gap-10 md:grid-cols-2">
-    <div class="fade-up">
-      <h2 class="text-2xl">{t('pool.poolTitle')}</h2>
-      <p class="mt-3 text-muted">{t('pool.poolText')}</p>
+<!-- BLOC PISCINE -->
+<section class="bg-cream">
+  <div class="mx-auto grid max-w-[1440px] items-center md:grid-cols-2">
+    <div class="px-5 py-10 md:px-14 md:py-[72px]">
+      <p class="mb-3 text-[13px] font-semibold uppercase tracking-[0.16em] text-sage">
+        {t('pool.poolEyebrow')}
+      </p>
+      <h2 class="mb-5 font-display text-[24px] font-medium text-pine md:text-[34px]">
+        {t('pool.poolTitle')}
+      </h2>
+      <p class="mb-6 max-w-prose text-[15px] leading-[1.7] text-body md:text-[17px] md:leading-[1.75]">
+        {t('pool.poolText')}
+      </p>
+      <dl class="flex flex-wrap gap-7">
+        {
+          stats.map((s) => (
+            <div>
+              <dt class="font-display text-[26px] text-marine">{s.value}</dt>
+              <dd class="mt-0.5 text-[13px] text-muted">{s.label}</dd>
+            </div>
+          ))
+        }
+      </dl>
     </div>
-    <div class="fade-up">
-      <h2 class="text-2xl">{t('pool.spaTitle')}</h2>
-      <p class="mt-3 text-muted">{t('pool.spaText')}</p>
-      <p class="mt-4 font-medium text-pine">{t('pool.spaPrice')}</p>
-    </div>
+    <Photo caption={t('pool.photoPool')} class="min-h-[240px] md:h-full md:min-h-[440px]" />
   </div>
-</Section>
+</section>
 
-<Section>
-  <div class="rounded border border-beige bg-beige/40 p-6">
-    <p class="font-medium text-pine">🚫 {t('pool.noParties')}</p>
-    <p class="mt-2 text-sm text-muted">{t('pool.heatingNote')}</p>
+<!-- BLOC SPA -->
+<section class="bg-sand">
+  <div class="mx-auto grid max-w-[1440px] items-center md:grid-cols-2">
+    <Photo caption={t('pool.photoSpa')} class="order-last min-h-[220px] md:order-first md:h-full md:min-h-[400px]" />
+    <div class="px-5 py-10 md:px-14 md:py-[72px]">
+      <span
+        class="mb-4 inline-block rounded-full border border-[#b9cdd6] bg-poollight px-3.5 py-1 text-[12px] font-semibold uppercase tracking-[0.1em] text-marine"
+      >
+        {t('pool.spaBadge')}
+      </span>
+      <h2 class="mb-5 font-display text-[24px] font-medium text-pine md:text-[34px]">
+        {t('pool.spaTitle')}
+      </h2>
+      <p class="mb-6 max-w-prose text-[15px] leading-[1.7] text-body md:text-[17px] md:leading-[1.75]">
+        {t('pool.spaText')}
+      </p>
+      <p class="font-display text-[22px] text-pine">
+        {t('pool.spaPrice')}
+        <span class="font-sans text-[15px] font-normal text-muted">{t('pool.spaPriceNote')}</span>
+      </p>
+    </div>
   </div>
-  <div class="mt-8">
-    <Button href={localizeUrl(locale, 'rates')}>{t('common.bookNow')}</Button>
+</section>
+
+<!-- GALERIE AMBIANCE -->
+<section class="bg-cream">
+  <div class="mx-auto max-w-[1440px] px-5 py-12 md:px-14 md:py-16">
+    <h2 class="mb-6 font-display text-[22px] font-medium text-ink md:text-[30px]">
+      {t('pool.galleryTitle')}
+    </h2>
+    <div class="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
+      {[0, 1, 2, 3].map(() => <Photo rounded class="h-[130px] md:h-[200px]" />)}
+    </div>
   </div>
-</Section>
+</section>
+
+<!-- ENCADRÉ FÊTES -->
+<section class="bg-cream">
+  <div class="mx-auto max-w-[1440px] px-5 pb-14 md:px-14 md:pb-[72px]">
+    <div
+      class="flex items-center gap-4 rounded-[10px] border border-notice-border bg-notice-bg px-6 py-5 md:gap-[18px] md:px-[30px] md:py-6"
+    >
+      <span
+        aria-hidden="true"
+        class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border-[1.5px] border-notice-icon font-display text-lg text-notice-icon"
+        >!</span
+      >
+      <p class="text-[14px] leading-[1.5] text-notice-text md:text-[15px]">
+        <strong class="text-notice-strong">{t('pool.noParties')}</strong>
+        {' '}{t('pool.noPartiesText')}
+      </p>
+    </div>
+  </div>
+</section>

@@ -14,10 +14,21 @@ Ces points ne doivent **pas** être remplis au hasard. Placeholders visibles dan
    Tant qu'absent, la page Avis affiche un placeholder propre.
 7. **Accès DNS** pour le repointage du domaine vers Vercel.
 
-## En attente du design final (Claude Design)
+## Design (Claude Design) — en cours d'intégration
 
-- Direction artistique appliquée en version **sobre provisoire** (AGENT.md §5).
-  Tokens dans `src/styles/global.css` (`@theme`). Le visuel sera aligné ensuite.
+- ✅ **Page Piscine & Spa** implémentée fidèlement d'après la maquette
+  (`La Petite Maison - Piscine & Spa.dc.html`) : hero pleine largeur, blocs
+  piscine/spa alternés, chiffres-clés, badge « En option », galerie ambiance,
+  encadré « fêtes » terre cuite.
+- ✅ **Système de composants commun** aligné sur la maquette : Header (wordmark
+  « …sous les **pins** », nav, sélecteur FR·EN, CTA « Disponibilités », bouton
+  d'appel + hamburger mobile), Footer vert pin foncé 3 colonnes, tokens
+  couleurs mis à jour (`src/styles/global.css`).
+- ⏳ **Reste à décliner** les 6 autres pages sur la maquette (Accueil, Le gîte,
+  Tarifs & Réservation, Tourisme, Avis, Contact) — mockups fournis dans le
+  bundle de handoff. Actuellement en version sobre provisoire.
+- Emplacements photos : composant `Photo.astro` (placeholder), à remplacer par
+  `<Image>` une fois les 72 images intégrées (étape 4).
 
 ## Étapes de build restantes (workflow §12)
 

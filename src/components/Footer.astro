@@ -1,5 +1,5 @@
 ---
-import { localizeUrl, type Locale } from '~/i18n/ui';
+import { localizeUrl, type Locale, type RouteKey } from '~/i18n/ui';
 import { useTranslations } from '~/i18n/t';
 import { site } from '~/data/site';
 
@@ -8,48 +8,87 @@ interface Props {
 }
 const { locale } = Astro.props;
 const t = useTranslations(locale);
-const year = 2026;
+
+const siteLinks: { key: RouteKey; label: string }[] = [
+  { key: 'house', label: t('nav.house') },
+  { key: 'pool', label: t('nav.pool') },
+  { key: 'rates', label: t('nav.rates') },
+  { key: 'discover', label: t('nav.discover') },
+  { key: 'reviews', label: t('nav.reviews') },
+  { key: 'contact', label: t('nav.contact') },
+];
 ---
 
-<footer class="mt-20 border-t border-beige bg-sand/50">
-  <div class="mx-auto grid max-w-6xl gap-8 px-4 py-12 md:grid-cols-3 md:px-6">
-    <div>
-      <p class="font-display text-lg text-pine">La petite maison sous les pins</p>
-      <p class="mt-2 text-sm text-muted">{t('footer.madeWith')}</p>
-      <p class="mt-2 text-sm text-muted">{t('footer.address')}</p>
+<footer class="bg-footer text-footer-text">
+  <div class="mx-auto max-w-[1440px] px-5 pb-8 pt-14 md:px-14">
+    <div
+      class="grid gap-10 border-b border-cream/20 pb-9 md:grid-cols-[1.4fr_1fr_1fr]"
+    >
+      <div>
+        <p class="font-display text-xl font-semibold text-footer-title">
+          La petite maison sous les pins
+        </p>
+        <address class="mt-4 text-sm not-italic leading-[1.9]">
+          {site.address.street}<br />
+          {site.address.postalCode} {site.address.city} ({site.address.district})<br />
+          <a href={`tel:${site.phoneFixed}`} class="text-footer-text no-underline hover:underline"
+            >{t('common.phoneFixed')}</a
+          >
+          ·
+          <a href={`tel:${site.phoneMobile}`} class="text-footer-text no-underline hover:underline"
+            >{t('common.phoneMobile')}</a
+          ><br />
+          <a href={`mailto:${site.email}`} class="text-footer-text no-underline hover:underline"
+            >{site.email}</a
+          >
+        </address>
+      </div>
+
+      <nav aria-label={t('footer.siteMap')}>
+        <p class="mb-4 text-[13px] font-semibold uppercase tracking-[0.12em] text-footer-label">
+          {t('footer.siteMap')}
+        </p>
+        <ul class="space-y-1.5 text-sm">
+          {
+            siteLinks.map((l) => (
+              <li>
+                <a
+                  href={localizeUrl(locale, l.key)}
+                  class="text-footer-text no-underline hover:text-footer-title hover:underline"
+                >
+                  {l.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div>
+        <p class="mb-4 text-[13px] font-semibold uppercase tracking-[0.12em] text-footer-label">
+          {t('footer.infoLabel')}
+        </p>
+        <p class="text-sm leading-[1.9]">
+          {t('footer.familyPool')}<br />
+          <span class="text-[#e8b4a0]">{t('footer.noParties')}</span>
+        </p>
+        <nav aria-label="Légal" class="mt-4 flex flex-col gap-1.5 text-sm">
+          <a href={localizeUrl(locale, 'legal')} class="text-footer-text no-underline hover:underline"
+            >{t('footer.legal')}</a
+          >
+          <a
+            href={localizeUrl(locale, 'privacy')}
+            class="text-footer-text no-underline hover:underline">{t('footer.privacy')}</a
+          >
+          <a href={localizeUrl(locale, 'terms')} class="text-footer-text no-underline hover:underline"
+            >{t('footer.terms')}</a
+          >
+        </nav>
+      </div>
     </div>
 
-    <div class="text-sm">
-      <p>
-        <a href={`tel:${site.phoneFixed}`} class="text-marine no-underline hover:underline"
-          >{t('common.phoneFixed')}</a
-        >
-        ·
-        <a href={`tel:${site.phoneMobile}`} class="text-marine no-underline hover:underline"
-          >{t('common.phoneMobile')}</a
-        >
-      </p>
-      <p class="mt-1">
-        <a href={`mailto:${site.email}`} class="text-marine no-underline hover:underline"
-          >{site.email}</a
-        >
-      </p>
-    </div>
-
-    <nav aria-label="Légal" class="flex flex-col gap-2 text-sm">
-      <a href={localizeUrl(locale, 'legal')} class="text-ink no-underline hover:text-marine"
-        >{t('footer.legal')}</a
-      >
-      <a href={localizeUrl(locale, 'privacy')} class="text-ink no-underline hover:text-marine"
-        >{t('footer.privacy')}</a
-      >
-      <a href={localizeUrl(locale, 'terms')} class="text-ink no-underline hover:text-marine"
-        >{t('footer.terms')}</a
-      >
-    </nav>
-  </div>
-
-  <div class="border-t border-beige/70 px-4 py-4 text-center text-xs text-muted">
-    © {year} {site.name}. {t('footer.rights')} · SIRET {site.siret}
+    <p class="pt-6 text-[13px] text-footer-label">
+      © 2026 {site.name} · {site.address.district}, {site.address.city} · SIRET {site.siret}
+    </p>
   </div>
 </footer>
