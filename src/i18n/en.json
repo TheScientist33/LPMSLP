@@ -29,7 +29,6 @@
     "contactForm": "Write to us via the form"
   },
   "common": {
-    "phoneFixed": "+33 4 42 28 15 69",
     "phoneMobile": "+33 6 62 32 67 18",
     "bookNow": "Book now",
     "availability": "Availability",
@@ -171,44 +170,6 @@
     "weekTitle": "Weekly — summer",
     "weekSubtitle": "Saturday to Saturday · heated pool included · spa optional",
     "gridLabel": "Indicative rates",
-    "grid": [
-      {
-        "period": "July - August",
-        "price": "€1,000 – 1,200",
-        "option": false,
-        "divider": false
-      },
-      {
-        "period": "September",
-        "price": "€850",
-        "option": false,
-        "divider": false
-      },
-      {
-        "period": "October",
-        "price": "€800 - 1,000",
-        "option": false,
-        "divider": true
-      },
-      {
-        "period": "Jacuzzi",
-        "price": "+ €200 / week",
-        "option": true,
-        "divider": false
-      },
-      {
-        "period": "Electric-vehicle socket",
-        "price": "+ €30 / week",
-        "option": true,
-        "divider": false
-      },
-      {
-        "period": "Extra bed",
-        "price": "+ €30 / week",
-        "option": true,
-        "divider": false
-      }
-    ],
     "conditionsLabel": "Terms —",
     "conditionsText": "20% at booking (card or e-ANCV), balance on key handover.",
     "bookingModuleTitle": "Calendar & online booking",
@@ -220,9 +181,6 @@
     "monthSubtitle2": "Ideal for: mobility lease · students · temporary housing",
     "monthText": "Continuously from 1 October to 30 June, on request.",
     "monthPriceLabel": "From",
-    "monthPrice": "€1,400",
-    "monthPriceUnit": "/ month",
-    "monthPriceNote": "all charges included",
     "monthFormLabel": "Make a request"
   },
   "discover": {

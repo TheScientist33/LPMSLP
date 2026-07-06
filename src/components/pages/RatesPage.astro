@@ -3,14 +3,22 @@ import { useTranslations } from '~/i18n/t';
 import type { Locale } from '~/i18n/ui';
 import BookingEmbed from '~/components/BookingEmbed.astro';
 import MonthlyRequestForm from '~/components/MonthlyRequestForm.astro';
+import { tarifsSemaine, tarifMois } from '~/data/tarifs';
 
 interface Props {
   locale: Locale;
 }
 const { locale } = Astro.props;
 const t = useTranslations(locale);
-const grid =
-  t<{ period: string; price: string; option: boolean; divider: boolean }[]>('rates.grid');
+// Grille de tarifs éditable : src/data/tarifs.ts
+const grid = tarifsSemaine.map((r) => ({
+  period: locale === 'fr' ? r.labelFr : r.labelEn,
+  price: r.prix,
+  option: r.option ?? false,
+  divider: r.separateur ?? false,
+}));
+const monthUnit = locale === 'fr' ? tarifMois.uniteFr : tarifMois.uniteEn;
+const monthNote = locale === 'fr' ? tarifMois.noteFr : tarifMois.noteEn;
 ---
 
 <!-- EN-TÊTE -->
@@ -107,12 +115,10 @@ const grid =
         <div class="bg-cream mb-6 rounded-lg border border-[#e4d8c4] px-5 py-5 md:px-[22px]">
           <p class="text-muted mb-1 text-[13px]">{t('rates.monthPriceLabel')}</p>
           <p class="font-display text-pine text-[28px] md:text-[34px]">
-            {t('rates.monthPrice')}
-            <span class="text-muted font-sans text-base font-normal"
-              >{t('rates.monthPriceUnit')}</span
-            >
+            {tarifMois.prix}
+            <span class="text-muted font-sans text-base font-normal">{monthUnit}</span>
           </p>
-          <p class="text-muted mt-1 text-[13px]">{t('rates.monthPriceNote')}</p>
+          <p class="text-muted mt-1 text-[13px]">{monthNote}</p>
         </div>
 
         <p class="text-sage mb-4 text-[13px] font-semibold tracking-[0.12em] uppercase">

@@ -30,10 +30,6 @@ const siteLinks: { key: RouteKey; label: string }[] = [
           {site.address.street}<br />
           {site.address.postalCode}
           {site.address.city} ({site.address.district})<br />
-          <a href={`tel:${site.phoneFixed}`} class="text-footer-text no-underline hover:underline"
-            >{t('common.phoneFixed')}</a
-          >
-          ·
           <a href={`tel:${site.phoneMobile}`} class="text-footer-text no-underline hover:underline"
             >{t('common.phoneMobile')}</a
           ><br />

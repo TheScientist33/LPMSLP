@@ -1,17 +1,24 @@
 /**
  * Configuration du module de réservation chambresdhotes.org.
  *
- * TODO(§14.1) : récupérer l'identifiant/URL EXACT de l'iframe depuis le code
- * source de la page /disponibilites-reservation/ actuelle ou l'espace
- * propriétaire chambresdhotes.org. Motif attendu :
- *   https://www.chambresdhotes.org/.../cal.cgi?make_iframe=1;list=1;who=…
- * NE PAS INVENTER l'identifiant.
+ * L'identifiant du logement (« who ») fourni par la propriétaire est 26961.
+ * L'URL d'iframe suit le motif standard chambresdhotes.org
+ * (cf. AGENT.md §7.1) : cal.cgi?make_iframe=1;list=1;who=<id>.
+ *
+ * ⚠️ À CONFIRMER visuellement sur la preview Vercel : si le calendrier ne
+ * s'affiche pas, copier le `src` exact de l'iframe depuis le code source de la
+ * page /disponibilites-reservation/ du site actuel et le coller dans WHO_URL.
  */
+const WHO = '26961';
+
 export const booking = {
-  /** URL de l'iframe du calendrier/module. `null` tant que non fournie. */
-  iframeUrl: null as string | null,
+  /** Identifiant du logement chez chambresdhotes.org. */
+  who: WHO,
+  /** URL de l'iframe du calendrier/module (motif standard chambresdhotes.org). */
+  iframeUrl: `https://www.chambresdhotes.org/cal.cgi?make_iframe=1;list=1;who=${WHO}` as
+    string | null,
   /** Lien de secours vers la fiche publique chambresdhotes.org. */
-  fallbackUrl: 'https://www.chambresdhotes.org/',
-  /** Ratio d'aspect du conteneur (hauteur mini en px si l'iframe ne fixe pas). */
+  fallbackUrl: `https://www.chambresdhotes.org/hote_gp.cgi?who=${WHO}`,
+  /** Hauteur mini du conteneur (px) si l'iframe ne fixe pas sa hauteur. */
   minHeight: 720,
 };

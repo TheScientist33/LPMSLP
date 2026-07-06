@@ -29,7 +29,6 @@
     "contactForm": "Nous écrire via le formulaire"
   },
   "common": {
-    "phoneFixed": "04 42 28 15 69",
     "phoneMobile": "06 62 32 67 18",
     "bookNow": "Réserver",
     "availability": "Disponibilités",
@@ -171,44 +170,6 @@
     "weekTitle": "À la semaine — été",
     "weekSubtitle": "Du samedi au samedi · piscine chauffée incluse · spa en option",
     "gridLabel": "Grille indicative",
-    "grid": [
-      {
-        "period": "Juillet - Août",
-        "price": "1 000 – 1 200 €",
-        "option": false,
-        "divider": false
-      },
-      {
-        "period": "Septembre",
-        "price": "850 €",
-        "option": false,
-        "divider": false
-      },
-      {
-        "period": "Octobre",
-        "price": "800 € - 1 000 €",
-        "option": false,
-        "divider": true
-      },
-      {
-        "period": "Jacuzzi",
-        "price": "+ 200 € / sem",
-        "option": true,
-        "divider": false
-      },
-      {
-        "period": "Prise véhicule électrique",
-        "price": "+ 30 € / sem",
-        "option": true,
-        "divider": false
-      },
-      {
-        "period": "Lit d’appoint",
-        "price": "+ 30 € / sem",
-        "option": true,
-        "divider": false
-      }
-    ],
     "conditionsLabel": "Conditions —",
     "conditionsText": "20 % à la réservation (CB ou e-ANCV), solde à la remise des clés.",
     "bookingModuleTitle": "Calendrier & réservation en ligne",
@@ -220,9 +181,6 @@
     "monthSubtitle2": "Idéal pour : bail mobilité · étudiant · logement temporaire",
     "monthText": "En continu du 1er octobre au 30 juin, sur demande.",
     "monthPriceLabel": "À partir de",
-    "monthPrice": "1 400 €",
-    "monthPriceUnit": "/ mois",
-    "monthPriceNote": "toutes charges comprises",
     "monthFormLabel": "Faire une demande"
   },
   "discover": {

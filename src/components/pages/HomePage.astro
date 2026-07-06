@@ -13,9 +13,6 @@ const t = useTranslations(locale);
 const highlights = t<string[]>('home.highlights');
 const galleryLabels = t<string[]>('home.galleryLabels');
 const reviews = await getReviews();
-const googleMapsSearch =
-  'https://www.google.com/maps/search/?api=1&query=' +
-  encodeURIComponent(`${site.name} ${site.address.street} ${site.address.city}`);
 
 /* Formes géométriques des points forts (maquette : cercle, carré arrondi, feuille, losange) */
 const iconShapes = ['rounded-full', 'rounded-lg', 'rounded-[8px_8px_8px_0]', 'rounded rotate-45'];
@@ -183,9 +180,7 @@ const iconShapes = ['rounded-full', 'rounded-lg', 'rounded-[8px_8px_8px_0]', 'ro
     }
     <p class="text-center">
       <a
-        href={site.placeId
-          ? `https://search.google.com/local/reviews?placeid=${site.placeId}`
-          : googleMapsSearch}
+        href={site.reviewsUrl}
         target="_blank"
         rel="noopener"
         class="text-marine text-[15px] font-medium no-underline hover:underline"

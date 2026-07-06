@@ -12,10 +12,7 @@ const t = useTranslations(locale);
 const data = await getReviews();
 
 const avatarColors = ['bg-sage', 'bg-marine', 'bg-notice-icon'];
-const googleUrl = site.placeId
-  ? `https://search.google.com/local/reviews?placeid=${site.placeId}`
-  : 'https://www.google.com/maps/search/?api=1&query=' +
-    encodeURIComponent(`${site.name} ${site.address.street} ${site.address.city}`);
+const googleUrl = site.reviewsUrl;
 ---
 
 <!-- EN-TÊTE -->

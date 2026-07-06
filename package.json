@@ -9,7 +9,8 @@
     "preview": "astro preview",
     "check": "astro check",
     "format": "prettier --write .",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "fetch:images": "node scripts/fetch-images.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.2.1",
