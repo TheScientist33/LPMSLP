@@ -1,0 +1,11 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import HousePage from '~/components/pages/HousePage.astro';
+import { useTranslations } from '~/i18n/t';
+const locale = 'en' as const;
+const t = useTranslations(locale);
+---
+
+<BaseLayout locale={locale} routeKey="house" title={t('house.seoTitle')} description={t('house.seoDescription')}>
+  <HousePage locale={locale} />
+</BaseLayout>

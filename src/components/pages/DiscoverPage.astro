@@ -1,0 +1,62 @@
+---
+import { useTranslations } from '~/i18n/t';
+import type { Locale } from '~/i18n/ui';
+import Section from '~/components/Section.astro';
+import { tourism, type TourismCategory } from '~/data/tourisme';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const categories: { key: TourismCategory; label: string }[] = [
+  { key: 'escapades', label: t('discover.escapades') },
+  { key: 'activites', label: t('discover.activites') },
+  { key: 'manger', label: t('discover.manger') },
+];
+---
+
+<Section>
+  <h1 class="text-3xl md:text-4xl">{t('discover.title')}</h1>
+  <p class="mt-4 max-w-3xl text-muted">{t('discover.intro')}</p>
+</Section>
+
+{
+  categories.map((cat, i) => {
+    const items = tourism.filter((it) => it.category === cat.key);
+    return (
+      <Section tone={i % 2 === 0 ? 'sand' : 'cream'}>
+        <h2 class="text-2xl md:text-3xl">{cat.label}</h2>
+        <ul class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map((it) => {
+            const c = it[locale];
+            return (
+              <li class="fade-up flex flex-col rounded border border-beige bg-white/50 p-6 shadow-sm">
+                <h3 class="text-lg">
+                  <span aria-hidden="true">{it.emoji}</span> {c.title}
+                </h3>
+                <p class="mt-2 flex-1 text-sm text-muted">{c.text}</p>
+                <p class="mt-4 text-xs text-muted">
+                  🚗 {t('discover.driveTime')} : {it.drive}
+                </p>
+                {it.siteUrl && (
+                  <p class="mt-2">
+                    <a
+                      href={it.siteUrl}
+                      target="_blank"
+                      rel="noopener"
+                      class="text-sm text-marine hover:underline"
+                    >
+                      {locale === 'fr' ? 'En savoir plus' : 'Learn more'} →
+                    </a>
+                  </p>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      </Section>
+    );
+  })
+}

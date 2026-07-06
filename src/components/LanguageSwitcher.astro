@@ -1,0 +1,31 @@
+---
+import { localizeUrl, locales, localeNames, routeKeyFromPath, type Locale } from '~/i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const routeKey = routeKeyFromPath(Astro.url.pathname);
+---
+
+<nav aria-label="Langue" class="flex items-center gap-2 text-sm">
+  {
+    locales.map((l, i) => (
+      <>
+        {i > 0 && <span aria-hidden="true" class="text-muted">·</span>}
+        <a
+          href={localizeUrl(l as Locale, routeKey)}
+          hreflang={l}
+          aria-current={l === locale ? 'true' : undefined}
+          class:list={[
+            'uppercase tracking-wide transition-colors',
+            l === locale ? 'font-semibold text-pine' : 'text-muted hover:text-marine',
+          ]}
+        >
+          <span class="sr-only">{localeNames[l as Locale]}</span>
+          <span aria-hidden="true">{l}</span>
+        </a>
+      </>
+    ))
+  }
+</nav>

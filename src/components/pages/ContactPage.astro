@@ -1,0 +1,72 @@
+---
+import { useTranslations } from '~/i18n/t';
+import type { Locale } from '~/i18n/ui';
+import Section from '~/components/Section.astro';
+import ContactForm from '~/components/ContactForm.astro';
+import MapEmbed from '~/components/MapEmbed.astro';
+import { site } from '~/data/site';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<Section>
+  <h1 class="text-3xl md:text-4xl">{t('contact.title')}</h1>
+  <p class="mt-4 max-w-3xl text-muted">{t('contact.intro')}</p>
+
+  <div class="mt-10 grid gap-12 lg:grid-cols-2">
+    <div>
+      <dl class="space-y-4 text-sm">
+        <div>
+          <dt class="font-medium text-pine">{t('contact.phoneLabel')}</dt>
+          <dd>
+            <a href={`tel:${site.phoneFixed}`} class="text-marine hover:underline"
+              >{t('common.phoneFixed')}</a
+            >
+            ·
+            <a href={`tel:${site.phoneMobile}`} class="text-marine hover:underline"
+              >{t('common.phoneMobile')}</a
+            >
+          </dd>
+        </div>
+        <div>
+          <dt class="font-medium text-pine">{t('contact.emailLabel')}</dt>
+          <dd>
+            <a href={`mailto:${site.email}`} class="text-marine hover:underline">{site.email}</a>
+          </dd>
+        </div>
+        <div>
+          <dt class="font-medium text-pine">{t('contact.addressLabel')}</dt>
+          <dd class="text-muted">{t('footer.address')}</dd>
+        </div>
+      </dl>
+
+      <div class="mt-8">
+        <h2 class="text-xl">{t('contact.howToComeTitle')}</h2>
+        <p class="mt-2 text-sm text-muted">{t('contact.howToCome')}</p>
+      </div>
+    </div>
+
+    <div>
+      <ContactForm locale={locale} variant="contact" />
+    </div>
+  </div>
+</Section>
+
+<Section tone="sand">
+  <h2 class="text-2xl">{t('contact.addressLabel')}</h2>
+  <div class="mt-6">
+    <MapEmbed title={site.name} />
+  </div>
+</Section>
+
+<Section tone="beige">
+  <h2 class="text-2xl md:text-3xl">{t('monthForm.title')}</h2>
+  <p class="mt-3 max-w-3xl text-muted">{t('monthForm.intro')}</p>
+  <div class="mt-8 max-w-2xl">
+    <ContactForm locale={locale} variant="monthly" />
+  </div>
+</Section>

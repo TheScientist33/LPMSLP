@@ -1,0 +1,11 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PoolPage from '~/components/pages/PoolPage.astro';
+import { useTranslations } from '~/i18n/t';
+const locale = 'en' as const;
+const t = useTranslations(locale);
+---
+
+<BaseLayout locale={locale} routeKey="pool" title={t('pool.seoTitle')} description={t('pool.seoDescription')}>
+  <PoolPage locale={locale} />
+</BaseLayout>

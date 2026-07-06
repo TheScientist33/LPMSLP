@@ -1,0 +1,135 @@
+---
+import { useTranslations } from '~/i18n/t';
+import { localizeUrl, type Locale } from '~/i18n/ui';
+import type { RouteKey } from '~/i18n/ui';
+
+interface Props {
+  locale: Locale;
+  variant?: 'contact' | 'monthly';
+}
+const { locale, variant = 'contact' } = Astro.props;
+const t = useTranslations(locale);
+const f = (k: string) => t(`contact.form.${k}`);
+const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+const endpoint = variant === 'monthly' ? '/api/monthly-request' : '/api/contact';
+const privacyKey: RouteKey = 'privacy';
+---
+
+<form class="js-form space-y-4" data-endpoint={endpoint} novalidate>
+  <input type="hidden" name="locale" value={locale} />
+  <!-- honeypot -->
+  <div class="hidden" aria-hidden="true">
+    <label>Ne pas remplir <input type="text" name="company" tabindex="-1" autocomplete="off" /></label>
+  </div>
+
+  {
+    variant === 'monthly' && (
+      <>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <label class="block text-sm">
+            <span class="text-ink">{t('monthForm.period')}</span>
+            <input name="period" type="text" required class="mt-1 w-full rounded border border-beige bg-white/70 px-3 py-2" />
+          </label>
+          <label class="block text-sm">
+            <span class="text-ink">{t('monthForm.people')}</span>
+            <input name="people" type="number" min="1" max="4" required class="mt-1 w-full rounded border border-beige bg-white/70 px-3 py-2" />
+          </label>
+        </div>
+        <label class="block text-sm">
+          <span class="text-ink">{t('monthForm.reason')}</span>
+          <input name="reason" type="text" class="mt-1 w-full rounded border border-beige bg-white/70 px-3 py-2" />
+        </label>
+      </>
+    )
+  }
+
+  <div class="grid gap-4 sm:grid-cols-2">
+    <label class="block text-sm">
+      <span class="text-ink">{f('name')}</span>
+      <input name="name" type="text" required autocomplete="name" class="mt-1 w-full rounded border border-beige bg-white/70 px-3 py-2" />
+    </label>
+    <label class="block text-sm">
+      <span class="text-ink">{f('email')}</span>
+      <input name="email" type="email" required autocomplete="email" class="mt-1 w-full rounded border border-beige bg-white/70 px-3 py-2" />
+    </label>
+  </div>
+
+  <label class="block text-sm">
+    <span class="text-ink">{f('phone')}</span>
+    <input name="phone" type="tel" autocomplete="tel" class="mt-1 w-full rounded border border-beige bg-white/70 px-3 py-2" />
+  </label>
+
+  <label class="block text-sm">
+    <span class="text-ink">{f('message')}</span>
+    <textarea name="message" rows="5" required class="mt-1 w-full rounded border border-beige bg-white/70 px-3 py-2"></textarea>
+  </label>
+
+  <label class="flex items-start gap-2 text-sm text-muted">
+    <input name="consent" type="checkbox" required class="mt-1" />
+    <span>
+      {f('consent')}
+      <a href={localizeUrl(locale, privacyKey)} class="text-marine hover:underline">
+        {t('footer.privacy')}
+      </a>
+    </span>
+  </label>
+
+  {
+    turnstileKey && (
+      <div class="cf-turnstile" data-sitekey={turnstileKey} data-theme="light" />
+    )
+  }
+
+  <button
+    type="submit"
+    class="js-submit inline-flex min-h-11 items-center rounded bg-pine px-5 py-2.5 text-sm font-medium text-cream transition-colors hover:bg-pine/90 disabled:opacity-60"
+  >
+    {variant === 'monthly' ? t('monthForm.submit') : f('submit')}
+  </button>
+
+  <p class="js-success hidden text-sm text-pine" role="status">{f('success')}</p>
+  <p class="js-error hidden text-sm text-red-700" role="alert">{f('error')}</p>
+</form>
+
+{turnstileKey && <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer is:inline />}
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('form.js-form').forEach((form) => {
+    const submit = form.querySelector<HTMLButtonElement>('.js-submit');
+    const success = form.querySelector<HTMLElement>('.js-success');
+    const error = form.querySelector<HTMLElement>('.js-error');
+    const endpoint = form.dataset.endpoint!;
+    const original = submit?.textContent ?? '';
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      success?.classList.add('hidden');
+      error?.classList.add('hidden');
+      if (submit) {
+        submit.disabled = true;
+        submit.textContent = '…';
+      }
+      try {
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          body: new FormData(form),
+        });
+        const json = await res.json().catch(() => ({ ok: false }));
+        if (res.ok && json.ok) {
+          form.reset();
+          success?.classList.remove('hidden');
+        } else {
+          error?.classList.remove('hidden');
+        }
+      } catch {
+        error?.classList.remove('hidden');
+      } finally {
+        if (submit) {
+          submit.disabled = false;
+          submit.textContent = original;
+        }
+      }
+    });
+  });
+</script>

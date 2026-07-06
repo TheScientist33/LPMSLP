@@ -1,0 +1,48 @@
+---
+import { booking } from '~/data/booking';
+import { useTranslations } from '~/i18n/t';
+import type { Locale } from '~/i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const fallbackLabel = locale === 'fr' ? 'Réserver sur chambresdhotes.org' : 'Book on chambresdhotes.org';
+---
+
+<div class="rounded border border-beige bg-white/60 p-2 shadow-sm">
+  {
+    booking.iframeUrl ? (
+      <iframe
+        src={booking.iframeUrl}
+        title={t('rates.bookingTitle')}
+        width="100%"
+        height={booking.minHeight}
+        style="border:0"
+        loading="lazy"
+      />
+    ) : (
+      <div class="flex flex-col items-start gap-3 rounded bg-beige/40 p-6">
+        <p class="text-sm text-muted">
+          {locale === 'fr'
+            ? 'Le module de réservation chambresdhotes.org sera intégré ici. En attendant, réservez directement sur la fiche.'
+            : 'The chambresdhotes.org booking module will be embedded here. In the meantime, book directly on the listing.'}
+        </p>
+        <p class="text-xs text-muted">
+          {/* TODO(§14.1) : renseigner booking.iframeUrl (src/data/booking.ts). */}
+          <code class="rounded bg-cream px-1">TODO</code> — identifiant iframe chambresdhotes.org à
+          fournir.
+        </p>
+      </div>
+    )
+  }
+  <p class="mt-3 px-2 pb-1">
+    <a
+      href={booking.fallbackUrl}
+      target="_blank"
+      rel="noopener"
+      class="text-sm text-marine hover:underline">{fallbackLabel} →</a
+    >
+  </p>
+</div>

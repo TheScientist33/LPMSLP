@@ -1,0 +1,35 @@
+---
+/**
+ * Emplacement photo — placeholder sobre en attendant l'intégration des images
+ * réelles (workflow §12.4 : téléchargement WordPress → src/assets/images/ →
+ * <Image>). À remplacer par <Image> sans changer la mise en page.
+ */
+interface Props {
+  caption?: string;
+  class?: string;
+  rounded?: boolean;
+}
+const { caption, class: className = '', rounded = false } = Astro.props;
+---
+
+<div
+  class:list={[
+    'relative isolate flex items-end overflow-hidden bg-poollight',
+    rounded && 'rounded-lg',
+    className,
+  ]}
+  style="background-image:linear-gradient(135deg,#dce7ea,#e9dfce);"
+  role="img"
+  aria-label={caption}
+>
+  {
+    caption && (
+      <span
+        class="m-3 rounded bg-cream/85 px-2 py-1 font-mono text-[11px] text-muted"
+        aria-hidden="true"
+      >
+        {caption}
+      </span>
+    )
+  }
+</div>
