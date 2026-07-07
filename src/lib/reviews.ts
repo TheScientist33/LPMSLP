@@ -13,12 +13,24 @@ export interface ReviewsData {
   reviews: Review[];
 }
 
+/** Forme d'un avis renvoyé par Places API (New). */
+interface NewApiReview {
+  rating?: number;
+  relativePublishTimeDescription?: string;
+  text?: { text?: string };
+  originalText?: { text?: string };
+  authorAttribution?: { displayName?: string };
+}
+
 /**
- * Récupère les avis Google au build via Place Details.
+ * Récupère les avis Google au build via Places API (New) — Place Details.
+ *   GET https://places.googleapis.com/v1/places/{placeId}
+ *   en-têtes : X-Goog-Api-Key + X-Goog-FieldMask
  * Retourne `null` si la clé ou le Place ID manquent, ou si l'API échoue
  * (fallback propre : la section affiche un placeholder).
  *
- * TODO(§14.6) : fournir PLACE_ID (src/data/site.ts) et GOOGLE_PLACES_API_KEY (.env).
+ * TODO(§14.6) : fournir GOOGLE_PLACES_API_KEY (.env / Vercel). Le Place ID est
+ * déjà renseigné dans src/data/site.ts. Google renvoie au plus 5 avis.
  */
 export async function getReviews(): Promise<ReviewsData | null> {
   const key = import.meta.env.GOOGLE_PLACES_API_KEY;
@@ -26,37 +38,30 @@ export async function getReviews(): Promise<ReviewsData | null> {
   if (!key || !placeId) return null;
 
   try {
-    const url = new URL('https://maps.googleapis.com/maps/api/place/details/json');
-    url.searchParams.set('place_id', placeId);
-    url.searchParams.set('fields', 'rating,user_ratings_total,reviews');
-    url.searchParams.set('reviews_sort', 'newest');
-    url.searchParams.set('language', 'fr');
-    url.searchParams.set('key', key);
-
-    const res = await fetch(url);
+    const res = await fetch(
+      `https://places.googleapis.com/v1/places/${placeId}?languageCode=fr`,
+      {
+        headers: {
+          'X-Goog-Api-Key': key,
+          'X-Goog-FieldMask': 'rating,userRatingCount,reviews',
+        },
+      },
+    );
     if (!res.ok) return null;
     const json = await res.json();
-    const result = json.result;
-    if (!result) return null;
 
     return {
-      rating: result.rating ?? 0,
-      total: result.user_ratings_total ?? 0,
-      reviews: (result.reviews ?? [])
+      rating: json.rating ?? 0,
+      total: json.userRatingCount ?? 0,
+      reviews: (json.reviews ?? [])
         .slice(0, 6)
-        .map(
-          (r: {
-            author_name: string;
-            rating: number;
-            text: string;
-            relative_time_description?: string;
-          }) => ({
-            author: r.author_name,
-            rating: r.rating,
-            text: r.text,
-            when: r.relative_time_description,
-          }),
-        ),
+        .map((r: NewApiReview) => ({
+          author: r.authorAttribution?.displayName ?? '',
+          rating: r.rating ?? 0,
+          text: r.text?.text ?? r.originalText?.text ?? '',
+          when: r.relativePublishTimeDescription,
+        }))
+        .filter((r: Review) => r.text),
     };
   } catch {
     return null;
