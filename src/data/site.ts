@@ -21,7 +21,7 @@ export const site = {
     'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3472.5781206483284!2d5.406526676564409!3d43.59767555601962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12c98b449ef3307f%3A0x96e76ca6f93621d0!2sLa%20Petite%20Maison%20Sous%20Les%20Pins!5e1!3m2!1sfr!2sfr!4v1738501619876!5m2!1sfr!2sfr',
   // Lien public vers la fiche Google (avis) — fourni par la propriétaire.
   reviewsUrl: 'https://maps.app.goo.gl/iMuSymm7uDByhtEm7',
-  // TODO(§14.6) : PLACE_ID Google Business Profile — nécessaire pour AFFICHER
-  // la note + les avis au build (le lien ci-dessus fonctionne sans).
-  placeId: null as string | null,
+  // Place ID Google (public, non secret) — identifie la fiche à lire au build.
+  // Pour AFFICHER note + avis, il faut aussi GOOGLE_PLACES_API_KEY (.env / Vercel).
+  placeId: 'ChIJfzDznkSLyRIR0CE2-aZs55Y' as string | null,
 };
