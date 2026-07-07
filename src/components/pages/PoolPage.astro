@@ -2,6 +2,7 @@
 import { useTranslations } from '~/i18n/t';
 import type { Locale } from '~/i18n/ui';
 import Photo from '~/components/Photo.astro';
+import { pics } from '~/data/images';
 
 interface Props {
   locale: Locale;
@@ -13,14 +14,18 @@ const stats = t<{ value: string; label: string }[]>('pool.stats');
 
 <!-- HERO -->
 <section class="relative flex h-[360px] items-end overflow-hidden md:h-[520px]">
-  <Photo caption={t('pool.photoHero')} class="absolute inset-0 items-start" />
+  <div class="absolute inset-0">
+    <Photo pic={pics.piscineHero} locale={locale} eager sizes="100vw" class="h-full" />
+  </div>
   <div
     class="absolute inset-0"
     style="background-image:linear-gradient(to top, rgba(38,78,108,.5), rgba(43,40,35,.05) 55%);"
   >
   </div>
   <div class="relative mx-auto w-full max-w-[1440px] px-5 py-8 md:px-14 md:py-14">
-    <h1 class="max-w-2xl font-display text-[32px] font-semibold leading-[1.08] text-cream md:text-[52px] md:leading-[1.06]">
+    <h1
+      class="font-display text-cream max-w-2xl text-[32px] leading-[1.08] font-semibold md:text-[52px] md:leading-[1.06]"
+    >
       {t('pool.title')}
     </h1>
   </div>
@@ -30,49 +35,58 @@ const stats = t<{ value: string; label: string }[]>('pool.stats');
 <section class="bg-cream">
   <div class="mx-auto grid max-w-[1440px] items-center md:grid-cols-2">
     <div class="px-5 py-10 md:px-14 md:py-[72px]">
-      <p class="mb-3 text-[13px] font-semibold uppercase tracking-[0.16em] text-sage">
+      <p class="text-sage mb-3 text-[13px] font-semibold tracking-[0.16em] uppercase">
         {t('pool.poolEyebrow')}
       </p>
-      <h2 class="mb-5 font-display text-[24px] font-medium text-pine md:text-[34px]">
+      <h2 class="font-display text-pine mb-5 text-[24px] font-medium md:text-[34px]">
         {t('pool.poolTitle')}
       </h2>
-      <p class="mb-6 max-w-prose text-[15px] leading-[1.7] text-body md:text-[17px] md:leading-[1.75]">
+      <p
+        class="text-body mb-6 max-w-prose text-[15px] leading-[1.7] md:text-[17px] md:leading-[1.75]"
+      >
         {t('pool.poolText')}
       </p>
       <dl class="flex flex-wrap gap-7">
         {
           stats.map((s) => (
             <div>
-              <dt class="font-display text-[26px] text-marine">{s.value}</dt>
-              <dd class="mt-0.5 text-[13px] text-muted">{s.label}</dd>
+              <dt class="font-display text-marine text-[26px]">{s.value}</dt>
+              <dd class="text-muted mt-0.5 text-[13px]">{s.label}</dd>
             </div>
           ))
         }
       </dl>
+      <p class="text-muted mt-6 text-[13px]">{t('pool.heatingNote')}</p>
     </div>
-    <Photo caption={t('pool.photoPool')} class="min-h-[240px] md:h-full md:min-h-[440px]" />
+    <Photo pic={pics.piscine01} locale={locale} class="min-h-[240px] md:h-full md:min-h-[440px]" />
   </div>
 </section>
 
 <!-- BLOC SPA -->
 <section class="bg-sand">
   <div class="mx-auto grid max-w-[1440px] items-center md:grid-cols-2">
-    <Photo caption={t('pool.photoSpa')} class="order-last min-h-[220px] md:order-first md:h-full md:min-h-[400px]" />
+    <Photo
+      pic={pics.spa01}
+      locale={locale}
+      class="order-last min-h-[220px] md:order-first md:h-full md:min-h-[400px]"
+    />
     <div class="px-5 py-10 md:px-14 md:py-[72px]">
       <span
-        class="mb-4 inline-block rounded-full border border-[#b9cdd6] bg-poollight px-3.5 py-1 text-[12px] font-semibold uppercase tracking-[0.1em] text-marine"
+        class="bg-poollight text-marine mb-4 inline-block rounded-full border border-[#b9cdd6] px-3.5 py-1 text-[12px] font-semibold tracking-[0.1em] uppercase"
       >
         {t('pool.spaBadge')}
       </span>
-      <h2 class="mb-5 font-display text-[24px] font-medium text-pine md:text-[34px]">
+      <h2 class="font-display text-pine mb-5 text-[24px] font-medium md:text-[34px]">
         {t('pool.spaTitle')}
       </h2>
-      <p class="mb-6 max-w-prose text-[15px] leading-[1.7] text-body md:text-[17px] md:leading-[1.75]">
+      <p
+        class="text-body mb-6 max-w-prose text-[15px] leading-[1.7] md:text-[17px] md:leading-[1.75]"
+      >
         {t('pool.spaText')}
       </p>
-      <p class="font-display text-[22px] text-pine">
+      <p class="font-display text-pine text-[22px]">
         {t('pool.spaPrice')}
-        <span class="font-sans text-[15px] font-normal text-muted">{t('pool.spaPriceNote')}</span>
+        <span class="text-muted font-sans text-[15px] font-normal">{t('pool.spaPriceNote')}</span>
       </p>
     </div>
   </div>
@@ -81,11 +95,15 @@ const stats = t<{ value: string; label: string }[]>('pool.stats');
 <!-- GALERIE AMBIANCE -->
 <section class="bg-cream">
   <div class="mx-auto max-w-[1440px] px-5 py-12 md:px-14 md:py-16">
-    <h2 class="mb-6 font-display text-[22px] font-medium text-ink md:text-[30px]">
+    <h2 class="font-display text-ink mb-6 text-[22px] font-medium md:text-[30px]">
       {t('pool.galleryTitle')}
     </h2>
     <div class="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
-      {[0, 1, 2, 3].map(() => <Photo rounded class="h-[130px] md:h-[200px]" />)}
+      {
+        [pics.piscine02, pics.piscineNage, pics.spa02, pics.spaAcces].map((pic) => (
+          <Photo pic={pic} locale={locale} rounded class="h-[130px] md:h-[200px]" />
+        ))
+      }
     </div>
   </div>
 </section>
@@ -94,14 +112,14 @@ const stats = t<{ value: string; label: string }[]>('pool.stats');
 <section class="bg-cream">
   <div class="mx-auto max-w-[1440px] px-5 pb-14 md:px-14 md:pb-[72px]">
     <div
-      class="flex items-center gap-4 rounded-[10px] border border-notice-border bg-notice-bg px-6 py-5 md:gap-[18px] md:px-[30px] md:py-6"
+      class="border-notice-border bg-notice-bg flex items-center gap-4 rounded-[10px] border px-6 py-5 md:gap-[18px] md:px-[30px] md:py-6"
     >
       <span
         aria-hidden="true"
-        class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border-[1.5px] border-notice-icon font-display text-lg text-notice-icon"
+        class="border-notice-icon font-display text-notice-icon flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border-[1.5px] text-lg"
         >!</span
       >
-      <p class="text-[14px] leading-[1.5] text-notice-text md:text-[15px]">
+      <p class="text-notice-text text-[14px] leading-[1.5] md:text-[15px]">
         <strong class="text-notice-strong">{t('pool.noParties')}</strong>
         {' '}{t('pool.noPartiesText')}
       </p>

@@ -1,76 +1,227 @@
 ---
 import { useTranslations } from '~/i18n/t';
 import { localizeUrl, type Locale } from '~/i18n/ui';
-import Section from '~/components/Section.astro';
-import Button from '~/components/Button.astro';
+import Photo from '~/components/Photo.astro';
+import { pics } from '~/data/images';
+import { getReviews } from '~/lib/reviews';
+import { site } from '~/data/site';
 
 interface Props {
   locale: Locale;
 }
 const { locale } = Astro.props;
 const t = useTranslations(locale);
-const highlights = t<{ title: string; text: string }[]>('home.highlights');
+const highlights = t<string[]>('home.highlights');
+// Galerie Accueil (ordre = légendes home.galleryLabels : séjour, piscine, cuisine, chambre, jardin, terrasse)
+const homeGallery = [
+  pics.sejour,
+  pics.piscineHero,
+  pics.cuisine,
+  pics.chambreParentale,
+  pics.vuePins,
+  pics.terrasse,
+];
+const reviews = await getReviews();
+
+/* Formes géométriques des points forts (maquette : cercle, carré arrondi, feuille, losange) */
+const iconShapes = ['rounded-full', 'rounded-lg', 'rounded-[8px_8px_8px_0]', 'rounded rotate-45'];
 ---
 
-<!-- Hero -->
-<section class="bg-sand/50">
-  <div class="mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28">
-    <p class="text-sm uppercase tracking-widest text-sage">{t('home.heroKicker')}</p>
-    <h1 class="mt-4 max-w-3xl text-4xl md:text-5xl">{t('home.heroTitle')}</h1>
-    <p class="mt-6 max-w-2xl text-lg text-muted">{t('home.heroSubtitle')}</p>
-    <div class="mt-8 flex flex-wrap gap-3">
-      <Button href={localizeUrl(locale, 'rates')}>{t('common.bookNow')}</Button>
-      <Button href={localizeUrl(locale, 'house')} variant="outline">{t('common.discoverHouse')}</Button>
+<!-- HERO : photo en bandeau entier, texte par-dessus sur voile gris foncé semi-opaque -->
+<section class="relative flex h-[460px] items-center overflow-hidden md:h-[560px]">
+  <div class="absolute inset-0">
+    <Photo pic={pics.piscineHero} locale={locale} eager sizes="100vw" class="h-full" />
+  </div>
+  <div class="absolute inset-0 bg-[rgba(43,40,35,0.5)]"></div>
+  <div class="relative mx-auto w-full max-w-[1440px] px-5 py-7 md:px-14 md:py-14">
+    <div class="max-w-[760px]">
+      <h1
+        class="font-display text-cream text-[34px] leading-[1.08] font-semibold md:text-[56px] md:leading-[1.05]"
+      >
+        {t('home.heroTitle')}
+      </h1>
+      <p class="mt-3 max-w-[600px] text-[15px] leading-normal text-[#f3ece0] md:mt-4 md:text-xl">
+        {t('home.heroSubtitle')}
+      </p>
+      <a
+        href={localizeUrl(locale, 'rates')}
+        class="bg-pine text-cream hover:bg-pine/90 mt-5 inline-flex w-full items-center justify-center rounded-md px-[30px] py-[15px] text-base font-medium no-underline transition-colors sm:w-auto md:mt-7 md:text-[17px]"
+      >
+        {t('common.seeAvailability')}
+      </a>
     </div>
   </div>
 </section>
 
-<!-- Points forts -->
-<Section>
-  <h2 class="text-2xl md:text-3xl">{t('home.highlightsTitle')}</h2>
-  <ul class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+<!-- POINTS FORTS -->
+<section class="border-beige bg-beige border-b">
+  <ul class="mx-auto grid max-w-[1440px] gap-px sm:grid-cols-2 lg:grid-cols-4">
     {
-      highlights.map((h) => (
-        <li class="fade-up rounded border border-beige bg-white/50 p-6 shadow-sm">
-          <h3 class="text-lg">{h.title}</h3>
-          <p class="mt-2 text-sm text-muted">{h.text}</p>
+      highlights.map((h, i) => (
+        <li class="bg-cream flex flex-row items-center gap-3.5 px-7 py-5 md:flex-col md:items-start md:gap-2.5 md:py-8">
+          <span
+            aria-hidden="true"
+            class:list={[
+              'border-sage block h-[34px] w-[34px] flex-shrink-0 border-[1.5px]',
+              iconShapes[i],
+            ]}
+          />
+          <span class="text-[15px] leading-[1.35] font-medium md:text-base">{h}</span>
         </li>
       ))
     }
   </ul>
-</Section>
+</section>
 
-<!-- Deux façons de séjourner -->
-<Section tone="beige">
-  <h2 class="text-2xl md:text-3xl">{t('home.waysTitle')}</h2>
-  <div class="mt-8 grid gap-6 md:grid-cols-2">
-    <div class="fade-up rounded border border-beige bg-cream p-8">
-      <h3 class="text-xl">{t('home.weekTitle')}</h3>
-      <p class="mt-3 text-muted">{t('home.weekText')}</p>
-      <p class="mt-6">
-        <a href={localizeUrl(locale, 'rates')} class="text-marine hover:underline"
-          >{t('common.seeRates')} →</a
-        >
+<!-- DOUBLE ENTRÉE -->
+<section class="bg-cream">
+  <div class="mx-auto max-w-[1440px] px-5 py-12 md:px-14 md:py-[72px]">
+    <div class="mb-8 text-center md:mb-11">
+      <p class="text-sage mb-3 text-[13px] font-semibold tracking-[0.16em] uppercase">
+        {t('home.waysEyebrow')}
       </p>
+      <h2 class="font-display text-ink text-[27px] font-medium md:text-[38px]">
+        {t('home.waysTitle')}
+      </h2>
     </div>
-    <div class="fade-up rounded border border-beige bg-cream p-8">
-      <h3 class="text-xl">{t('home.monthTitle')}</h3>
-      <p class="mt-3 text-muted">{t('home.monthText')}</p>
-      <p class="mt-6">
-        <a href={localizeUrl(locale, 'rates')} class="text-marine hover:underline"
-          >{t('common.contactUs')} →</a
-        >
-      </p>
+    <div class="grid gap-5 md:grid-cols-2 md:gap-8">
+      <article class="bg-sand overflow-hidden rounded-[10px] border border-[#e4d8c4]">
+        <Photo pic={pics.piscine01} locale={locale} class="h-[160px] md:h-[220px]" />
+        <div class="p-6 md:p-8">
+          <h3 class="font-display text-pine mb-2.5 text-[21px] font-semibold md:text-2xl">
+            {t('home.weekTitle')}
+          </h3>
+          <p class="text-muted mb-5 text-sm leading-relaxed md:text-[15px]">
+            {t('home.weekText')}
+          </p>
+          <a
+            href={localizeUrl(locale, 'rates')}
+            class="bg-pine text-cream hover:bg-pine/90 inline-flex w-full items-center justify-center rounded-[5px] px-6 py-3 text-[15px] font-medium no-underline transition-colors sm:w-auto"
+          >
+            {t('common.seeAvailability')}
+          </a>
+        </div>
+      </article>
+      <article class="bg-sand overflow-hidden rounded-[10px] border border-[#e4d8c4]">
+        <Photo pic={pics.jardinDrone} locale={locale} class="h-[160px] md:h-[220px]" />
+        <div class="p-6 md:p-8">
+          <h3 class="font-display text-pine mb-2.5 text-[21px] font-semibold md:text-2xl">
+            {t('home.monthTitle')}
+          </h3>
+          <p class="text-muted mb-5 text-sm leading-relaxed md:text-[15px]">
+            {t('home.monthText')}
+          </p>
+          <a
+            href={localizeUrl(locale, 'rates') + '#mois'}
+            class="border-pine text-pine hover:bg-pine/5 inline-flex w-full items-center justify-center rounded-[5px] border-[1.5px] px-6 py-3 text-[15px] font-medium no-underline transition-colors sm:w-auto"
+          >
+            {t('common.makeRequest')}
+          </a>
+        </div>
+      </article>
     </div>
   </div>
-</Section>
+</section>
 
-<!-- Aperçu avis -->
-<Section>
-  <div class="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
-    <h2 class="text-2xl md:text-3xl">{t('home.reviewsTeaser')}</h2>
-    <a href={localizeUrl(locale, 'reviews')} class="text-marine hover:underline"
-      >{t('nav.reviews')} →</a
-    >
+<!-- GALERIE -->
+<section class="bg-cream">
+  <div class="mx-auto max-w-[1440px] px-5 pb-12 md:px-14 md:pb-[72px]">
+    <div class="mb-4 flex items-baseline justify-between md:mb-6">
+      <h2 class="font-display text-ink text-[23px] font-medium md:text-[30px]">
+        {t('home.galleryTitle')}
+      </h2>
+      <a
+        href={localizeUrl(locale, 'house')}
+        class="text-marine text-[15px] font-medium no-underline hover:underline"
+      >
+        {t('home.galleryLink')} →
+      </a>
+    </div>
+    <div class="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
+      {
+        homeGallery.map((pic) => (
+          <Photo pic={pic} locale={locale} rounded class="h-[140px] md:h-[200px]" />
+        ))
+      }
+    </div>
   </div>
-</Section>
+</section>
+
+<!-- AVIS GOOGLE -->
+<section class="bg-sand">
+  <div class="mx-auto max-w-[1440px] px-5 py-12 md:px-14 md:py-[72px]">
+    {
+      reviews ? (
+        <>
+          <div class="mb-7 flex items-center justify-center gap-4 md:mb-9">
+            <span class="font-display text-pine text-[40px] leading-none font-semibold md:text-5xl">
+              {reviews.rating.toLocaleString(locale === 'fr' ? 'fr-FR' : 'en-GB', {
+                minimumFractionDigits: 1,
+                maximumFractionDigits: 1,
+              })}
+            </span>
+            <span>
+              <span class="text-marine block text-xl tracking-[2px]" aria-hidden="true">
+                {'★'.repeat(Math.round(reviews.rating))}
+              </span>
+              <span class="text-muted mt-1 block text-sm">
+                {t('home.reviewsNote')} · {reviews.total} {t('home.reviewsCount')}
+              </span>
+            </span>
+          </div>
+          <ul class="mb-8 grid gap-5 md:grid-cols-3">
+            {reviews.reviews.slice(0, 3).map((r) => (
+              <li class="bg-cream rounded-[10px] border border-[#e4d8c4] p-6 md:p-[26px]">
+                <p class="text-marine mb-3 text-[15px] tracking-[1px]" aria-hidden="true">
+                  {'★'.repeat(r.rating)}
+                </p>
+                <p class="text-ink mb-4 text-[15px] leading-relaxed">« {r.text} »</p>
+                <p class="text-muted text-[13px]">{r.author}</p>
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : (
+        <p class="text-muted mb-6 text-center">{t('home.reviewsPending')}</p>
+      )
+    }
+    <p class="text-center">
+      <a
+        href={site.reviewsUrl}
+        target="_blank"
+        rel="noopener"
+        class="text-marine text-[15px] font-medium no-underline hover:underline"
+      >
+        {t('home.reviewsLink')} →
+      </a>
+    </p>
+  </div>
+</section>
+
+<!-- L'EMPLACEMENT -->
+<section class="bg-cream">
+  <div class="mx-auto grid max-w-[1440px] items-stretch md:grid-cols-2">
+    <div class="flex flex-col justify-center px-5 py-10 md:px-14 md:py-[72px]">
+      <p class="text-sage mb-3 text-[13px] font-semibold tracking-[0.16em] uppercase">
+        {t('home.locationEyebrow')}
+      </p>
+      <h2 class="font-display text-ink mb-3 text-[26px] font-medium md:mb-4 md:text-[34px]">
+        {t('home.locationTitle')}
+      </h2>
+      <p class="text-muted mb-5 max-w-[460px] text-[15px] leading-[1.7] md:mb-6 md:text-base">
+        {t('home.locationText')}
+      </p>
+      <a
+        href={localizeUrl(locale, 'discover')}
+        class="text-marine text-[15px] font-medium no-underline hover:underline"
+      >
+        {t('home.locationLink')} →
+      </a>
+    </div>
+    <Photo
+      pic={pics.jardin2}
+      locale={locale}
+      class="order-first min-h-[220px] md:order-none md:min-h-[340px]"
+    />
+  </div>
+</section>

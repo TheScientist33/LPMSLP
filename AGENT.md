@@ -4,9 +4,10 @@ Projet : **site vitrine du gîte « La Petite Maison Sous Les Pins »** (Puyrica
 Ce fichier pilote le développement. Lis-le en entier avant de coder, puis suis le workflow §12.
 
 > **Documents compagnons (à lire aussi, dans le repo) :**
+>
 > - `CdC-lapetitemaisonsouslespins-v3.md` — cahier des charges (source de vérité des décisions).
 > - `CONTENU-SOURCE.md` — textes réels de chaque page + 62 liens tourisme + manifeste des 72 images.
-> - *(À venir)* export du design depuis Claude Design — sera injecté après review. **Tant qu'il n'est pas fourni, applique la direction artistique §5 mais reste sur une structure propre et sobre, sans sur-investir le visuel : il sera aligné sur le design final ensuite.**
+> - _(À venir)_ export du design depuis Claude Design — sera injecté après review. **Tant qu'il n'est pas fourni, applique la direction artistique §5 mais reste sur une structure propre et sobre, sans sur-investir le visuel : il sera aligné sur le design final ensuite.**
 >
 > **Note :** Claude Code charge automatiquement un fichier nommé `CLAUDE.md` à la racine. Si tu veux l'auto-chargement, renomme ce fichier `CLAUDE.md` (contenu identique).
 
@@ -17,6 +18,7 @@ Ce fichier pilote le développement. Lis-le en entier avant de coder, puis suis 
 Vitrine élégante, sobre, familiale, **bilingue FR/EN**, qui regroupe : infos & photos, piscine/spa, tarifs & disponibilités, tourisme, avis, contact. La réservation elle-même est déléguée à un **module externe intégré** (chambresdhotes.org).
 
 **Principes non négociables :**
+
 1. **Gratuit à l'usage** — 0 €/mois. Aucune dépendance payante.
 2. **Rapide à coder / léger** — site **statique** (Astro), JS minimal (islands seulement).
 3. **Facile à gérer** — la propriétaire ne touche **pas** au code. Dispo, prix et réservations restent dans **chambresdhotes.org** (déjà en place, OTA déjà agrégées côté propriétaire).
@@ -86,6 +88,7 @@ Vitrine élégante, sobre, familiale, **bilingue FR/EN**, qui regroupe : infos &
 ## 5. Direction artistique (à appliquer, sera affinée par le design Claude Design)
 
 **Tokens de couleur (Tailwind `theme.extend.colors`) :**
+
 - `cream` #FAF6EF (fond principal) · `sand` #EFE7D9 · `beige` #E9DFCE (fonds alternés/cartes)
 - `pine` #33503F (identité dominante : titres accents, filets, aplats sobres) · `sage` #7C9885 (fonds doux)
 - `marine` #264E6C (**accent** : texte/liens/petits CTA — **pas de gros boutons vifs**)
@@ -107,16 +110,16 @@ Vitrine élégante, sobre, familiale, **bilingue FR/EN**, qui regroupe : infos &
 
 ## 6. Pages & routes (FR + EN)
 
-| FR | EN | Contenu (voir `CONTENU-SOURCE.md`) |
-|---|---|---|
-| `/` | `/en/` | Accueil : hero, points forts, double entrée semaine/mois, aperçu avis + galerie |
-| `/le-gite` | `/en/the-house` | Descriptif T3 4 pers + équipements + galerie |
-| `/piscine-spa` | `/en/pool-spa` | Piscine intérieure chauffée + option spa + « pas de fêtes » |
-| `/tarifs-reservation` | `/en/rates-booking` | Parcours A (semaine + `BookingEmbed`) / Parcours B (mois + formulaire) |
-| `/tourisme` | `/en/discover` | Escapades / Activités / Boire & Manger |
-| `/avis` | `/en/reviews` | `ReviewsGoogle` |
-| `/contact` | `/en/contact` | Coordonnées + `ContactForm` + `MapEmbed` + « comment venir » |
-| `/mentions-legales` `/confidentialite` `/conditions-location` | idem `/en/…` | Pages légales (§10) |
+| FR                                                            | EN                  | Contenu (voir `CONTENU-SOURCE.md`)                                              |
+| ------------------------------------------------------------- | ------------------- | ------------------------------------------------------------------------------- |
+| `/`                                                           | `/en/`              | Accueil : hero, points forts, double entrée semaine/mois, aperçu avis + galerie |
+| `/le-gite`                                                    | `/en/the-house`     | Descriptif T3 4 pers + équipements + galerie                                    |
+| `/piscine-spa`                                                | `/en/pool-spa`      | Piscine intérieure chauffée + option spa + « pas de fêtes »                     |
+| `/tarifs-reservation`                                         | `/en/rates-booking` | Parcours A (semaine + `BookingEmbed`) / Parcours B (mois + formulaire)          |
+| `/tourisme`                                                   | `/en/discover`      | Escapades / Activités / Boire & Manger                                          |
+| `/avis`                                                       | `/en/reviews`       | `ReviewsGoogle`                                                                 |
+| `/contact`                                                    | `/en/contact`       | Coordonnées + `ContactForm` + `MapEmbed` + « comment venir »                    |
+| `/mentions-legales` `/confidentialite` `/conditions-location` | idem `/en/…`        | Pages légales (§10)                                                             |
 
 Chaque page : `<Seo>` (title/meta/OG), balises **hreflang** FR↔EN, canonical.
 
@@ -125,23 +128,28 @@ Chaque page : `<Seo>` (title/meta/OG), balises **hreflang** FR↔EN, canonical.
 ## 7. Intégrations
 
 ### 7.1 BookingEmbed (chambresdhotes.org)
+
 - Iframe du module de réservation/calendrier, dans un conteneur stylé, **lazy-load**, ratio responsive, avec lien de secours (« Réserver sur chambresdhotes.org »).
 - **URL/identifiant exact à récupérer** depuis le code source de la page actuelle `/disponibilites-reservation/` ou l'espace propriétaire chambresdhotes.org (motif attendu du type `cal.cgi?make_iframe=1;list=1;who=…`). **Ne pas inventer l'identifiant** → le mettre en variable de config (`src/data/booking.ts`) avec un `TODO`.
 - Rappels : les prix affichés par le module sont la **source de vérité** ; les OTA sont déjà synchronisées côté chambresdhotes.org (rien à faire ici).
 
 ### 7.2 Formulaires → `mariedenise@neuf.fr`
+
 - **Contact** : nom, email, téléphone (optionnel), message, consentement RGPD.
 - **Demande location au mois** : période souhaitée (oct-juin, mois complets), nombre de personnes, motif, message, coordonnées, consentement RGPD.
 - Endpoints `src/pages/api/contact.ts` et `.../monthly-request.ts` (`prerender = false`) : valider avec `zod`, vérifier Turnstile côté serveur, refuser si honeypot rempli, envoyer via Resend, répondre JSON `{ok}`. Côté client (island) : états loading/succès/erreur, pas de rechargement.
 - **Ne jamais** logguer d'email en clair ni exposer de secret côté client.
 
 ### 7.3 Avis Google
+
 - `src/lib/reviews.ts` : au build, `Place Details` (champs rating, user_ratings_total, reviews) via `GOOGLE_PLACES_API_KEY` + `PLACE_ID`. Rendre note globale + jusqu'à ~5 avis + lien vers la fiche. Fallback propre si indispo. **Place ID à fournir** (sinon `TODO` + section masquée).
 
 ### 7.4 Carte
-- `MapEmbed.astro` : iframe Google Maps (sans clé) centrée sur *1689 chemin du Marin, 13540 Aix-en-Provence (Puyricard)*, lazy-load.
+
+- `MapEmbed.astro` : iframe Google Maps (sans clé) centrée sur _1689 chemin du Marin, 13540 Aix-en-Provence (Puyricard)_, lazy-load.
 
 ### 7.5 Analytics
+
 - `@vercel/analytics` (sans cookie) dans le layout.
 
 ---
@@ -164,7 +172,7 @@ Chaque page : `<Seo>` (title/meta/OG), balises **hreflang** FR↔EN, canonical.
 
 ## 10. Légal & RGPD (à rédiger, FR + EN)
 
-- **Mentions légales** : éditeur (Mr et Mme Ré — *nom d'affichage à confirmer*), SIRET 439 696 402 00031, hébergeur Vercel, contact.
+- **Mentions légales** : éditeur (Mr et Mme Ré — _nom d'affichage à confirmer_), SIRET 439 696 402 00031, hébergeur Vercel, contact.
 - **Politique de confidentialité** : données des formulaires envoyées à `mariedenise@neuf.fr`, finalité (répondre aux demandes), durée, droits RGPD, pas de revente.
 - **Conditions de location** : aligner sur chambresdhotes.org (samedi-samedi, 20 % d'acompte CB/Chèques-Vacances, solde à la remise des clés, annulation préavis 1 mois).
 - Case de consentement + lien confidentialité sur chaque formulaire. **Bandeau cookies** à prévoir **uniquement si** Google Maps/Places posent des cookies tiers côté client (Analytics Vercel = sans cookie).
@@ -208,6 +216,7 @@ GOOGLE_PLACES_API_KEY=
 PLACE_ID=
 PUBLIC_SITE_URL=https://lapetitemaisonsouslespins.fr
 ```
+
 Ne jamais committer `.env`. Secrets côté serveur uniquement (seules les vars `PUBLIC_*` sont exposées au client).
 
 ---
@@ -215,6 +224,7 @@ Ne jamais committer `.env`. Secrets côté serveur uniquement (seules les vars `
 ## 14. À NE PAS inventer — mettre en `TODO` et lister
 
 Ces points sont en attente d'arbitrage (voir CdC §11). **Ne pas les remplir au hasard** : utiliser un placeholder visible et les recenser dans un fichier `TODO.md`.
+
 1. Identifiant/URL exact du module chambresdhotes.org.
 2. Période réelle de chauffage de la piscine (le site se contredit).
 3. Statut d'octobre (semaine et/ou mois).
@@ -234,4 +244,5 @@ npm run build      # build de prod
 npm run preview    # prévisualisation du build
 npx astro check    # types/diagnostics
 ```
+
 Déploiement : connecter le repo GitHub à Vercel, renseigner les variables d'env, déployer.

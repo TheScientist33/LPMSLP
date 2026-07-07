@@ -12,14 +12,18 @@ const routeKey = routeKeyFromPath(Astro.url.pathname);
   {
     locales.map((l, i) => (
       <>
-        {i > 0 && <span aria-hidden="true" class="text-muted">·</span>}
+        {i > 0 && (
+          <span aria-hidden="true" class="text-muted">
+            ·
+          </span>
+        )}
         <a
           href={localizeUrl(l as Locale, routeKey)}
           hreflang={l}
           aria-current={l === locale ? 'true' : undefined}
           class:list={[
-            'uppercase tracking-wide transition-colors',
-            l === locale ? 'font-semibold text-pine' : 'text-muted hover:text-marine',
+            'tracking-wide uppercase transition-colors',
+            l === locale ? 'text-pine font-semibold' : 'text-muted hover:text-marine',
           ]}
         >
           <span class="sr-only">{localeNames[l as Locale]}</span>

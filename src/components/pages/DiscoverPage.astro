@@ -1,7 +1,7 @@
 ---
 import { useTranslations } from '~/i18n/t';
 import type { Locale } from '~/i18n/ui';
-import Section from '~/components/Section.astro';
+import Photo from '~/components/Photo.astro';
 import { tourism, type TourismCategory } from '~/data/tourisme';
 
 interface Props {
@@ -17,46 +17,110 @@ const categories: { key: TourismCategory; label: string }[] = [
 ];
 ---
 
-<Section>
-  <h1 class="text-3xl md:text-4xl">{t('discover.title')}</h1>
-  <p class="mt-4 max-w-3xl text-muted">{t('discover.intro')}</p>
-</Section>
+<!-- EN-TÊTE -->
+<section class="bg-cream">
+  <div class="mx-auto max-w-[1440px] px-5 pt-10 pb-5 md:px-14 md:pt-14 md:pb-7">
+    <div class="max-w-[860px]">
+      <p class="text-sage mb-3 text-[13px] font-semibold tracking-[0.16em] uppercase">
+        {t('discover.eyebrow')}
+      </p>
+      <h1
+        class="font-display text-ink mb-4 text-[30px] leading-[1.12] font-semibold md:text-[44px]"
+      >
+        {t('discover.title')}
+      </h1>
+      <p class="text-muted text-[15px] leading-[1.7] md:text-[17px]">{t('discover.intro')}</p>
+    </div>
+  </div>
+</section>
 
+<!-- ONGLETS (ancres) -->
+<nav
+  aria-label={t('discover.eyebrow')}
+  class="bg-cream/95 sticky top-[73px] z-30 backdrop-blur md:top-[87px]"
+>
+  <div class="mx-auto max-w-[1440px] overflow-x-auto px-5 md:px-14">
+    <div class="border-beige flex gap-2 border-b">
+      {
+        categories.map((cat) => (
+          <a
+            href={`#${cat.key}`}
+            class="js-tab text-muted hover:text-pine aria-[current=true]:border-pine aria-[current=true]:text-pine -mb-px border-b-2 border-transparent px-4 py-3.5 text-[15px] font-medium whitespace-nowrap no-underline transition-colors aria-[current=true]:font-semibold md:px-[22px]"
+            data-target={cat.key}
+          >
+            {cat.label}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</nav>
+
+<!-- CARTES PAR CATÉGORIE -->
 {
-  categories.map((cat, i) => {
+  categories.map((cat) => {
     const items = tourism.filter((it) => it.category === cat.key);
     return (
-      <Section tone={i % 2 === 0 ? 'sand' : 'cream'}>
-        <h2 class="text-2xl md:text-3xl">{cat.label}</h2>
-        <ul class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((it) => {
-            const c = it[locale];
-            return (
-              <li class="fade-up flex flex-col rounded border border-beige bg-white/50 p-6 shadow-sm">
-                <h3 class="text-lg">
-                  <span aria-hidden="true">{it.emoji}</span> {c.title}
-                </h3>
-                <p class="mt-2 flex-1 text-sm text-muted">{c.text}</p>
-                <p class="mt-4 text-xs text-muted">
-                  🚗 {t('discover.driveTime')} : {it.drive}
-                </p>
-                {it.siteUrl && (
-                  <p class="mt-2">
-                    <a
-                      href={it.siteUrl}
-                      target="_blank"
-                      rel="noopener"
-                      class="text-sm text-marine hover:underline"
-                    >
-                      {locale === 'fr' ? 'En savoir plus' : 'Learn more'} →
-                    </a>
-                  </p>
-                )}
-              </li>
-            );
-          })}
-        </ul>
-      </Section>
+      <section id={cat.key} class="bg-cream scroll-mt-36">
+        <div class="mx-auto max-w-[1440px] px-5 py-8 md:px-14 md:py-10">
+          <h2 class="sr-only">{cat.label}</h2>
+          <div class="grid gap-5 md:grid-cols-2 md:gap-6">
+            {items.map((it) => {
+              const c = it[locale];
+              return (
+                <article class="bg-sand flex flex-col overflow-hidden rounded-xl border border-[#e4d8c4] sm:flex-row">
+                  <Photo class="h-[140px] flex-shrink-0 sm:h-auto sm:w-[200px]" />
+                  <div class="p-5 md:p-[26px]">
+                    <p class="text-marine mb-2 text-xs font-semibold">◷ {it.drive}</p>
+                    <h3 class="font-display text-pine mb-2 text-[19px] font-semibold md:text-[22px]">
+                      {c.title}
+                    </h3>
+                    <p class="text-muted mb-3.5 text-sm leading-relaxed">{c.text}</p>
+                    {it.siteUrl && (
+                      <a
+                        href={it.siteUrl}
+                        target="_blank"
+                        rel="noopener"
+                        class="text-marine text-sm font-medium no-underline hover:underline"
+                      >
+                        {t('common.learnMore')} →
+                      </a>
+                    )}
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
     );
   })
 }
+
+<script>
+  // Scrollspy léger : active l'onglet de la section visible.
+  const tabs = document.querySelectorAll<HTMLAnchorElement>('.js-tab');
+  const sections = [...tabs]
+    .map((tab) => document.getElementById(tab.dataset.target ?? ''))
+    .filter((s): s is HTMLElement => s !== null);
+
+  function setActive(id: string) {
+    tabs.forEach((tab) =>
+      tab.setAttribute('aria-current', tab.dataset.target === id ? 'true' : 'false'),
+    );
+  }
+  if (sections.length) setActive(sections[0]!.id);
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(visible.target.id);
+      },
+      { rootMargin: '-30% 0px -60% 0px' },
+    );
+    sections.forEach((s) => io.observe(s));
+  }
+</script>

@@ -1,20 +1,150 @@
 ---
 import { useTranslations } from '~/i18n/t';
 import type { Locale } from '~/i18n/ui';
-import Section from '~/components/Section.astro';
-import ReviewsGoogle from '~/components/ReviewsGoogle.astro';
+import { getReviews } from '~/lib/reviews';
+import { site } from '~/data/site';
 
 interface Props {
   locale: Locale;
 }
 const { locale } = Astro.props;
 const t = useTranslations(locale);
+const data = await getReviews();
+
+const avatarColors = ['bg-sage', 'bg-marine', 'bg-notice-icon'];
+const googleUrl = site.reviewsUrl;
 ---
 
-<Section>
-  <h1 class="text-3xl md:text-4xl">{t('reviews.title')}</h1>
-  <p class="mt-4 max-w-3xl text-muted">{t('reviews.intro')}</p>
-  <div class="mt-10">
-    <ReviewsGoogle locale={locale} />
+<!-- EN-TÊTE -->
+<section class="bg-cream">
+  <div class="mx-auto max-w-[1440px] px-5 pt-10 pb-4 text-center md:px-14 md:pt-14 md:pb-5">
+    <p class="text-sage mb-3 text-[13px] font-semibold tracking-[0.16em] uppercase">
+      {t('reviews.eyebrow')}
+    </p>
+    <h1 class="font-display text-ink text-[30px] leading-[1.1] font-semibold md:text-[44px]">
+      {t('reviews.title')}
+    </h1>
   </div>
-</Section>
+</section>
+
+<!-- BLOC GOOGLE -->
+<section class="bg-cream">
+  <div class="mx-auto max-w-[1440px] px-5 pt-6 pb-2 md:px-14">
+    <div
+      class="bg-sand flex flex-col items-center justify-center gap-6 rounded-[14px] border border-[#e4d8c4] px-6 py-8 md:flex-row md:gap-10 md:px-12 md:py-9"
+    >
+      {
+        data ? (
+          <div class="text-center md:border-r md:border-[#dacdb6] md:pr-10">
+            <p class="font-display text-pine text-[48px] leading-none font-semibold md:text-[64px]">
+              {data.rating.toLocaleString(locale === 'fr' ? 'fr-FR' : 'en-GB', {
+                minimumFractionDigits: 1,
+                maximumFractionDigits: 1,
+              })}
+            </p>
+            <p class="text-marine mt-1.5 text-xl tracking-[3px] md:text-2xl" aria-hidden="true">
+              {'★'.repeat(Math.round(data.rating))}
+            </p>
+          </div>
+        ) : null
+      }
+      <div>
+        <p class="mb-2 flex items-center gap-2.5">
+          <span class="font-display text-[22px] font-semibold" aria-label="Google">
+            <span class="text-[#4285F4]">G</span><span class="text-[#EA4335]">o</span><span
+              class="text-[#FBBC05]">o</span
+            ><span class="text-[#4285F4]">g</span><span class="text-[#34A853]">l</span><span
+              class="text-[#EA4335]">e</span
+            >
+          </span>
+          <span class="text-muted text-base">{t('reviews.verified')}</span>
+        </p>
+        <p class="text-body max-w-[360px] text-base leading-relaxed">
+          {
+            data ? (
+              <>
+                {t('reviews.summary1')}{' '}
+                <strong>
+                  {data.total} {t('reviews.summaryReviews')}
+                </strong>{' '}
+                {t('reviews.summary2')}
+              </>
+            ) : (
+              t('reviews.placeholder')
+            )
+          }
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GRILLE AVIS -->
+<section class="bg-cream">
+  <div class="mx-auto max-w-[1440px] px-5 pt-8 pb-12 md:px-14 md:pb-14">
+    {
+      data && data.reviews.length > 0 ? (
+        <ul class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {data.reviews.map((r, i) => (
+            <li class="bg-cream rounded-xl border border-[#e4d8c4] p-6 md:p-[26px]">
+              <div class="mb-3.5 flex items-center gap-3">
+                <span
+                  aria-hidden="true"
+                  class:list={[
+                    'text-cream flex h-10 w-10 items-center justify-center rounded-full font-semibold',
+                    avatarColors[i % avatarColors.length],
+                  ]}
+                >
+                  {r.author.charAt(0).toUpperCase()}
+                </span>
+                <span>
+                  <span class="block text-[15px] font-semibold">{r.author}</span>
+                  {r.when && <span class="text-muted block text-xs">{r.when}</span>}
+                </span>
+              </div>
+              <p class="text-marine mb-2.5 text-[15px] tracking-[1px]" aria-hidden="true">
+                {'★'.repeat(r.rating)}
+                <span class="text-beige">{'★'.repeat(5 - r.rating)}</span>
+              </p>
+              <p class="text-ink text-sm leading-[1.65]">{r.text}</p>
+            </li>
+          ))}
+          {/* Dernière case : appel à voir tous les avis sur Google */}
+          <li>
+            <a
+              href={googleUrl}
+              target="_blank"
+              rel="noopener"
+              class="bg-sand border-pine/25 hover:bg-pine/5 hover:border-pine/40 flex h-full flex-col items-center justify-center gap-3 rounded-xl border border-dashed p-6 text-center no-underline transition-colors md:p-[26px]"
+            >
+              <span
+                aria-hidden="true"
+                class="font-display text-[22px] font-semibold"
+                aria-label="Google"
+              >
+                <span class="text-[#4285F4]">G</span>
+                <span class="text-[#EA4335]">o</span>
+                <span class="text-[#FBBC05]">o</span>
+                <span class="text-[#4285F4]">g</span>
+                <span class="text-[#34A853]">l</span>
+                <span class="text-[#EA4335]">e</span>
+              </span>
+              <span class="text-pine text-[15px] font-medium">{t('reviews.seeAll')} →</span>
+            </a>
+          </li>
+        </ul>
+      ) : (
+        <p class="mt-9 text-center">
+          <a
+            href={googleUrl}
+            target="_blank"
+            rel="noopener"
+            class="border-pine text-pine hover:bg-pine/5 inline-flex items-center gap-2.5 rounded-md border-[1.5px] px-7 py-3.5 text-[15px] font-medium no-underline transition-colors"
+          >
+            {t('reviews.seeAll')} →
+          </a>
+        </p>
+      )
+    }
+  </div>
+</section>

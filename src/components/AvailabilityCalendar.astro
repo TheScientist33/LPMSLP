@@ -1,0 +1,245 @@
+---
+import { booking } from '~/data/booking';
+import { getBookedDates } from '~/lib/availability';
+import { useTranslations } from '~/i18n/t';
+import type { Locale } from '~/i18n/ui';
+import BookingEmbed from '~/components/BookingEmbed.astro';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+// Lecture du flux iCal au build. `null` → repli sur l'iframe d'origine.
+const booked = await getBookedDates();
+
+const intl = locale === 'fr' ? 'fr-FR' : 'en-GB';
+const monthNames = Array.from({ length: 12 }, (_, m) =>
+  new Intl.DateTimeFormat(intl, { month: 'long' }).format(new Date(2020, m, 1)),
+);
+// Jours de semaine, LUNDI en premier (2020-06-01 était un lundi).
+const weekdayNames = Array.from({ length: 7 }, (_, i) =>
+  new Intl.DateTimeFormat(intl, { weekday: 'short' }).format(new Date(2020, 5, 1 + i)),
+);
+
+const cfg = {
+  booked: booked ?? [],
+  monthNames,
+  weekdayNames,
+  who: booking.who,
+  availabilityUrl: booking.availabilityUrl,
+  adults: booking.defaults.adults,
+  children: booking.defaults.children,
+  labels: {
+    reserve: t('rates.availReserve'),
+    prev: t('rates.availPrev'),
+    next: t('rates.availNext'),
+    free: t('rates.availLegendFree'),
+    checkin: t('rates.availLegendCheckin'),
+    bookedLabel: t('rates.availLegendBooked'),
+  },
+};
+---
+
+{
+  booked ? (
+    <div class="space-y-4">
+      <p class="text-muted text-center text-[12px]">{t('rates.availIntro')}</p>
+      <div
+        id="avail-cal"
+        class="border-beige bg-cream rounded-[12px] border p-4 md:p-5"
+        data-cfg={JSON.stringify(cfg)}
+      >
+        {/* En-tête : flèches + sélecteurs mois / année */}
+        <div class="mb-4 flex items-center justify-between gap-2">
+          <button
+            type="button"
+            data-nav="prev"
+            aria-label={cfg.labels.prev}
+            class="border-beige text-pine hover:bg-pine/5 inline-flex h-9 w-9 items-center justify-center rounded-md border transition-colors disabled:cursor-not-allowed disabled:opacity-30"
+          >
+            ‹
+          </button>
+          <div class="flex items-center gap-2">
+            <select
+              data-sel="month"
+              aria-label="Mois"
+              class="border-beige text-ink rounded-md border bg-white px-2.5 py-1.5 text-sm font-medium"
+            />
+            <select
+              data-sel="year"
+              aria-label="Année"
+              class="border-beige text-ink rounded-md border bg-white px-2.5 py-1.5 text-sm font-medium"
+            />
+          </div>
+          <button
+            type="button"
+            data-nav="next"
+            aria-label={cfg.labels.next}
+            class="border-beige text-pine hover:bg-pine/5 inline-flex h-9 w-9 items-center justify-center rounded-md border transition-colors disabled:cursor-not-allowed disabled:opacity-30"
+          >
+            ›
+          </button>
+        </div>
+
+        {/* Noms des jours (lundi en premier) */}
+        <div
+          data-weekdays
+          class="text-muted mb-1.5 grid grid-cols-7 gap-1 text-center text-[11px] font-semibold uppercase"
+        />
+        {/* Grille des jours (remplie par JS) */}
+        <div data-grid class="grid grid-cols-7 gap-1" />
+
+        {/* Légende */}
+        <div class="text-muted mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-[12px]">
+          <span class="inline-flex items-center gap-1.5">
+            <span class="border-sage bg-cream inline-block h-3 w-3 rounded-sm border" />
+            {cfg.labels.free}
+          </span>
+          <span class="inline-flex items-center gap-1.5">
+            <span class="ring-pine bg-cream inline-block h-3 w-3 rounded-sm ring-2" />
+            {cfg.labels.checkin}
+          </span>
+          <span class="inline-flex items-center gap-1.5">
+            <span class="inline-block h-3 w-3 rounded-sm bg-[#e0d6c6]" />
+            {cfg.labels.bookedLabel}
+          </span>
+        </div>
+      </div>
+
+      <p class="text-muted text-center text-[13px]">{t('rates.availConfirm')}</p>
+      <p class="text-muted text-center text-[13px]">{t('rates.bookingRule')}</p>
+    </div>
+  ) : (
+    /* Repli : flux iCal injoignable → iframe d'origine chambresdhotes.org */
+    <BookingEmbed locale={locale} />
+  )
+}
+
+<script>
+  const root = document.getElementById('avail-cal');
+  if (root) {
+    const cfg = JSON.parse(root.dataset.cfg || '{}');
+    const booked = new Set<string>(cfg.booked);
+    const grid = root.querySelector('[data-grid]') as HTMLElement;
+    const wk = root.querySelector('[data-weekdays]') as HTMLElement;
+    const selMonth = root.querySelector('[data-sel="month"]') as HTMLSelectElement;
+    const selYear = root.querySelector('[data-sel="year"]') as HTMLSelectElement;
+    const prev = root.querySelector('[data-nav="prev"]') as HTMLButtonElement;
+    const next = root.querySelector('[data-nav="next"]') as HTMLButtonElement;
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const minM = new Date(today.getFullYear(), today.getMonth(), 1);
+    const maxM = new Date(today.getFullYear(), today.getMonth() + 18, 1);
+    let view = new Date(minM);
+
+    const p2 = (n: number) => String(n).padStart(2, '0');
+    const ymd = (d: Date) => `${d.getFullYear()}-${p2(d.getMonth() + 1)}-${p2(d.getDate())}`;
+    const fr = (d: Date) => `${p2(d.getDate())}/${p2(d.getMonth() + 1)}/${d.getFullYear()}`;
+
+    // Une semaine (samedi → samedi) est libre si les 7 nuits sont libres et non passées.
+    function weekFree(sat: Date) {
+      for (let i = 0; i < 7; i++) {
+        const d = new Date(sat);
+        d.setDate(sat.getDate() + i);
+        if (d < today || booked.has(ymd(d))) return false;
+      }
+      return true;
+    }
+    function bookUrl(sat: Date) {
+      const end = new Date(sat);
+      end.setDate(sat.getDate() + 7);
+      return `${cfg.availabilityUrl}?who=${cfg.who}&from=${fr(sat)}&to=${fr(end)}&adults=${cfg.adults}&children=${cfg.children}`;
+    }
+
+    // Sélecteurs
+    cfg.weekdayNames.forEach((n: string) => {
+      const c = document.createElement('div');
+      c.textContent = n;
+      wk.appendChild(c);
+    });
+    cfg.monthNames.forEach((n: string, i: number) => {
+      const o = document.createElement('option');
+      o.value = String(i);
+      o.textContent = n;
+      selMonth.appendChild(o);
+    });
+    for (let y = minM.getFullYear(); y <= maxM.getFullYear(); y++) {
+      const o = document.createElement('option');
+      o.value = String(y);
+      o.textContent = String(y);
+      selYear.appendChild(o);
+    }
+
+    function clamp() {
+      if (view < minM) view = new Date(minM);
+      if (view > maxM) view = new Date(maxM);
+    }
+
+    function render() {
+      clamp();
+      selMonth.value = String(view.getMonth());
+      selYear.value = String(view.getFullYear());
+      prev.disabled = view <= minM;
+      next.disabled = view >= maxM;
+
+      grid.innerHTML = '';
+      const first = new Date(view.getFullYear(), view.getMonth(), 1);
+      const offset = (first.getDay() + 6) % 7; // lundi = 0
+      const days = new Date(view.getFullYear(), view.getMonth() + 1, 0).getDate();
+
+      for (let i = 0; i < offset; i++) {
+        grid.appendChild(document.createElement('div'));
+      }
+      for (let day = 1; day <= days; day++) {
+        const d = new Date(view.getFullYear(), view.getMonth(), day);
+        const past = d < today;
+        const isBooked = booked.has(ymd(d));
+        const isSat = d.getDay() === 6;
+        const canBook = isSat && !past && weekFree(d);
+
+        const base =
+          'flex h-11 items-center justify-center rounded-md text-sm md:h-12';
+        let cell;
+        if (canBook) {
+          cell = document.createElement('a');
+          cell.href = bookUrl(d);
+          cell.target = '_blank';
+          cell.rel = 'noopener';
+          cell.title = cfg.labels.reserve;
+          cell.className =
+            base +
+            ' ring-pine text-pine hover:bg-pine hover:text-cream cursor-pointer font-semibold no-underline ring-2 transition-colors';
+        } else {
+          cell = document.createElement('div');
+          if (past) cell.className = base + ' text-beige';
+          else if (isBooked) cell.className = base + ' bg-[#e0d6c6] text-muted';
+          else cell.className = base + ' border-sage text-ink border';
+        }
+        cell.append(String(day));
+        grid.appendChild(cell);
+      }
+    }
+
+    prev.addEventListener('click', () => {
+      view = new Date(view.getFullYear(), view.getMonth() - 1, 1);
+      render();
+    });
+    next.addEventListener('click', () => {
+      view = new Date(view.getFullYear(), view.getMonth() + 1, 1);
+      render();
+    });
+    selMonth.addEventListener('change', () => {
+      view = new Date(+selYear.value, +selMonth.value, 1);
+      render();
+    });
+    selYear.addEventListener('change', () => {
+      view = new Date(+selYear.value, +selMonth.value, 1);
+      render();
+    });
+
+    render();
+  }
+</script>

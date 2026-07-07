@@ -23,7 +23,7 @@ export const tourism: TourismItem[] = [
     siteUrl: 'https://chateaudelacalade.fr',
     fr: {
       title: 'Château de la Calade',
-      text: "Une bastide du XVIIᵉ siècle sur le plateau de Puyricard, classée Monument Historique. Visites guidées avec le châtelain passionné pour explorer son architecture authentique et son riche passé.",
+      text: 'Une bastide du XVIIᵉ siècle sur le plateau de Puyricard, classée Monument Historique. Visites guidées avec le châtelain passionné pour explorer son architecture authentique et son riche passé.',
     },
     en: {
       title: 'Château de la Calade',
@@ -38,7 +38,7 @@ export const tourism: TourismItem[] = [
     siteUrl: 'https://chateau-la-coste.com/',
     fr: {
       title: 'Château La Coste',
-      text: "Un domaine viticole exceptionnel au Puy-Sainte-Réparade, alliant vignoble, art contemporain et architecture moderne. Dégustation de vins biodynamiques et parcours artistique en plein air.",
+      text: 'Un domaine viticole exceptionnel au Puy-Sainte-Réparade, alliant vignoble, art contemporain et architecture moderne. Dégustation de vins biodynamiques et parcours artistique en plein air.',
     },
     en: {
       title: 'Château La Coste',
@@ -86,7 +86,7 @@ export const tourism: TourismItem[] = [
     },
     en: {
       title: 'Roquefavour Aqueduct',
-      text: "The largest stone aqueduct in the world, offering sweeping views over the Arc valley and a testament to 19th-century engineering.",
+      text: 'The largest stone aqueduct in the world, offering sweeping views over the Arc valley and a testament to 19th-century engineering.',
     },
   },
   {
@@ -97,7 +97,7 @@ export const tourism: TourismItem[] = [
     siteUrl: 'https://lourmarin.com/decouvrir/',
     fr: {
       title: 'Lourmarin',
-      text: "Un des plus beaux villages de France, connu pour son château et ses ruelles pleines de charme. Marchés typiques et ambiance provençale unique.",
+      text: 'Un des plus beaux villages de France, connu pour son château et ses ruelles pleines de charme. Marchés typiques et ambiance provençale unique.',
     },
     en: {
       title: 'Lourmarin',
@@ -112,7 +112,7 @@ export const tourism: TourismItem[] = [
     siteUrl: 'https://www.ot-cassis.com/',
     fr: {
       title: 'Cassis',
-      text: "Un port de pêche joyau de la côte. Plages, restaurants et balades en bateau pour découvrir les célèbres Calanques de Cassis.",
+      text: 'Un port de pêche joyau de la côte. Plages, restaurants et balades en bateau pour découvrir les célèbres Calanques de Cassis.',
     },
     en: {
       title: 'Cassis',
@@ -172,7 +172,7 @@ export const tourism: TourismItem[] = [
     siteUrl: 'https://www.sanary-tourisme.com/',
     fr: {
       title: 'Sanary-sur-Mer',
-      text: "Un village authentique avec un charmant port de pêche, des marchés colorés et une ambiance typiquement méditerranéenne.",
+      text: 'Un village authentique avec un charmant port de pêche, des marchés colorés et une ambiance typiquement méditerranéenne.',
     },
     en: {
       title: 'Sanary-sur-Mer',
@@ -187,7 +187,7 @@ export const tourism: TourismItem[] = [
     siteUrl: 'https://www.calanques-parcnational.fr/fr',
     fr: {
       title: 'Les Calanques de Cassis et Marseille',
-      text: "Le Parc National des Calanques offre des paysages spectaculaires entre falaises calcaires et eaux turquoise. En bateau ou à pied, à la découverte des criques secrètes comme En-Vau.",
+      text: 'Le Parc National des Calanques offre des paysages spectaculaires entre falaises calcaires et eaux turquoise. En bateau ou à pied, à la découverte des criques secrètes comme En-Vau.',
     },
     en: {
       title: 'The Calanques of Cassis and Marseille',
@@ -214,7 +214,8 @@ export const tourism: TourismItem[] = [
     category: 'escapades',
     emoji: '🏞️',
     drive: '~1 h 15',
-    siteUrl: 'https://islesurlasorguetourisme.com/decouvrir/terre-de-patrimoine/nos-villages/fontaine-de-vaucluse',
+    siteUrl:
+      'https://islesurlasorguetourisme.com/decouvrir/terre-de-patrimoine/nos-villages/fontaine-de-vaucluse',
     fr: {
       title: 'La Fontaine de Vaucluse',
       text: "Un site naturel impressionnant où la Sorgue jaillit d'une immense cavité rocheuse. Lieu de mystère et d'inspiration.",
@@ -232,7 +233,7 @@ export const tourism: TourismItem[] = [
     siteUrl: 'https://www.saintesmaries.com/',
     fr: {
       title: 'Saintes-Maries-de-la-Mer',
-      text: "Un village emblématique de la Camargue, haut lieu de pèlerinage et berceau des traditions gitane et camarguaise.",
+      text: 'Un village emblématique de la Camargue, haut lieu de pèlerinage et berceau des traditions gitane et camarguaise.',
     },
     en: {
       title: 'Saintes-Maries-de-la-Mer',
@@ -293,7 +294,7 @@ export const tourism: TourismItem[] = [
     siteUrl: 'https://www.montopoto.com',
     fr: {
       title: 'Montopoto',
-      text: "La plus grande aire de jeux couverte de France, à Saint-Cannat. 2 500 m² sur le thème de la jungle : toboggans géants, trampolines, piscines à balles, circuit de voitures électriques. Idéal quelle que soit la météo.",
+      text: 'La plus grande aire de jeux couverte de France, à Saint-Cannat. 2 500 m² sur le thème de la jungle : toboggans géants, trampolines, piscines à balles, circuit de voitures électriques. Idéal quelle que soit la météo.',
     },
     en: {
       title: 'Montopoto',
@@ -308,7 +309,7 @@ export const tourism: TourismItem[] = [
     siteUrl: 'https://villagedesautomates.com/',
     fr: {
       title: 'Le Village des Automates',
-      text: "Un parc de loisirs familial dans une pinède de 8 hectares à Saint-Cannat : plus de 50 attractions, labyrinthe, toboggans géants, filets suspendus et ferme pédagogique.",
+      text: 'Un parc de loisirs familial dans une pinède de 8 hectares à Saint-Cannat : plus de 50 attractions, labyrinthe, toboggans géants, filets suspendus et ferme pédagogique.',
     },
     en: {
       title: 'Le Village des Automates',
@@ -323,7 +324,7 @@ export const tourism: TourismItem[] = [
     siteUrl: 'https://www.zoolabarben.com/',
     fr: {
       title: 'Le Zoo de la Barben et son château',
-      text: "Un parc zoologique exceptionnel au cœur de la Provence : plus de 600 animaux et un magnifique château historique à visiter.",
+      text: 'Un parc zoologique exceptionnel au cœur de la Provence : plus de 600 animaux et un magnifique château historique à visiter.',
     },
     en: {
       title: 'La Barben Zoo and its château',
@@ -339,7 +340,7 @@ export const tourism: TourismItem[] = [
     siteUrl: 'https://www.instagram.com/loucau_/',
     fr: {
       title: 'Le Glacier Lou Cau de Puyricard',
-      text: "Des glaces artisanales et gourmandes à Puyricard, une adresse incontournable pour les amateurs de douceurs glacées.",
+      text: 'Des glaces artisanales et gourmandes à Puyricard, une adresse incontournable pour les amateurs de douceurs glacées.',
     },
     en: {
       title: 'Lou Cau ice-cream, Puyricard',
@@ -354,7 +355,7 @@ export const tourism: TourismItem[] = [
     siteUrl: 'https://maps.app.goo.gl/9oLeuS5UBHw3A2J3A',
     fr: {
       title: 'Le Phocéa',
-      text: "Une adresse gourmande à Puyricard, cuisine maison généreuse avec des produits frais et de saison. Terrasse pour le déjeuner ou dîner entre amis.",
+      text: 'Une adresse gourmande à Puyricard, cuisine maison généreuse avec des produits frais et de saison. Terrasse pour le déjeuner ou dîner entre amis.',
     },
     en: {
       title: 'Le Phocéa',
@@ -396,7 +397,8 @@ export const tourism: TourismItem[] = [
     category: 'manger',
     emoji: '🍕',
     drive: '~6 min',
-    siteUrl: 'https://www.tripadvisor.fr/Restaurant_Review-g1793559-d4604730-Reviews-La_Quincaille-Puyricard_Aix_en_Provence_Bouches_du_Rhone_Provence_Alpes_Cote_d_A.html',
+    siteUrl:
+      'https://www.tripadvisor.fr/Restaurant_Review-g1793559-d4604730-Reviews-La_Quincaille-Puyricard_Aix_en_Provence_Bouches_du_Rhone_Provence_Alpes_Cote_d_A.html',
     fr: {
       title: 'Restaurant La Quincaille',
       text: "À 5 min du gîte, une bonne pizza et les meilleures frites de Puyricard (testé et approuvé !). N'accepte pas la carte bleue. Réservation : +33 4 42 57 04 21.",
@@ -414,7 +416,7 @@ export const tourism: TourismItem[] = [
     siteUrl: 'https://la-theiere-de-puyricard.com/',
     fr: {
       title: 'Restaurant La Théière',
-      text: "À 5 min du gîte, une cuisine maison de produits locaux bio, au soleil. Réservation : +33 4 42 92 03 54.",
+      text: 'À 5 min du gîte, une cuisine maison de produits locaux bio, au soleil. Réservation : +33 4 42 92 03 54.',
     },
     en: {
       title: 'Restaurant La Théière',

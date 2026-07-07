@@ -11,7 +11,7 @@ const schema = z.object({
   phone: z.string().max(40).optional().default(''),
   message: z.string().min(1).max(5000),
   consent: z.literal('on'),
-  company: z.string().max(0).optional().default(''), // honeypot : doit rester vide
+  company: z.string().optional().default(''), // honeypot : traité après validation (réponse ok factice)
 });
 
 const json = (data: unknown, status = 200) =>

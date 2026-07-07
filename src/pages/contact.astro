@@ -6,6 +6,11 @@ const locale = 'fr' as const;
 const t = useTranslations(locale);
 ---
 
-<BaseLayout locale={locale} routeKey="contact" title={t('contact.seoTitle')} description={t('contact.seoDescription')}>
+<BaseLayout
+  locale={locale}
+  routeKey="contact"
+  title={t('contact.seoTitle')}
+  description={t('contact.seoDescription')}
+>
   <ContactPage locale={locale} />
 </BaseLayout>

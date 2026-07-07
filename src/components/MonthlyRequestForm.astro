@@ -1,0 +1,121 @@
+---
+import { useTranslations } from '~/i18n/t';
+import type { Locale } from '~/i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+
+const inputCls =
+  'w-full rounded-md border border-[#dacdb6] bg-cream px-3.5 py-3 text-sm text-ink placeholder:text-[#9a907f]';
+---
+
+<form class="js-form" data-endpoint="/api/monthly-request" novalidate>
+  <input type="hidden" name="locale" value={locale} />
+  <div class="hidden" aria-hidden="true">
+    <label
+      >Ne pas remplir <input type="text" name="company" tabindex="-1" autocomplete="off" /></label
+    >
+  </div>
+
+  <div class="grid gap-3 sm:grid-cols-2">
+    <label>
+      <span class="sr-only">{t('contact.form.name')}</span>
+      <input
+        name="name"
+        type="text"
+        required
+        autocomplete="name"
+        placeholder={t('contact.form.name')}
+        class={inputCls}
+      />
+    </label>
+    <label>
+      <span class="sr-only">{t('contact.form.email')}</span>
+      <input
+        name="email"
+        type="email"
+        required
+        autocomplete="email"
+        placeholder={t('contact.form.email')}
+        class={inputCls}
+      />
+    </label>
+    <label>
+      <span class="sr-only">{t('contact.form.phone')}</span>
+      <input
+        name="phone"
+        type="tel"
+        autocomplete="tel"
+        placeholder={t('contact.form.phone')}
+        class={inputCls}
+      />
+    </label>
+    <label>
+      <span class="sr-only">{t('monthForm.period')}</span>
+      <input
+        name="period"
+        type="text"
+        required
+        placeholder={t('monthForm.period')}
+        class={inputCls}
+      />
+    </label>
+    <label>
+      <span class="sr-only">{t('monthForm.people')}</span>
+      <input
+        name="people"
+        type="number"
+        min="1"
+        max="5"
+        required
+        placeholder={t('monthForm.people')}
+        class={inputCls}
+      />
+    </label>
+    <label>
+      <span class="sr-only">{t('monthForm.reason')}</span>
+      <input name="reason" type="text" placeholder={t('monthForm.reason')} class={inputCls} />
+    </label>
+    <label class="sm:col-span-2">
+      <span class="sr-only">{t('contact.form.message')}</span>
+      <textarea
+        name="message"
+        rows="3"
+        required
+        placeholder={t('contact.form.message')}
+        class={inputCls}></textarea>
+    </label>
+  </div>
+
+  <label class="text-muted my-4 flex items-start gap-2.5 text-[13px] leading-normal">
+    <input name="consent" type="checkbox" required class="accent-pine mt-0.5 h-[18px] w-[18px]" />
+    <span>{t('monthForm.consent')}</span>
+  </label>
+
+  {turnstileKey && <div class="cf-turnstile mb-4" data-sitekey={turnstileKey} data-theme="light" />}
+
+  <button
+    type="submit"
+    class="js-submit bg-pine text-cream hover:bg-pine/90 flex min-h-11 w-full items-center justify-center rounded-md px-6 py-3.5 text-base font-medium transition-colors disabled:opacity-60"
+  >
+    {t('monthForm.submit')}
+  </button>
+
+  <p class="js-success text-pine mt-3 hidden text-sm" role="status">{t('monthForm.success')}</p>
+  <p class="js-error text-notice-strong mt-3 hidden text-sm" role="alert">{t('monthForm.error')}</p>
+</form>
+
+{
+  turnstileKey && (
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer is:inline />
+  )
+}
+
+<script>
+  import { bindAjaxForms } from '~/lib/form-client';
+  bindAjaxForms();
+</script>

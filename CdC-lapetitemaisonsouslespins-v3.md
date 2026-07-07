@@ -9,18 +9,18 @@
 
 Remplacer le site WordPress.com actuel par une **vitrine moderne, sobre et familiale** regroupant infos, photos, tarifs, disponibilités, avis et contact.
 
-| Principe | Traduction |
-|---|---|
-| **Gratuit à l'usage** | 0 €/mois nouveau. On réutilise chambresdhotes.org existant ; tout le reste en offre gratuite. |
-| **Rapide à coder** | Vitrine quasi-statique + embeds. Pas de back-office, BDD, auth, ni CMS. |
-| **Facile à gérer** | La propriétaire ne touche pas au code. **Tout (dispo, prix, résas) reste dans chambresdhotes.org, déjà maîtrisé.** |
+| Principe              | Traduction                                                                                                         |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| **Gratuit à l'usage** | 0 €/mois nouveau. On réutilise chambresdhotes.org existant ; tout le reste en offre gratuite.                      |
+| **Rapide à coder**    | Vitrine quasi-statique + embeds. Pas de back-office, BDD, auth, ni CMS.                                            |
+| **Facile à gérer**    | La propriétaire ne touche pas au code. **Tout (dispo, prix, résas) reste dans chambresdhotes.org, déjà maîtrisé.** |
 
 ---
 
 ## 2. Identité & coordonnées (confirmées)
 
 - **Nom :** La Petite Maison Sous Les Pins
-- **Propriétaires :** Mr et Mme Ré *(affichage à confirmer)*
+- **Propriétaires :** Mr et Mme Ré _(affichage à confirmer)_
 - **Adresse :** 1689 chemin du Marin, 13540 Aix-en-Provence — **Puyricard**
 - **Tél :** 04 42 28 15 69 · 06 62 32 67 18 — **Email :** mariedenise@neuf.fr
 - **SIRET :** 439 696 402 00031
@@ -30,6 +30,7 @@ Remplacer le site WordPress.com actuel par une **vitrine moderne, sobre et famil
 ## 3. Le bien (confirmé)
 
 **Gîte T3, 4 personnes, 2 chambres.**
+
 - Ch. 1 : lit double 160 · Ch. 2 : 2 lits simples · 1 SdB (douche italienne, sèche-cheveux) · 1 WC séparé
 - Séjour : baies vitrées sur jardin, canapé cuir, 3 fauteuils, Smart TV 108 cm, mini Hi-Fi
 - Cuisine ouverte équipée (lave-vaisselle, lave-linge, four, vitrocéramique, réfrigérateur-congélateur, micro-ondes, grille-pain, cafetière)
@@ -46,21 +47,23 @@ Remplacer le site WordPress.com actuel par une **vitrine moderne, sobre et famil
 ## 4. Modèle de location & tarifs
 
 ### 4.1 Location à la semaine (été) — réservation en ligne
+
 - **Samedi → samedi.** Tarif = accès piscine chauffée pour 4 pers. **Spa non inclus** (option).
 
-| Période | Prix/semaine (indicatif) |
-|---|---|
-| Juillet | 1000 – 1200 € |
-| Août | 850 € |
-| Septembre (– Octobre*) | 800 € |
-| Option Spa | +200 €/sem |
-| Option prise véhicule électrique | +30 €/sem |
-| Lit d'appoint (sur demande) | +30 €/sem |
+| Période                          | Prix/semaine (indicatif) |
+| -------------------------------- | ------------------------ |
+| Juillet                          | 1000 – 1200 €            |
+| Août                             | 850 €                    |
+| Septembre (– Octobre*)           | 800 €                    |
+| Option Spa                       | +200 €/sem               |
+| Option prise véhicule électrique | +30 €/sem                |
+| Lit d'appoint (sur demande)      | +30 €/sem                |
 
 - **Conditions :** 20 % à la réservation (CB / Chèques-Vacances e-Connect), **solde à la remise des clés**. Moyens : CB, Chèques-Vacances & e-Connect, chèques. Annulation/report : préavis ≥ 1 mois.
 - **Les prix exacts et à jour sont ceux du module chambresdhotes.org intégré** (§6.2). Le tableau ci-dessus n'est qu'indicatif (« à partir de… »).
 
 ### 4.2 Location au mois (octobre → juin) — sur demande, **sans piscine ni spa**
+
 - **Maison seule, sans piscine ni jacuzzi** (exclus par défaut).
 - Disponible **en continu du 1er octobre au 30 juin**, **sur demande**. Formule **au mois ou en saisonnier** possible **selon les dates et les disponibilités**.
 - Tarif de référence : **1400 €/mois toutes charges comprises** (eau, électricité, internet). Option prise VE : +100 €/mois. Bail mobilité ou saisonnier sur justificatifs (1 à 9 mois).
@@ -72,57 +75,63 @@ Remplacer le site WordPress.com actuel par une **vitrine moderne, sobre et famil
 
 Texte source complet dans `CONTENU-SOURCE.md`.
 
-1. **Accueil** — hero, positionnement, points forts, double entrée *semaine (été)* / *mois (oct-juin)*, aperçu note Google + galerie.
+1. **Accueil** — hero, positionnement, points forts, double entrée _semaine (été)_ / _mois (oct-juin)_, aperçu note Google + galerie.
 2. **Le gîte** — descriptif §3 + galerie par espace (≈ 29 photos).
-3. **Piscine & Spa** *(page dédiée, SEO)* — argument n°1 + option spa + « pas de fêtes » (≈ 22 photos).
+3. **Piscine & Spa** _(page dédiée, SEO)_ — argument n°1 + option spa + « pas de fêtes » (≈ 22 photos).
 4. **Tarifs & Réservation** — parcours A (semaine : grille indicative + **module chambresdhotes.org**) / parcours B (mois : formulaire de demande).
 5. **Tourisme** — reprise des adresses actuelles : Escapades / Activités / Boire & Manger (62 liens, ≈ 27 photos).
 6. **Avis** — widget Google Business Profile (fiche existante). Pas d'avis manuels.
 7. **Contact & accès** — tél (clic-appel) + email affichés + formulaire + carte Google Maps + « comment venir ».
 
-Pied de page : Mentions légales · Politique de confidentialité · Conditions de location *(à rédiger, §9)*.
+Pied de page : Mentions légales · Politique de confidentialité · Conditions de location _(à rédiger, §9)_.
 
 ---
 
 ## 6. Fonctionnalités
 
 ### 6.1 Disponibilités & réservation (simplifié)
+
 - **Embed direct chambresdhotes.org** (iframe, Option A), dans un conteneur stylé.
 - **Les calendriers des OTA (Airbnb, Booking, Abritel…) sont déjà synchronisés sur chambresdhotes.org** côté propriétaire. Le module embarqué reflète donc la **disponibilité agrégée**. → **Aucune synchro iCal à configurer côté site.**
 - chambresdhotes.org reste la **source unique** de la disponibilité, des prix et des réservations (y compris blocage des résas directes ANCV/virement).
 
 ### 6.2 Tarifs (plus de Google Sheet)
+
 - **Source unique = chambresdhotes.org.** Le **module intégré affiche les prix réels et à jour** quand le visiteur choisit ses dates → « toujours actualisé » sans code.
-- *Note technique :* chambresdhotes.org n'expose pas de flux de prix (pas d'API ; l'iCal ne porte que les dispos ; scraping écarté car fragile). On ne réplique donc pas les prix : on s'appuie sur le module.
+- _Note technique :_ chambresdhotes.org n'expose pas de flux de prix (pas d'API ; l'iCal ne porte que les dispos ; scraping écarté car fragile). On ne réplique donc pas les prix : on s'appuie sur le module.
 - Sur la page, une **grille indicative « à partir de… »** (contenu statique du repo, modifié 1-2×/an par Aline) donne l'ordre de grandeur et renvoie au module pour l'exact.
 
 ### 6.3 Formulaire « Location au mois » → mariedenise@neuf.fr
+
 - **Mois / période souhaités** (mois complets ; période oct-juin) · **Nombre de personnes** · **Motif** · **Message**.
 - Coordonnées (nom, email, téléphone) · consentement RGPD.
 
 ### 6.4 Formulaire de contact → mariedenise@neuf.fr
+
 - Nom, email, téléphone (optionnel), message, consentement RGPD. Anti-spam : honeypot + Cloudflare Turnstile.
 
 ### 6.5 Avis Google
-- Google Places API au build (note + ~5 avis + lien fiche), ou widget gratuit. *(À fournir : URL/Place ID.)*
+
+- Google Places API au build (note + ~5 avis + lien fiche), ou widget gratuit. _(À fournir : URL/Place ID.)_
 
 ### 6.6 Bilingue FR / EN
+
 - Routage Astro `/` (FR) + `/en/`, sélecteur de langue, hreflang, traduction des textes/méta. Vérifier la langue du module chambresdhotes et de la carte.
 
 ---
 
 ## 7. Gestion courante — qui gère quoi
 
-| Tâche | Fréquence | Outil | Qui |
-|---|---|---|---|
-| Réservations, **prix**, dispo, blocage résas directes | courant | **chambresdhotes.org** *(seul outil, déjà maîtrisé)* | Propriétaire |
-| Demandes location au mois | courant | Email (formulaire) | Propriétaires |
-| Grille indicative + contenu (textes, photos) | rare | Repo / Claude Code | Aline |
-| Le code | jamais | — | — |
+| Tâche                                                 | Fréquence | Outil                                                | Qui           |
+| ----------------------------------------------------- | --------- | ---------------------------------------------------- | ------------- |
+| Réservations, **prix**, dispo, blocage résas directes | courant   | **chambresdhotes.org** _(seul outil, déjà maîtrisé)_ | Propriétaire  |
+| Demandes location au mois                             | courant   | Email (formulaire)                                   | Propriétaires |
+| Grille indicative + contenu (textes, photos)          | rare      | Repo / Claude Code                                   | Aline         |
+| Le code                                               | jamais    | —                                                    | —             |
 
 ---
 
-## 8. Direction artistique — *Brief Claude Design*
+## 8. Direction artistique — _Brief Claude Design_
 
 Voir le prompt dédié `PROMPT-Claude-Design.md`. En résumé : provençal familial, âme traditionnelle + mise en page épurée ; palette **vert pin + neutres chauds + bleu profond en accent discret (texte/liens, pas de gros boutons)**, bleu piscine via les photos ; titres **Fraunces**, texte **Work Sans** ; wordmark (pas de logo) ; sobre, micro-fondus.
 
@@ -156,4 +165,4 @@ Voir le prompt dédié `PROMPT-Claude-Design.md`. En résumé : provençal famil
 5. **Fiche Google Business Profile** — URL / Place ID (pour les avis).
 6. **Accès DNS** du domaine (repointage Vercel).
 
-*(Résolu en v3 : location au mois = continue oct-juin sur demande, mois ou saisonnier selon dates/dispos ; tarifs via chambresdhotes.org sans Sheet ; agrégation OTA déjà en place, pas d'iCal à configurer.)*
+_(Résolu en v3 : location au mois = continue oct-juin sur demande, mois ou saisonnier selon dates/dispos ; tarifs via chambresdhotes.org sans Sheet ; agrégation OTA déjà en place, pas d'iCal à configurer.)_
