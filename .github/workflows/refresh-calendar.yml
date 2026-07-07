@@ -1,0 +1,26 @@
+name: Rafraîchir le calendrier
+
+# Redéploie le site toutes les 4 h pour relire les flux iCal (chambresdhotes +
+# Homelidays/Abritel) et mettre à jour les disponibilités affichées.
+# Nécessite le secret VERCEL_DEPLOY_HOOK (URL du Deploy Hook Vercel).
+
+on:
+  schedule:
+    - cron: '0 */4 * * *' # toutes les 4 heures (UTC)
+  workflow_dispatch: {} # permet aussi un déclenchement manuel depuis GitHub
+
+jobs:
+  redeploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Déclencher le déploiement Vercel
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "❌ Secret VERCEL_DEPLOY_HOOK manquant (Settings → Secrets → Actions)."
+            exit 1
+          fi
+          echo "→ Déclenchement du redéploiement Vercel…"
+          curl -fsS -X POST "$HOOK" > /dev/null
+          echo "✅ Redéploiement demandé."
