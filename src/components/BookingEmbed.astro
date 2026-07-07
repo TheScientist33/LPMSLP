@@ -16,16 +16,32 @@ const calendarUrl = `${booking.calendar.url};t=${lang}`;
 ---
 
 <div class="space-y-3">
+  <!-- Bouton de réinitialisation : recharge l'iframe pour revenir au calendrier. -->
+  <div class="flex justify-end">
+    <button
+      type="button"
+      id="booking-reset"
+      class="border-pine text-pine hover:bg-pine/5 inline-flex items-center gap-1.5 rounded-md border-[1.5px] px-3.5 py-1.5 text-[13px] font-medium transition-colors"
+    >
+      {t('rates.bookingReset')}
+    </button>
+  </div>
+
   <!-- Calendrier de disponibilités : cliquer sur une date ouvre la réservation. -->
   <div class="border-beige overflow-hidden rounded-[10px] border bg-white/60">
     <iframe
+      id="booking-calendar"
       src={calendarUrl}
+      data-src={calendarUrl}
       title={t('rates.bookingModuleTitle')}
       width="100%"
       height={booking.calendar.height}
       style="border:0; display:block"
       loading="lazy"></iframe>
   </div>
+
+  <!-- Rappel de la règle de location. -->
+  <p class="text-muted text-center text-[13px]">{t('rates.bookingRule')}</p>
 
   <p class="text-center">
     <a
@@ -38,3 +54,15 @@ const calendarUrl = `${booking.calendar.url};t=${lang}`;
     </a>
   </p>
 </div>
+
+<script is:inline>
+  (function () {
+    var btn = document.getElementById('booking-reset');
+    var frame = document.getElementById('booking-calendar');
+    if (!btn || !frame) return;
+    btn.addEventListener('click', function () {
+      // Recharge la source d'origine → l'iframe revient à la vue calendrier.
+      frame.src = frame.getAttribute('data-src');
+    });
+  })();
+</script>

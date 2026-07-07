@@ -16,6 +16,7 @@ export const booking = {
     height: 600,
   },
 
-  /** Lien de secours (fiche publique). */
-  fallbackUrl: 'https://www.chambresdhotes.org/',
+  /** Lien direct vers la page de réservation du logement (who=26961). */
+  fallbackUrl:
+    'https://www.chambresdhotes.org/cgi-bin/links/booking/availability.cgi?who=26961',
 };
