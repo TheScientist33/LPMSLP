@@ -77,14 +77,17 @@
     "titleLine1": "Maison de vacances à Aix-en-Provence",
     "titleLine2": "T3, 4-5 personnes",
     "intro": "Une maison meublée avec goût, mélangeant confort moderne et charme de l’ancien. Au calme sous les pins, la maison est pensée pour les familles. Vous y trouverez tout le confort d’un vrai chez-soi provençal : des espaces de vie généreux, une cuisine complète, deux chambres, et un accès direct à la piscine intérieure chauffée.",
-    "gallery": {
-      "living": "[ PHOTO — séjour lumineux, mobilier ancien ]",
-      "kitchen": "cuisine équipée",
-      "bedroom1": "chambre — lit 160",
-      "bedroom2": "chambre enfants",
-      "bathroom": "salle de bain — douche italienne",
-      "outdoor": "extérieur — terrasse & pins"
-    },
+    "gallery": [
+      "Le séjour",
+      "Le salon",
+      "La cuisine équipée",
+      "Chambre parentale — lit 160",
+      "Seconde chambre",
+      "Salle de bain — douche à l’italienne",
+      "La terrasse",
+      "Le jardin sous les pins",
+      "Parking privé — 3 places"
+    ],
     "equipmentTitle": "Équipements & confort",
     "equipment": [
       {

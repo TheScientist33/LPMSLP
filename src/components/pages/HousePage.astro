@@ -11,6 +11,20 @@ const { locale } = Astro.props;
 const t = useTranslations(locale);
 const equipment = t<{ title: string; text: string }[]>('house.equipment');
 const goodToKnow = t<string[]>('house.goodToKnow');
+
+// Galerie : une photo par espace, légendée (ordre = house.gallery dans fr/en.json)
+const galleryCaptions = t<string[]>('house.gallery');
+const galleryPics = [
+  pics.sejour,
+  pics.sejour2,
+  pics.cuisine,
+  pics.chambreParentale,
+  pics.chambreEnfants,
+  pics.salleDeBain,
+  pics.terrasse,
+  pics.jardin,
+  pics.parking,
+];
 ---
 
 <!-- EN-TÊTE DE PAGE -->
@@ -35,26 +49,23 @@ const goodToKnow = t<string[]>('house.goodToKnow');
 <!-- GALERIE PAR ESPACE -->
 <section class="bg-cream">
   <div class="mx-auto max-w-[1440px] px-5 pt-2 pb-12 md:px-14 md:pt-6 md:pb-16">
-    <div class="grid gap-3 md:grid-cols-[2fr_1fr] md:grid-rows-2 md:gap-4">
-      <Photo
-        pic={pics.sejour}
-        locale={locale}
-        rounded
-        sizes="(min-width: 768px) 66vw, 100vw"
-        class="h-[200px] md:row-span-2 md:h-full md:min-h-[420px]"
-      />
-      <Photo pic={pics.cuisine} locale={locale} rounded class="h-[140px] md:h-[202px]" />
-      <Photo pic={pics.chambreParentale} locale={locale} rounded class="h-[140px] md:h-[202px]" />
-    </div>
-    <div class="mt-3 grid grid-cols-2 gap-3 md:mt-4 md:grid-cols-3 md:gap-4">
-      <Photo pic={pics.chambreEnfants} locale={locale} rounded class="h-[130px] md:h-[180px]" />
-      <Photo pic={pics.salleDeBain} locale={locale} rounded class="h-[130px] md:h-[180px]" />
-      <Photo
-        pic={pics.terrasse}
-        locale={locale}
-        rounded
-        class="col-span-2 h-[130px] md:col-span-1 md:h-[180px]"
-      />
+    <div class="grid gap-x-4 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        galleryPics.map((pic, i) => (
+          <figure>
+            <Photo
+              pic={pic}
+              locale={locale}
+              rounded
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              class="h-[230px] md:h-[250px]"
+            />
+            <figcaption class="text-muted mt-2 text-[13px] md:text-sm">
+              {galleryCaptions[i]}
+            </figcaption>
+          </figure>
+        ))
+      }
     </div>
   </div>
 </section>
