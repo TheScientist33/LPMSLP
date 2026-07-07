@@ -180,6 +180,7 @@
     "bookingRule": "Rental Saturday to Saturday only (7 nights).",
     "bookingReset": "↺ Reset calendar",
     "bookingFallback": "Book on chambresdhotes.org",
+    "availIntro": "Booking calendar — you will be redirected to the chambresdhotes.org booking tool.",
     "availConfirm": "Availability will be confirmed during booking.",
     "availReserve": "Book this week",
     "availPrev": "Previous month",

@@ -180,6 +180,7 @@
     "bookingRule": "Location uniquement du samedi au samedi (7 nuits).",
     "bookingReset": "↺ Réinitialiser le calendrier",
     "bookingFallback": "Réserver sur chambresdhotes.org",
+    "availIntro": "Calendrier de réservation — vous serez redirigé vers l’outil de réservation chambresdhotes.org.",
     "availConfirm": "La disponibilité vous sera confirmée pendant la réservation.",
     "availReserve": "Réserver cette semaine",
     "availPrev": "Mois précédent",

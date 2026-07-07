@@ -45,6 +45,7 @@ const cfg = {
 {
   booked ? (
     <div class="space-y-4">
+      <p class="text-muted text-center text-[12px]">{t('rates.availIntro')}</p>
       <div
         id="avail-cal"
         class="border-beige bg-cream rounded-[12px] border p-4 md:p-5"
@@ -109,17 +110,6 @@ const cfg = {
 
       <p class="text-muted text-center text-[13px]">{t('rates.availConfirm')}</p>
       <p class="text-muted text-center text-[13px]">{t('rates.bookingRule')}</p>
-
-      <p class="text-center">
-        <a
-          href={booking.fallbackUrl}
-          target="_blank"
-          rel="noopener"
-          class="text-marine text-sm no-underline hover:underline"
-        >
-          {t('rates.bookingFallback')} →
-        </a>
-      </p>
     </div>
   ) : (
     /* Repli : flux iCal injoignable → iframe d'origine chambresdhotes.org */
