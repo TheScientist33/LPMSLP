@@ -26,23 +26,23 @@ const isActive = (key: RouteKey) => current === localizeUrl(locale, key).replace
 
 <header class="border-beige bg-cream/95 sticky top-0 z-40 border-b backdrop-blur">
   <div
-    class="mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-5 py-4 md:px-14 md:py-[22px]"
+    class="mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-5 py-4 lg:px-8 md:py-[22px] xl:px-14"
   >
     <a
       href={localizeUrl(locale, 'home')}
-      class="font-display text-ink text-base leading-tight font-semibold no-underline md:text-[22px]"
+      class="font-display text-ink text-base leading-tight font-semibold no-underline lg:text-lg xl:text-[22px]"
     >
       La petite maison sous les <span class="text-pine">pins</span>
     </a>
 
-    <nav aria-label={t('nav.menu')} class="hidden items-center gap-[26px] xl:flex">
+    <nav aria-label={t('nav.menu')} class="hidden items-center gap-4 lg:flex xl:gap-[26px]">
       {
         navItems.map((item) => (
           <a
             href={localizeUrl(locale, item.key)}
             aria-current={isActive(item.key) ? 'page' : undefined}
             class:list={[
-              'text-[15px] font-medium no-underline transition-colors',
+              'text-sm font-medium no-underline transition-colors xl:text-[15px]',
               isActive(item.key) ? 'text-pine font-semibold' : 'text-ink hover:text-marine',
             ]}
           >
@@ -52,18 +52,18 @@ const isActive = (key: RouteKey) => current === localizeUrl(locale, key).replace
       }
     </nav>
 
-    <div class="hidden items-center gap-[18px] xl:flex">
+    <div class="hidden items-center gap-3 lg:flex xl:gap-[18px]">
       <LanguageSwitcher locale={locale} />
       <a
         href={localizeUrl(locale, 'rates')}
-        class="bg-pine text-cream hover:bg-pine/90 inline-flex items-center rounded-[5px] px-[18px] py-2.5 text-sm font-medium no-underline transition-colors"
+        class="bg-pine text-cream hover:bg-pine/90 hidden items-center rounded-[5px] px-[18px] py-2.5 text-sm font-medium no-underline transition-colors xl:inline-flex"
       >
         {t('common.availability')}
       </a>
     </div>
 
     <!-- Mobile -->
-    <div class="flex items-center gap-3 xl:hidden">
+    <div class="flex items-center gap-3 lg:hidden">
       <a
         href={`tel:${site.phoneMobile}`}
         aria-label={t('nav.call')}
@@ -90,7 +90,7 @@ const isActive = (key: RouteKey) => current === localizeUrl(locale, key).replace
     </div>
   </div>
 
-  <div id="mobile-menu" hidden class="border-beige border-t xl:hidden">
+  <div id="mobile-menu" hidden class="border-beige border-t lg:hidden">
     <nav aria-label={t('nav.menu')} class="mx-auto flex max-w-[1440px] flex-col px-5 py-2">
       {
         navItems.map((item) => (
