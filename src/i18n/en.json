@@ -177,6 +177,8 @@
     "conditionsText": "20% at booking (card or e-ANCV), balance on key handover.",
     "bookingModuleTitle": "Calendar & online booking",
     "bookingModuleNote": "[ embedded chambresdhotes.org module ]",
+    "bookingCalendarLabel": "Availability",
+    "bookingSearchLabel": "Check your dates & book",
     "bookingFallback": "Book on chambresdhotes.org",
     "monthKicker": "Option B",
     "monthTitle": "Monthly — October to June",

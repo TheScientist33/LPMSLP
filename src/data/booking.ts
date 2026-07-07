@@ -1,29 +1,37 @@
 /**
  * Configuration du module de réservation chambresdhotes.org.
  *
- * Identifiant du logement (« who ») fourni par la propriétaire : 26961.
- *
- * ⚠️ L'URL d'iframe EXACTE reste à récupérer : le motif deviné
- * (…/cal.cgi?…) renvoie une 404 côté chambresdhotes.org. Pour l'obtenir :
- *   • espace propriétaire chambresdhotes.org → « intégrer mon planning / widget »,
- *     copier le code <iframe src="…">, ou
- *   • sur la page actuelle /disponibilites-reservation/ : clic droit →
- *     « Afficher le code source » → copier le src de l'<iframe>.
- * Coller cette URL dans EMBED_URL ci-dessous (garder null tant qu'inconnue :
- * la page affiche alors un cadre propre, pas d'iframe cassée).
+ * Deux briques distinctes fournies par chambresdhotes.org (codes d'intégration
+ * copiés depuis l'espace propriétaire) :
+ *   1. Calendrier de disponibilités (iframe autonome, lecture seule) — who=4253.
+ *   2. Barre de recherche → réservation (formulaire + assets JS/CSS) — who=26961.
+ * Les deux « who » diffèrent car ce sont deux widgets distincts chez eux.
  */
-const WHO = '26961';
-
-/** URL exacte de l'iframe (à renseigner une fois récupérée). */
-const EMBED_URL: string | null = null;
-
 export const booking = {
-  /** Identifiant du logement chez chambresdhotes.org. */
-  who: WHO,
-  /** URL de l'iframe du calendrier/module. `null` = cadre placeholder propre. */
-  iframeUrl: EMBED_URL,
+  /** Identifiant logement pour la réservation (barre de recherche). */
+  who: '26961',
+
+  /** Calendrier de disponibilités — iframe autonome. */
+  calendar: {
+    /** Base de l'URL iframe (la langue est ajoutée selon la locale). */
+    url: 'https://www.chambresdhotes.org/cgi-bin/links/booking/cal.cgi?make_iframe=1;list=1;who=4253;theme=default;target=top',
+    /** Hauteur de l'iframe (px). */
+    height: 600,
+  },
+
+  /** Barre de recherche de disponibilités → réservation. */
+  search: {
+    /** Action du formulaire (résultats affichés dans l'iframe inline-booking). */
+    action: 'https://www.chambresdhotes.org/cgi-bin/links/booking/availability.cgi',
+    /** Feuille de style du datepicker. */
+    datepickerCss:
+      'https://www.chambresdhotes.org/new_design/bookings/css/book/datepicker.css',
+    /** Script du datepicker / formulaire. */
+    js: 'https://www.chambresdhotes.org/new_design/bookings/js/book/calendar-form.js',
+    /** Thème CSS du formulaire attendu par leur JS (variable globale the_css). */
+    formCss: 'calendar-form-1.css',
+  },
+
   /** Lien de secours (fiche publique). */
   fallbackUrl: 'https://www.chambresdhotes.org/',
-  /** Hauteur mini du conteneur (px) si l'iframe ne fixe pas sa hauteur. */
-  minHeight: 720,
 };

@@ -8,41 +8,126 @@ interface Props {
 }
 const { locale } = Astro.props;
 const t = useTranslations(locale);
+const isFr = locale === 'fr';
+
+// Langue des widgets chambresdhotes.org selon la locale du site.
+const lang = isFr ? 'french' : 'english';
+const calendarUrl = `${booking.calendar.url};t=${lang}`;
+
+// Libellés localisés des menus déroulants de la barre de recherche.
+const adultOptions = Array.from({ length: 10 }, (_, i) => {
+  const n = i + 1;
+  return { value: n, label: isFr ? `${n} adulte${n > 1 ? 's' : ''}` : `${n} adult${n > 1 ? 's' : ''}` };
+});
+const childOptions = Array.from({ length: 11 }, (_, i) => ({
+  value: i,
+  label: isFr ? `${i} enfant${i > 1 ? 's' : ''}` : `${i} child${i === 1 ? '' : 'ren'}`,
+}));
 ---
 
-{
-  booking.iframeUrl ? (
+<div class="space-y-6">
+  <!-- 1. CALENDRIER DE DISPONIBILITÉS (lecture) -->
+  <div>
+    <p class="text-sage mb-2.5 text-[13px] font-semibold tracking-[0.12em] uppercase">
+      {t('rates.bookingCalendarLabel')}
+    </p>
     <div class="border-beige overflow-hidden rounded-[10px] border bg-white/60">
       <iframe
-        src={booking.iframeUrl}
-        title={t('rates.bookingModuleTitle')}
+        src={calendarUrl}
+        title={t('rates.bookingCalendarLabel')}
         width="100%"
-        height={booking.minHeight}
-        style="border:0"
-        loading="lazy"
+        height={booking.calendar.height}
+        style="border:0; display:block"
+        loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <!-- 2. BARRE DE RECHERCHE → RÉSERVATION -->
+  <div>
+    <p class="text-sage mb-2.5 text-[13px] font-semibold tracking-[0.12em] uppercase">
+      {t('rates.bookingSearchLabel')}
+    </p>
+
+    <link href={booking.search.datepickerCss} rel="stylesheet" />
+    <script is:inline define:vars={{ formCss: booking.search.formCss, lang }}>
+      var the_css = formCss;
+      var temp_set = lang;
+    </script>
+
+    <form
+      id="searchDatePicker1"
+      action={booking.search.action}
+      role="form"
+      class="green booking-search bg-sand flex flex-wrap items-end gap-3 rounded-[10px] border border-[#e4d8c4] p-4 md:p-5"
+      target="inline-booking"
+    >
+      <input
+        id="dateFrom1"
+        name="from"
+        type="text"
+        placeholder={isFr ? 'arrivée…' : 'arrival…'}
+        class="border-beige min-w-[130px] flex-1 rounded-md border bg-white px-3 py-2.5 text-sm"
       />
-    </div>
-  ) : (
-    <div class="border-sage rounded-[10px] border-2 border-dashed bg-[#f3f6f2] px-6 py-10 text-center">
-      <span
-        aria-hidden="true"
-        class="border-pine text-pine mx-auto mb-3.5 flex h-11 w-11 items-center justify-center rounded-lg border-[1.5px] text-xl"
+      <input
+        id="dateTo1"
+        name="to"
+        type="text"
+        placeholder={isFr ? 'départ…' : 'departure…'}
+        class="border-beige min-w-[130px] flex-1 rounded-md border bg-white px-3 py-2.5 text-sm"
+      />
+      <select
+        id="adults"
+        name="adults"
+        class="border-beige rounded-md border bg-white px-3 py-2.5 text-sm"
       >
-        ▦
-      </span>
-      <p class="font-display text-pine mb-1.5 text-lg">{t('rates.bookingModuleTitle')}</p>
-      {/* TODO(§14.1) : renseigner booking.iframeUrl (src/data/booking.ts). */}
-      <p class="text-muted font-mono text-xs">{t('rates.bookingModuleNote')}</p>
-    </div>
-  )
-}
-<p class="mt-3 text-center">
-  <a
-    href={booking.fallbackUrl}
-    target="_blank"
-    rel="noopener"
-    class="text-marine text-sm no-underline hover:underline"
-  >
-    {t('rates.bookingFallback')} →
-  </a>
-</p>
+        {
+          adultOptions.map((o) => (
+            <option value={o.value} selected={o.value === 2}>
+              {o.label}
+            </option>
+          ))
+        }
+      </select>
+      <select
+        id="children"
+        name="children"
+        class="border-beige rounded-md border bg-white px-3 py-2.5 text-sm"
+      >
+        {
+          childOptions.map((o) => (
+            <option value={o.value} selected={o.value === 0}>
+              {o.label}
+            </option>
+          ))
+        }
+      </select>
+      <button
+        type="submit"
+        class="bg-pine text-cream hover:bg-pine/90 rounded-md px-5 py-2.5 text-sm font-medium transition-colors"
+      >
+        {isFr ? 'Réservez ›' : 'Book ›'}
+      </button>
+      <input type="hidden" name="who" value={booking.who} />
+    </form>
+
+    <iframe
+      name="inline-booking"
+      id="inline-booking"
+      title={t('rates.bookingModuleTitle')}
+      style="width:100%; height:800px; display:none; border:0"
+      class="border-beige mt-4 rounded-[10px] border"></iframe>
+
+    <script is:inline src={booking.search.js}></script>
+  </div>
+
+  <p class="text-center">
+    <a
+      href={booking.fallbackUrl}
+      target="_blank"
+      rel="noopener"
+      class="text-marine text-sm no-underline hover:underline"
+    >
+      {t('rates.bookingFallback')} →
+    </a>
+  </p>
+</div>

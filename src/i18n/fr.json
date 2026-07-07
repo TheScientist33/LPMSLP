@@ -177,6 +177,8 @@
     "conditionsText": "20 % à la réservation (CB ou e-ANCV), solde à la remise des clés.",
     "bookingModuleTitle": "Calendrier & réservation en ligne",
     "bookingModuleNote": "[ module chambresdhotes.org intégré ]",
+    "bookingCalendarLabel": "Disponibilités",
+    "bookingSearchLabel": "Vérifier mes dates & réserver",
     "bookingFallback": "Réserver sur chambresdhotes.org",
     "monthKicker": "Parcours B",
     "monthTitle": "Au mois — octobre à juin",
