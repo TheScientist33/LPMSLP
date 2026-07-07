@@ -83,7 +83,7 @@ const googleUrl = site.reviewsUrl;
 <section class="bg-cream">
   <div class="mx-auto max-w-[1440px] px-5 pt-8 pb-12 md:px-14 md:pb-14">
     {
-      data && data.reviews.length > 0 && (
+      data && data.reviews.length > 0 ? (
         <ul class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {data.reviews.map((r, i) => (
             <li class="bg-cream rounded-xl border border-[#e4d8c4] p-6 md:p-[26px]">
@@ -109,18 +109,42 @@ const googleUrl = site.reviewsUrl;
               <p class="text-ink text-sm leading-[1.65]">{r.text}</p>
             </li>
           ))}
+          {/* Dernière case : appel à voir tous les avis sur Google */}
+          <li>
+            <a
+              href={googleUrl}
+              target="_blank"
+              rel="noopener"
+              class="bg-sand border-pine/25 hover:bg-pine/5 hover:border-pine/40 flex h-full flex-col items-center justify-center gap-3 rounded-xl border border-dashed p-6 text-center no-underline transition-colors md:p-[26px]"
+            >
+              <span
+                aria-hidden="true"
+                class="font-display text-[22px] font-semibold"
+                aria-label="Google"
+              >
+                <span class="text-[#4285F4]">G</span>
+                <span class="text-[#EA4335]">o</span>
+                <span class="text-[#FBBC05]">o</span>
+                <span class="text-[#4285F4]">g</span>
+                <span class="text-[#34A853]">l</span>
+                <span class="text-[#EA4335]">e</span>
+              </span>
+              <span class="text-pine text-[15px] font-medium">{t('reviews.seeAll')} →</span>
+            </a>
+          </li>
         </ul>
+      ) : (
+        <p class="mt-9 text-center">
+          <a
+            href={googleUrl}
+            target="_blank"
+            rel="noopener"
+            class="border-pine text-pine hover:bg-pine/5 inline-flex items-center gap-2.5 rounded-md border-[1.5px] px-7 py-3.5 text-[15px] font-medium no-underline transition-colors"
+          >
+            {t('reviews.seeAll')} →
+          </a>
+        </p>
       )
     }
-    <p class="mt-9 text-center">
-      <a
-        href={googleUrl}
-        target="_blank"
-        rel="noopener"
-        class="border-pine text-pine hover:bg-pine/5 inline-flex items-center gap-2.5 rounded-md border-[1.5px] px-7 py-3.5 text-[15px] font-medium no-underline transition-colors"
-      >
-        {t('reviews.seeAll')} →
-      </a>
-    </p>
   </div>
 </section>
