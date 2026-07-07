@@ -25,7 +25,7 @@ const childOptions = Array.from({ length: 11 }, (_, i) => ({
 }));
 ---
 
-<div class="space-y-6">
+<div id="booking-embed-top" class="scroll-mt-24 space-y-6">
   <!-- 1. CALENDRIER DE DISPONIBILITÉS (lecture) -->
   <div>
     <p class="text-sage mb-2.5 text-[13px] font-semibold tracking-[0.12em] uppercase">
@@ -110,6 +110,16 @@ const childOptions = Array.from({ length: 11 }, (_, i) => ({
       <input type="hidden" name="who" value={booking.who} />
     </form>
 
+    <p class="text-muted mt-2 text-[13px]">{t('rates.bookingSearchHint')}</p>
+
+    <button
+      type="button"
+      id="booking-back"
+      class="border-pine text-pine hover:bg-pine/5 mt-4 hidden items-center gap-1.5 rounded-md border-[1.5px] px-4 py-2 text-sm font-medium transition-colors"
+    >
+      {t('rates.bookingBack')}
+    </button>
+
     <iframe
       name="inline-booking"
       id="inline-booking"
@@ -118,6 +128,75 @@ const childOptions = Array.from({ length: 11 }, (_, i) => ({
       class="border-beige mt-4 rounded-[10px] border"></iframe>
 
     <script is:inline src={booking.search.js}></script>
+
+    <!-- Règle de location : forcer un séjour du samedi au samedi. -->
+    <script is:inline>
+      (function () {
+        var from = document.getElementById('dateFrom1');
+        var to = document.getElementById('dateTo1');
+        var form = document.getElementById('searchDatePicker1');
+        if (!from || !to || !form) return;
+
+        // Parse une date au format jj/mm/aaaa, jj-mm-aaaa ou aaaa-mm-jj.
+        function parse(s) {
+          s = (s || '').trim();
+          var m;
+          if ((m = s.match(/^(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})$/)))
+            return { y: +m[1], mo: +m[2], d: +m[3], iso: true, sep: s.indexOf('-') > -1 ? '-' : '/' };
+          if ((m = s.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})$/)))
+            return { d: +m[1], mo: +m[2], y: +m[3], iso: false, sep: s.indexOf('-') > -1 ? '-' : '/' };
+          return null;
+        }
+        function pad(n) {
+          return (n < 10 ? '0' : '') + n;
+        }
+        function fmt(date, ref) {
+          var d = pad(date.getDate()),
+            mo = pad(date.getMonth() + 1),
+            y = date.getFullYear();
+          return ref.iso ? y + ref.sep + mo + ref.sep + d : d + ref.sep + mo + ref.sep + y;
+        }
+        // Ramène une date au samedi (avance jusqu'au prochain samedi si besoin).
+        function toSaturday(date) {
+          var delta = (6 - date.getDay() + 7) % 7;
+          date.setDate(date.getDate() + delta);
+          return date;
+        }
+        // À partir de l'arrivée saisie : arrivée = samedi, départ = samedi +7 j.
+        function apply() {
+          var p = parse(from.value);
+          if (!p) return;
+          var start = toSaturday(new Date(p.y, p.mo - 1, p.d));
+          var end = new Date(start.getTime());
+          end.setDate(end.getDate() + 7);
+          from.value = fmt(start, p);
+          to.value = fmt(end, p);
+        }
+        // Départ piloté automatiquement : on le verrouille.
+        to.readOnly = true;
+        from.addEventListener('change', apply);
+        from.addEventListener('blur', apply);
+        form.addEventListener('submit', apply);
+
+        // Bouton « Retour au calendrier » : apparaît après une recherche,
+        // masque les résultats et remonte au calendrier de disponibilités.
+        var back = document.getElementById('booking-back');
+        var results = document.getElementById('inline-booking');
+        var top = document.getElementById('booking-embed-top');
+        if (back && results) {
+          form.addEventListener('submit', function () {
+            back.classList.remove('hidden');
+            back.classList.add('flex');
+          });
+          back.addEventListener('click', function () {
+            results.style.display = 'none';
+            back.classList.add('hidden');
+            back.classList.remove('flex');
+            if (top) top.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+        }
+      })();
+    </script>
   </div>
 
   <p class="text-center">

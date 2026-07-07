@@ -179,6 +179,8 @@
     "bookingModuleNote": "[ embedded chambresdhotes.org module ]",
     "bookingCalendarLabel": "Availability",
     "bookingSearchLabel": "Check your dates & book",
+    "bookingSearchHint": "Weekly stays, Saturday to Saturday: the departure date is set automatically.",
+    "bookingBack": "‹ Back to calendar",
     "bookingFallback": "Book on chambresdhotes.org",
     "monthKicker": "Option B",
     "monthTitle": "Monthly — October to June",

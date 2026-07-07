@@ -179,6 +179,8 @@
     "bookingModuleNote": "[ module chambresdhotes.org intégré ]",
     "bookingCalendarLabel": "Disponibilités",
     "bookingSearchLabel": "Vérifier mes dates & réserver",
+    "bookingSearchHint": "Séjours à la semaine, du samedi au samedi : la date de départ est fixée automatiquement.",
+    "bookingBack": "‹ Retour au calendrier",
     "bookingFallback": "Réserver sur chambresdhotes.org",
     "monthKicker": "Parcours B",
     "monthTitle": "Au mois — octobre à juin",
