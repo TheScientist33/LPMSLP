@@ -8,11 +8,25 @@
  * chambresdhotes.org par le planning du propriétaire.
  */
 export const booking = {
-  /** Calendrier de disponibilités — iframe autonome. */
+  /** Identifiant du logement pour la réservation (paramètre « who »). */
+  who: '26961',
+
+  /** Flux iCal d'export (dates occupées) — lu au build pour le calendrier maison. */
+  icsUrl: 'https://www.chambresdhotes.org/booking/mariedenise.charles/4253.ics',
+
+  /**
+   * Base de l'URL de réservation. On y ajoute (GET, format jj/mm/aaaa confirmé) :
+   *   ?who=…&from=jj/mm/aaaa&to=jj/mm/aaaa&adults=…&children=…
+   */
+  availabilityUrl:
+    'https://www.chambresdhotes.org/cgi-bin/links/booking/availability.cgi',
+
+  /** Valeurs par défaut du formulaire de réservation. */
+  defaults: { adults: 2, children: 0 },
+
+  /** Calendrier iframe d'origine — REPLI si le flux iCal est injoignable. */
   calendar: {
-    /** Base de l'URL iframe (la langue est ajoutée selon la locale). */
     url: 'https://www.chambresdhotes.org/cgi-bin/links/booking/cal.cgi?make_iframe=1;list=1;who=4253;theme=default;target=top',
-    /** Hauteur de l'iframe (px). */
     height: 600,
   },
 

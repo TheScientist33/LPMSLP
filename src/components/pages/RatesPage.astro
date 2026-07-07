@@ -1,7 +1,7 @@
 ---
 import { useTranslations } from '~/i18n/t';
 import type { Locale } from '~/i18n/ui';
-import BookingEmbed from '~/components/BookingEmbed.astro';
+import AvailabilityCalendar from '~/components/AvailabilityCalendar.astro';
 import MonthlyRequestForm from '~/components/MonthlyRequestForm.astro';
 import { tarifsSemaine, tarifMois } from '~/data/tarifs';
 
@@ -89,7 +89,7 @@ const monthNote = locale === 'fr' ? tarifMois.noteFr : tarifMois.noteEn;
         </p>
 
         <div class="mt-6">
-          <BookingEmbed locale={locale} />
+          <AvailabilityCalendar locale={locale} />
         </div>
       </div>
     </article>
